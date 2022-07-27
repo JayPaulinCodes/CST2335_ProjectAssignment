@@ -16,7 +16,7 @@
         android:theme="@style/Theme.CST2335_ProjectAssignment"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".TicketQuery"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

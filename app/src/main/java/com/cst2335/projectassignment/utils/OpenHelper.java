@@ -1,4 +1,4 @@
-package com.cst2335.projectassignment;
+package com.cst2335.projectassignment.utils;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

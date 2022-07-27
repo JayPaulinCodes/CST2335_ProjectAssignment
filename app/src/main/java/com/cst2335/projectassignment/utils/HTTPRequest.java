@@ -1,4 +1,4 @@
-package com.cst2335.projectassignment;
+package com.cst2335.projectassignment.utils;
 
 import android.os.AsyncTask;
 import android.util.Log;
@@ -15,10 +15,15 @@ import java.net.URL;
 public class HTTPRequest extends AsyncTask<String, Integer, String> {
     private static final String TAG = "HTTPRequest";
 
+    public static final String BASE_URL = "https://app.ticketmaster.com/discovery/v2/events.json?apikey=GaC7WC9H0odhl78qlM7sgE6ktHwZcDDq";
+    private static final String KEY = "GaC7WC9H0odhl78qlM7sgE6ktHwZcDDq";
+
     @Override
     protected String doInBackground(String... args) {
+        String resultOutput = null;
 
         try {
+
             // Create URL based off of args
             URL url = new URL(args[0]);
 
@@ -34,29 +39,20 @@ public class HTTPRequest extends AsyncTask<String, Integer, String> {
             while ((line = reader.readLine()) != null) {
                 stringBuilder.append(line + "\n");
             }
-            String result = stringBuilder.toString();
 
-            // convert string to JSON: Look at slide 27:
-            JSONObject uvReport = new JSONObject(result);
-
-            //get the double associated with "value"
-            int numEntries = uvReport.getInt("count");
-
-            publishProgress(25);
-            Thread.sleep(1000);
-            publishProgress(50);
-            Log.i(TAG, "Num of entries: " + numEntries) ;
+            resultOutput = stringBuilder.toString();
 
         } catch (Exception exception) { exception.printStackTrace(); }
 
-        return "Done";
+        return resultOutput;
     }
 
     public void onProgressUpdate(Integer ... args) {
         Log.i(TAG, "onProgressUpdate");
     }
 
-    public void onPostExecute(String fromDoInBackground) {
-        Log.i(TAG, fromDoInBackground);
+    public void onPostExecute(String result) {
+        super.onPostExecute(result);
+        Log.i(TAG, "onPostExecute");
     }
 }
