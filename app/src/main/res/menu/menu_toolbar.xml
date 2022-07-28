@@ -8,7 +8,7 @@
         android:title="@string/menuToolbar_home"
         android:icon="@drawable/home_icon_24"
         android:orderInCategory="100"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/drawerMenu_search"
