@@ -3,9 +3,9 @@ package com.cst2335.projectassignment.objects;
 // TODO: Add JavaDoc Comment
 public class EventPriceRange {
 
-    private String currency;
-    private Double minimum;
     private Double maximum;
+    private Double minimum;
+    private String currency;
 
     // TODO: Add JavaDoc Comment
     public EventPriceRange(String currency, Double minimum, Double maximum) {
@@ -15,18 +15,18 @@ public class EventPriceRange {
     }
 
     /**
-     * Accessor method for variable currency
+     * Accessor method for variable maximum
      *
-     * @returns value of variable currency
+     * @returns value of variable maximum
      */
-    public String getCurrency() { return currency; }
+    public Double getMaximum() { return maximum; }
 
     /**
-     * Mutator method for variable currency
+     * Mutator method for variable maximum
      *
-     * @param currency value to assign to variable currency
+     * @param maximum value to assign to variable maximum
      */
-    public void setCurrency(String currency) { this.currency = currency; }
+    public void setMaximum(Double maximum) { this.maximum = maximum; }
 
     /**
      * Accessor method for variable minimum
@@ -43,18 +43,18 @@ public class EventPriceRange {
     public void setMinimum(Double minimum) { this.minimum = minimum; }
 
     /**
-     * Accessor method for variable maximum
+     * Accessor method for variable currency
      *
-     * @returns value of variable maximum
+     * @returns value of variable currency
      */
-    public Double getMaximum() { return maximum; }
+    public String getCurrency() { return currency; }
 
     /**
-     * Mutator method for variable maximum
+     * Mutator method for variable currency
      *
-     * @param maximum value to assign to variable maximum
+     * @param currency value to assign to variable currency
      */
-    public void setMaximum(Double maximum) { this.maximum = maximum; }
+    public void setCurrency(String currency) { this.currency = currency; }
 
     // TODO: Add JavaDoc Comment
     public String getMinimumFormated() { return String.format("%d %s", minimum, currency); }

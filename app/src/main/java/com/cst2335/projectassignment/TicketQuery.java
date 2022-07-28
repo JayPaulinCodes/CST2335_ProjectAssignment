@@ -2,6 +2,8 @@ package com.cst2335.projectassignment;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -30,6 +32,12 @@ public class TicketQuery extends AppCompatActivity {
         } catch (Exception exception) { exception.printStackTrace(); }
 
         log(Integer.toString(result_count));
+
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
 
     }
 
