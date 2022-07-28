@@ -1,5 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">CST2335_ProjectAssignment</string>
     <string name="header_brandName">TicketQuery</string>
     <string name="drawerMenu_navigation">Navigation</string>
     <string name="drawerMenu_home">Home</string>
