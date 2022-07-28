@@ -10,25 +10,25 @@
         android:orderInCategory="100"
         app:showAsAction="ifRoom" />
 
-    <item
-        android:id="@+id/drawerMenu_search"
-        android:icon="@drawable/search_icon_50"
-        android:orderInCategory="200"
-        android:title="@string/drawerMenu_search"
-        app:showAsAction="ifRoom" />
+<!--    <item-->
+<!--        android:id="@+id/menuDrawer_search"-->
+<!--        android:icon="@drawable/search_icon_50"-->
+<!--        android:orderInCategory="200"-->
+<!--        android:title="@string/menuDrawer_search"-->
+<!--        app:showAsAction="ifRoom" />-->
 
     <item
-        android:id="@+id/drawerMenu_favorites"
+        android:id="@+id/menuDrawer_favorites"
         android:icon="@drawable/heart_icon_30"
         android:orderInCategory="300"
-        android:title="@string/drawerMenu_favorites"
+        android:title="@string/menuDrawer_favorites"
         app:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/drawerMenu_help"
+        android:id="@+id/menuDrawer_help"
         android:icon="@drawable/questionmark_icon_50"
         android:orderInCategory="100"
-        android:title="@string/drawerMenu_help"
+        android:title="@string/menuDrawer_help"
         app:showAsAction="never" />
 
 </menu>

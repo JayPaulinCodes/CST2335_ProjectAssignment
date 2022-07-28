@@ -1,14 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="header_brandName">TicketQuery</string>
-    <string name="drawerMenu_navigation">Navigation</string>
-    <string name="drawerMenu_home">Home</string>
-    <string name="drawerMenu_favorites">Favorites</string>
-    <string name="drawerMenu_search">Search</string>
-    <string name="menuToolbar_home">Home</string>
+
+    <!--  Specs  -->
     <string name="brandName">TicketQuery</string>
-    <string name="open">Open</string>
-    <string name="close">Close</string>
-    <string name="drawerMenu_miscellaneous">Miscellaneous</string>
-    <string name="drawerMenu_help">Help</string>
+    <string name="appVersion">1.0.0</string>
+    <string name="appAuthor">Jacob Paulin</string>
+
+    <!--  Drawer Menu  -->
+    <string name="menuDrawer_navigation">Navigation</string>
+    <string name="menuDrawer_home">Home</string>
+    <string name="menuDrawer_favorites">Favorites</string>
+    <string name="menuDrawer_search">Search</string>
+    <string name="menuDrawer_miscellaneous">Miscellaneous</string>
+    <string name="menuDrawer_help">Help</string>
+    <string name="menuDrawer_about">About</string>
+
+    <!--  Toolbar Menu  -->
+    <string name="menuToolbar_home">Home</string>
+
+    <!--  Miscellaneous  -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--  WORDS  -->
+    <string name="blank"></string>
+    <string name="open">open</string>
+    <string name="close">close</string>
+    <string name="activity">activity</string>
+    <string name="author">author</string>
+    <string name="version">version</string>
+
 </resources>

@@ -3,35 +3,56 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:title="@string/drawerMenu_navigation">
+    <item android:title="@string/menuDrawer_navigation">
         <menu>
             <item
-                android:id="@+id/drawerMenu_home"
+                android:id="@+id/menuDrawer_home"
                 android:icon="@drawable/home_icon_24"
                 android:orderInCategory="100"
-                android:title="@string/drawerMenu_home" />
+                android:title="@string/menuDrawer_home" />
+
+<!--            <item-->
+<!--                android:id="@+id/menuDrawer_search"-->
+<!--                android:icon="@drawable/search_icon_50"-->
+<!--                android:orderInCategory="200"-->
+<!--                android:title="@string/menuDrawer_search" />-->
 
             <item
-                android:id="@+id/drawerMenu_search"
-                android:icon="@drawable/search_icon_50"
-                android:orderInCategory="200"
-                android:title="@string/drawerMenu_search" />
-
-            <item
-                android:id="@+id/drawerMenu_favorites"
+                android:id="@+id/menuDrawer_favorites"
                 android:icon="@drawable/heart_icon_30"
                 android:orderInCategory="300"
-                android:title="@string/drawerMenu_favorites" />
+                android:title="@string/menuDrawer_favorites" />
         </menu>
     </item>
 
-    <item android:title="@string/drawerMenu_miscellaneous">
+    <item android:title="@string/menuDrawer_miscellaneous">
         <menu>
             <item
-                android:id="@+id/drawerMenu_help"
+                android:id="@+id/menuDrawer_help"
                 android:icon="@drawable/questionmark_icon_50"
                 android:orderInCategory="100"
-                android:title="@string/drawerMenu_help" />
+                android:title="@string/menuDrawer_help" />
+        </menu>
+    </item>
+
+    <item android:title="@string/menuDrawer_about">
+        <menu>
+            <item
+                android:id="@+id/menuDrawer_activity"
+                android:orderInCategory="100"
+                android:title="@string/activity" />
+
+            <item
+                android:id="@+id/menuDrawer_author"
+                android:orderInCategory="200"
+                android:title="@string/author"
+                />
+
+            <item
+                android:id="@+id/menuDrawer_version"
+                android:orderInCategory="300"
+                android:title="@string/version"
+                />
         </menu>
     </item>
 

@@ -1,11 +1,13 @@
 package com.cst2335.projectassignment;
 
+import androidx.annotation.StringRes;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,12 +15,23 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.google.android.material.internal.NavigationMenuItemView;
 import com.google.android.material.navigation.NavigationView;
 
+// TODO: Add JavaDoc Comment
 public class TicketQuery extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-    private static void log(String message) { Log.i(TAG, message); }
     private static final String TAG = "TicketQuery";
 
+    // TODO: Add JavaDoc Comment
+    private static final void log(String message) { Log.i(TAG, message); }
+
+    // TODO: Add JavaDoc Comment
+    private final String word(@StringRes int string, Boolean capitalize) { return (capitalize) ? capitalize(getString(string)) : getString(string); }
+
+    // TODO: Add JavaDoc Comment
+    private static final String capitalize(String str) { return (str == null || str.isEmpty()) ? str : str.substring(0, 1).toUpperCase() + str.substring(1); }
+
+    // TODO: Add JavaDoc Comment
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,14 +51,29 @@ public class TicketQuery extends AppCompatActivity implements NavigationView.OnN
 
     }
 
+    // TODO: Add JavaDoc Comment
     @Override
+    @SuppressLint("RestrictedApi")
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_toolbar, menu);
+
+        // Set the name on the drawer menu
+        NavigationMenuItemView activityName = findViewById(R.id.menuDrawer_activity);
+        activityName.setTitle(String.format("%s: %s", word(R.string.activity, true), this.getLocalClassName()));
+
+        // Set the author on the drawer menu
+        NavigationMenuItemView author = findViewById(R.id.menuDrawer_author);
+        author.setTitle(String.format("%s: %s", word(R.string.author, true), word(R.string.appAuthor, false)));
+
+        // Set the version on the drawer menu
+        NavigationMenuItemView version = findViewById(R.id.menuDrawer_version);
+        version.setTitle(String.format("%s: %s", word(R.string.version, true), word(R.string.appVersion, false)));
+
         return super.onCreateOptionsMenu(menu);
-//        return true;
     }
 
     // Handle Toolbar Select
+    // TODO: Add JavaDoc Comment
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         log("In onOptionsItemSelected (1)");
@@ -63,19 +91,17 @@ public class TicketQuery extends AppCompatActivity implements NavigationView.OnN
     }
 
     // Handle Drawer Select
+    // TODO: Add JavaDoc Comment
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         Integer option = null;
 
         switch (item.getItemId()) {
-            case R.id.drawerMenu_home:
+            case R.id.menuDrawer_home:
                 option = 1;
                 break;
-            case R.id.drawerMenu_search:
+            case R.id.menuDrawer_favorites:
                 option = 2;
-                break;
-            case R.id.drawerMenu_favorites:
-                option = 3;
                 break;
         }
 

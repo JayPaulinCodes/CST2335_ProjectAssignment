@@ -18,12 +18,12 @@
         <!-- THIS IS WHAT IS WHAT POPS OUT FROM THE SIDE:-->
         <com.google.android.material.navigation.NavigationView
             android:id="@+id/drawer_navigation"
-            app:menu="@menu/menu_drawer"
-            app:headerLayout="@layout/layout_header"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="start"
-            android:fitsSystemWindows="true"/>
+            android:fitsSystemWindows="true"
+            app:headerLayout="@layout/layout_header"
+            app:menu="@menu/menu_drawer" />
 
     </androidx.drawerlayout.widget.DrawerLayout>
 
