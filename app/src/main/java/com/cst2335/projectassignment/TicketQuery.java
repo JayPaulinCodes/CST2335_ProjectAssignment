@@ -2,7 +2,9 @@ package com.cst2335.projectassignment;
 
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.view.ContextThemeWrapper;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -76,16 +78,18 @@ public class TicketQuery extends AppCompatActivity implements NavigationView.OnN
     // TODO: Add JavaDoc Comment
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        log("In onOptionsItemSelected (1)");
-        String message = null;
 
         switch (item.getItemId()) {
             case R.id.menuToolbar_home:
-                message = "Home";
+                // TODO: Send to home page
+                break;
+            case R.id.menuToolbar_favorites:
+                // TODO: Send to favorites page
+                break;
+            case R.id.menuToolbar_help:
+                // TODO: Show help dialog
                 break;
         }
-
-        if (message != null) Toast.makeText(this, message, Toast.LENGTH_LONG).show();
 
         return true;
     }
@@ -94,23 +98,39 @@ public class TicketQuery extends AppCompatActivity implements NavigationView.OnN
     // TODO: Add JavaDoc Comment
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        Integer option = null;
 
         switch (item.getItemId()) {
+            case R.id.menuDrawer_activity:
+            case R.id.menuDrawer_author:
+            case R.id.menuDrawer_version:
+
+                new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.AlertDialogCustom))
+                        .setTitle(getString(R.string.alertDialog_appInfo_title))
+                        .setMessage(String.format(
+                                getString(R.string.alertDialog_appInfo_message),
+                                this.getLocalClassName(),
+                                word(R.string.appAuthor, false),
+                                word(R.string.appVersion, false)
+                        ))
+                        .setNeutralButton(word(R.string.close, true), (click, arg) -> {})
+                        .setNeutralButtonIcon(getDrawable(R.drawable.close_icon_60_dark))
+                        .create()
+                        .show();
+
+                break;
             case R.id.menuDrawer_home:
-                option = 1;
+                // TODO: Send to home page
                 break;
             case R.id.menuDrawer_favorites:
-                option = 2;
+                // TODO: Send to favorites page
+                break;
+            case R.id.menuDrawer_help:
+                // TODO: Show help dialog
                 break;
         }
 
         DrawerLayout drawerLayout = findViewById(R.id.drawer);
         drawerLayout.closeDrawer(GravityCompat.START);
-
-        if (option != null) {
-            log(option.toString());
-        }
 
         return false;
     }

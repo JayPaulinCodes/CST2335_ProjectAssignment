@@ -14,6 +14,7 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
 
+
         <item name="android:colorPrimaryDark">@color/space_cadet</item>
         <item name="android:colorPrimary">@color/black_coral</item>
         <item name="android:textColorPrimary">@color/silver_sand</item>
@@ -21,8 +22,27 @@
         <item name="android:windowBackground">@color/cultured</item>
         <item name="android:navigationBarColor">@color/space_cadet</item>
 
-        <!-- Customize your theme here. -->
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+    </style>
+
+    <!--  Colour Scheme for AlertDialogs  -->
+    <style name="AlertDialogCustom" parent="@android:style/Theme.Dialog">
+        <item name="android:background">@color/black_coral</item>
+        <item name="android:textColor">@color/cultured</item>
+    </style>
+
+    <!--  Colour Scheme for Navigation Drawer  -->
+    <style name="NavigationDrawerCustom" parent="Widget.Design.NavigationView">
+        <item name="itemTextColor">@color/black_coral</item>
+        <item name="itemIconTint">@color/space_cadet</item>
+        <item name="android:textColorSecondary">@color/crimson_ua</item>
+
+<!--        <item name="android:colorPrimaryDark">@color/crimson_ua</item>-->
+<!--        <item name="android:colorPrimary">@color/crimson_ua</item>-->
+<!--        <item name="android:textColorPrimary">@color/crimson_ua</item>-->
+<!--        <item name="android:textColorSecondary">@color/crimson_ua</item>-->
+<!--        <item name="android:windowBackground">@color/crimson_ua</item>-->
+<!--        <item name="android:navigationBarColor">@color/crimson_ua</item>-->
     </style>
 </resources>

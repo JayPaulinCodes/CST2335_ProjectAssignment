@@ -18,6 +18,7 @@
         <!-- THIS IS WHAT IS WHAT POPS OUT FROM THE SIDE:-->
         <com.google.android.material.navigation.NavigationView
             android:id="@+id/drawer_navigation"
+            style="@style/NavigationDrawerCustom"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="start"

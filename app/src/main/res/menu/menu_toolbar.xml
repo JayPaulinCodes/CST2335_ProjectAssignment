@@ -6,7 +6,7 @@
     <item
         android:id="@+id/menuToolbar_home"
         android:title="@string/menuToolbar_home"
-        android:icon="@drawable/home_icon_24"
+        android:icon="@drawable/home_icon_24_dark"
         android:orderInCategory="100"
         app:showAsAction="ifRoom" />
 
@@ -18,15 +18,15 @@
 <!--        app:showAsAction="ifRoom" />-->
 
     <item
-        android:id="@+id/menuDrawer_favorites"
-        android:icon="@drawable/heart_icon_30"
+        android:id="@+id/menuToolbar_favorites"
+        android:icon="@drawable/heart_icon_30_dark"
         android:orderInCategory="300"
         android:title="@string/menuDrawer_favorites"
         app:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/menuDrawer_help"
-        android:icon="@drawable/questionmark_icon_50"
+        android:id="@+id/menuToolbar_help"
+        android:icon="@drawable/questionmark_icon_50_dark"
         android:orderInCategory="100"
         android:title="@string/menuDrawer_help"
         app:showAsAction="never" />
