@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activities.ActivityHome">
+
+    <LinearLayout
+        android:id="@+id/activity_home_linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:elevation="4dp">
+
+        <include android:id="@+id/activity_home_toolbar" layout="@layout/layout_toolbar" />
+
+        <include android:id="@+id/activity_home_drawer" layout="@layout/layout_drawer" />
+
+    </LinearLayout>
+
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/activity_home_progressIndicator"
+        style="@style/Theme.Components.CircularProgressIndicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="2dp"
+        android:layout_centerInParent="true"
+        android:indeterminate="true" />
+
+    <FrameLayout
+        android:id="@+id/activity_home_frame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="2dp"
+        android:layout_marginTop="65dp">
+
+    </FrameLayout>
+
+</RelativeLayout>

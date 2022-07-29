@@ -1,6 +1,5 @@
-package com.cst2335.projectassignment;
+package com.cst2335.projectassignment.activities;
 
-import androidx.annotation.StringRes;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,44 +7,27 @@ import androidx.appcompat.view.ContextThemeWrapper;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.TextView;
 
+import com.cst2335.projectassignment.R;
 import com.cst2335.projectassignment.fragments.EventSearch;
-import com.cst2335.projectassignment.objects.Event;
 import com.google.android.material.internal.NavigationMenuItemView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.progressindicator.CircularProgressIndicator;
 
-import java.util.ArrayList;
-
 // TODO: Add JavaDoc Comment
-public class TicketQuery extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-    private static final String TAG = "TicketQuery";
-    private ArrayList<Event> events = new ArrayList<>(  );
+public class ActivityHome extends JActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    // TODO: Add JavaDoc Comment
-    private static final void log(String message) { Log.i(TAG, message); }
-
-    // TODO: Add JavaDoc Comment
-    private final String word(@StringRes int string, Boolean capitalize) { return (capitalize) ? capitalize(getString(string)) : getString(string); }
-
-    // TODO: Add JavaDoc Comment
-    private static final String capitalize(String str) { return (str == null || str.isEmpty()) ? str : str.substring(0, 1).toUpperCase() + str.substring(1); }
-
-
+    public static final String ARG_DESTINATION_PAGE = "activityArg_destinationPage";
+    public static final String ARG_BUTTON_LABEL = "activityArg_buttonLabel";
+    public static final String ARG_DESCRIPTION = "activityArg_description";
 
     private Runnable postLoad = () -> {
         // Load Fragment
@@ -53,11 +35,11 @@ public class TicketQuery extends AppCompatActivity implements NavigationView.OnN
         EventSearch fragment_eventSearch = new EventSearch();
         fragmentManager
                 .beginTransaction()
-                .replace(R.id.activity_ticketQuery_frame, fragment_eventSearch)
+                .replace(R.id.activity_home_frame, fragment_eventSearch)
                 .commit();
 
         // Hide the progress indicator
-        CircularProgressIndicator progressIndicator = findViewById(R.id.activity_ticketQuery_progressIndicator);
+        CircularProgressIndicator progressIndicator = findViewById(R.id.activity_home_progressIndicator);
         progressIndicator.setIndeterminate(false);
         progressIndicator.setVisibility(View.INVISIBLE);
     };
@@ -66,7 +48,7 @@ public class TicketQuery extends AppCompatActivity implements NavigationView.OnN
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ticketquery);
+        setContentView(R.layout.activity_home);
 
         // Set Up Toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -80,9 +62,9 @@ public class TicketQuery extends AppCompatActivity implements NavigationView.OnN
         NavigationView navigationView = findViewById(R.id.drawer_navigation);
         navigationView.setNavigationItemSelectedListener(this);
 
+
         // Set up the postLoad runnable
         new Handler().postDelayed(postLoad, 5000);
-
     }
 
     // TODO: Add JavaDoc Comment
@@ -172,59 +154,4 @@ public class TicketQuery extends AppCompatActivity implements NavigationView.OnN
 
         return false;
     }
-
-    // TODO: Add JavaDoc Comment
-    private class EventsListAdapter extends BaseAdapter {
-
-        // TODO: Add JavaDoc Comment
-        @Override
-        public int getCount() {
-            return events.size();
-        }
-
-        // TODO: Add JavaDoc Comment
-        @Override
-        public Object getItem(int position) {
-            return null;
-        }
-
-        // TODO: Add JavaDoc Comment
-        @Override
-        public long getItemId(int position) {
-            return 0;
-        }
-
-        // TODO: Add JavaDoc Comment
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            LayoutInflater inflater = getLayoutInflater();
-
-            //make a new row:
-//            View newView = inflater.inflate(R.layout.row_layout, parent, false);
-
-            //set what the text should be for this row:
-//            TextView tView = newView.findViewById(R.id.textGoesHere);
-//            tView.setText( getItem(position).toString() );
-
-            //return it to be put in the table
-//            return newView;
-            return null;
-        }
-    }
-
 }
-
-
-//    HTTPRequest req = new HTTPRequest();
-//        req.execute("https://api.publicapis.org/entries");
-//
-//                String result = null;
-//                JSONObject resultJSON = null;
-//                Integer result_count = null;
-//                try {
-//                result = req.get();
-//                resultJSON = new JSONObject(result);
-//                result_count = resultJSON.getInt("count");
-//                } catch (Exception exception) { exception.printStackTrace(); }
-//
-//                log(Integer.toString(result_count));
