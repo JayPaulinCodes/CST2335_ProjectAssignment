@@ -17,19 +17,24 @@
     <!--  Toolbar Menu  -->
     <string name="menuToolbar_home">Home</string>
 
-    <!--  Miscellaneous  -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
     <!--  Alert Dialogs  -->
     <string name="alertDialog_appInfo_title">App Info</string>
     <string name="alertDialog_appInfo_message">Here is some information about the app. %n%nCurrent Activity: %s%nApp Author: %s%nApp Version: %s</string>
 
+    <!--  Search Bar  -->
+    <string name="searchBar_hint">Search for location or event type…</string>
+    <string name="searchBar_searchButton">Search</string>
+
+    <!--  Miscellaneous  -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
     <!--  WORDS  -->
-    <string name="blank"></string>
+    <string name="blank" />
     <string name="open">open</string>
     <string name="close">close</string>
     <string name="activity">activity</string>
     <string name="author">author</string>
     <string name="version">version</string>
+    <string name="search">search</string>
 
 </resources>

@@ -14,7 +14,10 @@
         android:minHeight="?attr/actionBarSize"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:logo="@drawable/brand_icon_40"
+        app:menu="@menu/menu_toolbar"
+        app:titleMarginStart="10dp" />
 
 </LinearLayout>
 

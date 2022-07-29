@@ -1,48 +1,93 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Theme.ProjectAssignment" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
-        <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/space_cadet</item>
-        <item name="colorPrimaryVariant">@color/black_coral</item>
-        <item name="colorOnPrimary">@color/cultured</item>
+    <!-- Theme Base -->
+        <style name="Theme.Base" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+            <!-- Primary brand color. -->
+            <item name="colorPrimary">@color/space_cadet</item>
+            <item name="colorPrimaryVariant">@color/black_coral</item>
+            <item name="colorOnPrimary">@color/cultured</item>
 
-        <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/crimson_ua</item>
-        <item name="colorSecondaryVariant">@color/amaranth_red</item>
-        <item name="colorOnSecondary">@color/silver_sand</item>
+            <!-- Secondary brand color. -->
+            <item name="colorSecondary">@color/crimson_ua</item>
+            <item name="colorSecondaryVariant">@color/amaranth_red</item>
+            <item name="colorOnSecondary">@color/silver_sand</item>
 
-        <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+            <!-- Status bar color. -->
+            <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
 
+            <!-- General Screen Look. -->
+            <item name="android:colorPrimaryDark">@color/space_cadet</item>
+            <item name="android:colorPrimary">@color/black_coral</item>
+            <item name="android:textColorPrimary">@color/silver_sand</item>
+            <item name="android:textColorSecondary">@color/silver_sand</item>
+            <item name="android:windowBackground">@color/cultured</item>
+            <item name="android:navigationBarColor">@color/space_cadet</item>
 
-        <item name="android:colorPrimaryDark">@color/space_cadet</item>
-        <item name="android:colorPrimary">@color/black_coral</item>
-        <item name="android:textColorPrimary">@color/silver_sand</item>
-        <item name="android:textColorSecondary">@color/silver_sand</item>
-        <item name="android:windowBackground">@color/cultured</item>
-        <item name="android:navigationBarColor">@color/space_cadet</item>
+            <item name="windowActionBar">false</item>
+            <item name="windowNoTitle">true</item>
+        </style>
 
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
+    <!--  Theme Components  -->
 
-    <!--  Colour Scheme for AlertDialogs  -->
-    <style name="AlertDialogCustom" parent="@android:style/Theme.Dialog">
-        <item name="android:background">@color/black_coral</item>
-        <item name="android:textColor">@color/cultured</item>
-    </style>
+        <!--  Colour Scheme for Navigation Drawer  -->
+        <style name="Theme.Components.NavigationDrawer" parent="Widget.Design.NavigationView">
+            <item name="materialThemeOverlay">@style/Theme.Overlay.NavigationDrawer</item>
+            <item name="itemTextColor">@color/black_coral</item>
+            <item name="itemIconTint">@color/space_cadet</item>
+        </style>
 
-    <!--  Colour Scheme for Navigation Drawer  -->
-    <style name="NavigationDrawerCustom" parent="Widget.Design.NavigationView">
-        <item name="itemTextColor">@color/black_coral</item>
-        <item name="itemIconTint">@color/space_cadet</item>
-        <item name="android:textColorSecondary">@color/crimson_ua</item>
+        <!--  Colour Scheme for Buttons  -->
+        <style name="Theme.Components.Button" parent="Widget.AppCompat.Button">
+            <item name="materialThemeOverlay">@style/Theme.Overlay.Button</item>
+            <item name="android:textColor">@color/silver_sand</item>
+            <item name="android:fontFamily">@font/bebasneue</item>
+        </style>
 
-<!--        <item name="android:colorPrimaryDark">@color/crimson_ua</item>-->
-<!--        <item name="android:colorPrimary">@color/crimson_ua</item>-->
-<!--        <item name="android:textColorPrimary">@color/crimson_ua</item>-->
-<!--        <item name="android:textColorSecondary">@color/crimson_ua</item>-->
-<!--        <item name="android:windowBackground">@color/crimson_ua</item>-->
-<!--        <item name="android:navigationBarColor">@color/crimson_ua</item>-->
-    </style>
+        <!--  Colour Scheme for AlertDialogs  -->
+        <style name="Theme.Components.AlertDialog" parent="@android:style/Theme.Dialog">
+            <item name="android:background">@color/black_coral</item>
+            <item name="android:textColor">@color/cultured</item>
+        </style>
+
+        <!--  Colour Scheme for Search Bar Edit Text  -->
+        <style name="Theme.Components.SearchBar.EditText" parent="Theme.Base">
+            <item name="materialThemeOverlay">@style/Theme.Overlay.SearchBar.EditText</item>
+            <item name="android:textColorHighlight">@color/manatee</item>
+            <item name="android:textColorLink">@color/silver_sand</item>
+
+<!--            <item name="iconTint">@color/silver_sand</item>-->
+<!--            <item name="android:textColor">@color/black_coral</item>-->
+        </style>
+
+        <!--  Colour Scheme for Circular Progress Indicator  -->
+        <style name="Theme.Components.CircularProgressIndicator" parent="Theme.Base">
+            <item name="materialThemeOverlay">@style/Theme.Overlay.CircularProgressIndicator</item>
+            <item name="android:textColorHighlight">@color/manatee</item>
+            <item name="indicatorSize">40dp</item>
+            <item name="indicatorColor">@color/imperial_red</item>
+            <item name="trackColor">@color/black_coral</item>
+            <item name="trackThickness">5dp</item>
+        </style>
+
+    <!--  Theme Overlays  -->
+
+        <!--  Overlay for NavigationDrawer  -->
+        <style name="Theme.Overlay.NavigationDrawer" parent="">
+            <item name="android:textColorSecondary">@color/space_cadet</item>
+        </style>
+
+        <!--  Overlay for Button  -->
+        <style name="Theme.Overlay.Button" parent="">
+            <item name="colorPrimary">@color/crimson_ua</item>
+        </style>
+
+        <!--  Overlay for Search Bar Edit Text  -->
+        <style name="Theme.Overlay.SearchBar.EditText" parent="">
+            <item name="colorSecondary">@color/space_cadet</item>
+            <item name="colorSecondaryVariant">@color/black_coral</item>
+            <item name="colorOnSecondary">@color/cultured</item>
+        </style>
+
+        <!--  Overlay for Circular Progress Indicator  -->
+        <style name="Theme.Overlay.CircularProgressIndicator" parent="">
+        </style>
 </resources>

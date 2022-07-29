@@ -8,17 +8,21 @@ import androidx.appcompat.view.ContextThemeWrapper;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
+import android.view.View;
 
+import com.cst2335.projectassignment.fragments.EventSearch;
 import com.google.android.material.internal.NavigationMenuItemView;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.progressindicator.CircularProgressIndicator;
 
 // TODO: Add JavaDoc Comment
 public class TicketQuery extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -32,6 +36,25 @@ public class TicketQuery extends AppCompatActivity implements NavigationView.OnN
 
     // TODO: Add JavaDoc Comment
     private static final String capitalize(String str) { return (str == null || str.isEmpty()) ? str : str.substring(0, 1).toUpperCase() + str.substring(1); }
+
+
+
+    private Runnable postLoad = new Runnable() {
+        public void run() {
+            // Load Fragment
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            EventSearch fragment_eventSearch = new EventSearch();
+
+            fragmentManager
+                    .beginTransaction()
+                    .replace(R.id.activity_ticketQuery_frame, fragment_eventSearch)
+                    .commit();
+
+            CircularProgressIndicator progressIndicator = findViewById(R.id.activity_ticketQuery_progressIndicator);
+            progressIndicator.setIndeterminate(false);
+            progressIndicator.setVisibility(View.INVISIBLE);
+        }
+    };
 
     // TODO: Add JavaDoc Comment
     @Override
@@ -51,6 +74,9 @@ public class TicketQuery extends AppCompatActivity implements NavigationView.OnN
         NavigationView navigationView = findViewById(R.id.drawer_navigation);
         navigationView.setNavigationItemSelectedListener(this);
 
+        // Set up the postLoad runnable
+        new Handler().postDelayed(postLoad, 5000);
+
     }
 
     // TODO: Add JavaDoc Comment
@@ -61,15 +87,15 @@ public class TicketQuery extends AppCompatActivity implements NavigationView.OnN
 
         // Set the name on the drawer menu
         NavigationMenuItemView activityName = findViewById(R.id.menuDrawer_activity);
-        activityName.setTitle(String.format("%s: %s", word(R.string.activity, true), this.getLocalClassName()));
+        if (activityName != null) activityName.setTitle(String.format("%s: %s", word(R.string.activity, true), this.getLocalClassName()));
 
         // Set the author on the drawer menu
         NavigationMenuItemView author = findViewById(R.id.menuDrawer_author);
-        author.setTitle(String.format("%s: %s", word(R.string.author, true), word(R.string.appAuthor, false)));
+        if (author != null) author.setTitle(String.format("%s: %s", word(R.string.author, true), word(R.string.appAuthor, false)));
 
         // Set the version on the drawer menu
         NavigationMenuItemView version = findViewById(R.id.menuDrawer_version);
-        version.setTitle(String.format("%s: %s", word(R.string.version, true), word(R.string.appVersion, false)));
+        if (version != null) version.setTitle(String.format("%s: %s", word(R.string.version, true), word(R.string.appVersion, false)));
 
         return super.onCreateOptionsMenu(menu);
     }
@@ -82,6 +108,9 @@ public class TicketQuery extends AppCompatActivity implements NavigationView.OnN
         switch (item.getItemId()) {
             case R.id.menuToolbar_home:
                 // TODO: Send to home page
+                break;
+            case R.id.menuToolbar_search:
+                // TODO: Send to search page
                 break;
             case R.id.menuToolbar_favorites:
                 // TODO: Send to favorites page
@@ -104,7 +133,7 @@ public class TicketQuery extends AppCompatActivity implements NavigationView.OnN
             case R.id.menuDrawer_author:
             case R.id.menuDrawer_version:
 
-                new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.AlertDialogCustom))
+                new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.Theme_Components_AlertDialog))
                         .setTitle(getString(R.string.alertDialog_appInfo_title))
                         .setMessage(String.format(
                                 getString(R.string.alertDialog_appInfo_message),
@@ -120,6 +149,9 @@ public class TicketQuery extends AppCompatActivity implements NavigationView.OnN
                 break;
             case R.id.menuDrawer_home:
                 // TODO: Send to home page
+                break;
+            case R.id.menuDrawer_search:
+                // TODO: Send to search page
                 break;
             case R.id.menuDrawer_favorites:
                 // TODO: Send to favorites page
