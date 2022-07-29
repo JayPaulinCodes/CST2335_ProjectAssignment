@@ -74,6 +74,9 @@ public class TicketQuery extends AppCompatActivity implements NavigationView.OnN
         NavigationView navigationView = findViewById(R.id.drawer_navigation);
         navigationView.setNavigationItemSelectedListener(this);
 
+//        findViewById(R.id.activity_ticketQuery_toolbar).bringToFront();
+//        findViewById(R.id.activity_ticketQuery_drawer).bringToFront();
+
         // Set up the postLoad runnable
         new Handler().postDelayed(postLoad, 5000);
 
