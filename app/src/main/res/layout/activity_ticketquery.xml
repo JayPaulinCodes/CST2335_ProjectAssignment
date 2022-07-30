@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".TicketQuery">
+    tools:context=".TicketQuery2">
 
     <LinearLayout
         android:id="@+id/activity_ticketQuery_linearLayout"

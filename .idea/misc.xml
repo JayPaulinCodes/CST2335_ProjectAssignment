@@ -3,14 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/College/2022S/Mobile/ProjectAssignment/app/src/main/res/drawable/fragment_home_button_border.xml" value="0.28" />
         <entry key="..\:/College/2022S/Mobile/ProjectAssignment/app/src/main/res/font/bebasneue.xml" value="0.1421875" />
         <entry key="..\:/College/2022S/Mobile/ProjectAssignment/app/src/main/res/layout/activity_favorites.xml" value="0.1" />
-        <entry key="..\:/College/2022S/Mobile/ProjectAssignment/app/src/main/res/layout/activity_home.xml" value="0.1" />
+        <entry key="..\:/College/2022S/Mobile/ProjectAssignment/app/src/main/res/layout/activity_home.xml" value="0.18" />
         <entry key="..\:/College/2022S/Mobile/ProjectAssignment/app/src/main/res/layout/activity_main.xml" value="0.13541666666666666" />
         <entry key="..\:/College/2022S/Mobile/ProjectAssignment/app/src/main/res/layout/activity_search.xml" value="0.1" />
         <entry key="..\:/College/2022S/Mobile/ProjectAssignment/app/src/main/res/layout/activity_ticketquery.xml" value="0.16799999999999998" />
+        <entry key="..\:/College/2022S/Mobile/ProjectAssignment/app/src/main/res/layout/fragment_event_details.xml" value="0.17924917491749176" />
         <entry key="..\:/College/2022S/Mobile/ProjectAssignment/app/src/main/res/layout/fragment_event_search.xml" value="0.176" />
         <entry key="..\:/College/2022S/Mobile/ProjectAssignment/app/src/main/res/layout/fragment_home.xml" value="0.25416666666666665" />
+        <entry key="..\:/College/2022S/Mobile/ProjectAssignment/app/src/main/res/layout/fragment_home_button.xml" value="0.33" />
         <entry key="..\:/College/2022S/Mobile/ProjectAssignment/app/src/main/res/layout/layout_drawer.xml" value="0.144" />
         <entry key="..\:/College/2022S/Mobile/ProjectAssignment/app/src/main/res/layout/layout_header.xml" value="0.536" />
         <entry key="..\:/College/2022S/Mobile/ProjectAssignment/app/src/main/res/layout/layout_search_bar.xml" value="0.4" />

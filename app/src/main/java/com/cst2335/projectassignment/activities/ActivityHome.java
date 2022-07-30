@@ -1,8 +1,9 @@
 package com.cst2335.projectassignment.activities;
 
+import androidx.annotation.Dimension;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.view.ContextThemeWrapper;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -12,12 +13,16 @@ import androidx.fragment.app.FragmentManager;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import com.cst2335.projectassignment.R;
-import com.cst2335.projectassignment.fragments.EventSearch;
+import com.cst2335.projectassignment.fragments.FragmentEventSearch;
+import com.cst2335.projectassignment.fragments.FragmentHomeButton;
+import com.cst2335.projectassignment.utils.TicketQuery;
 import com.google.android.material.internal.NavigationMenuItemView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.progressindicator.CircularProgressIndicator;
@@ -30,13 +35,38 @@ public class ActivityHome extends JActivity implements NavigationView.OnNavigati
     public static final String ARG_DESCRIPTION = "activityArg_description";
 
     private Runnable postLoad = () -> {
-        // Load Fragment
+        // Load Fragments
         FragmentManager fragmentManager = getSupportFragmentManager();
-        EventSearch fragment_eventSearch = new EventSearch();
+
+        FragmentHomeButton fragment_homeButton_search = new FragmentHomeButton().context(ActivityHome.this);
+        Bundle arguments_homeButton_search = new Bundle();
+
+        arguments_homeButton_search.putString(ARG_DESTINATION_PAGE, TicketQuery.ACTIVITY_SEARCH);
+        arguments_homeButton_search.putString(ARG_BUTTON_LABEL, word(R.string.activityHome_searchButton_buttonLabel, false));
+        arguments_homeButton_search.putString(ARG_DESCRIPTION, word(R.string.activityHome_searchButton_description, false));
+
+        fragment_homeButton_search.setArguments(arguments_homeButton_search);
+
         fragmentManager
                 .beginTransaction()
-                .replace(R.id.activity_home_frame, fragment_eventSearch)
+                .replace(R.id.activity_home_frame1, fragment_homeButton_search)
                 .commit();
+
+
+        FragmentHomeButton fragment_homeButton_favorites = new FragmentHomeButton().context(ActivityHome.this);
+        Bundle arguments_homeButton_favorites = new Bundle();
+
+        arguments_homeButton_favorites.putString(ARG_DESTINATION_PAGE, TicketQuery.ACTIVITY_FAVORITES);
+        arguments_homeButton_favorites.putString(ARG_BUTTON_LABEL, word(R.string.activityHome_favoriteButton_buttonLabel, false));
+        arguments_homeButton_favorites.putString(ARG_DESCRIPTION, word(R.string.activityHome_favoriteButton_description, false));
+
+        fragment_homeButton_favorites.setArguments(arguments_homeButton_favorites);
+
+        fragmentManager
+                .beginTransaction()
+                .replace(R.id.activity_home_frame2, fragment_homeButton_favorites)
+                .commit();
+
 
         // Hide the progress indicator
         CircularProgressIndicator progressIndicator = findViewById(R.id.activity_home_progressIndicator);
@@ -61,6 +91,38 @@ public class ActivityHome extends JActivity implements NavigationView.OnNavigati
         toggle.syncState();
         NavigationView navigationView = findViewById(R.id.drawer_navigation);
         navigationView.setNavigationItemSelectedListener(this);
+
+        drawer.addDrawerListener(new DrawerLayout.DrawerListener() {
+            boolean isDrawerOpen = false;
+            boolean readyForChange = true;
+            LinearLayout linearLayout = findViewById(R.id.activity_home_linearLayout);
+
+            @Override
+            public void onDrawerSlide(@NonNull View drawerView, float slideOffset) {
+                if (readyForChange) {
+                    if (isDrawerOpen) linearLayout.setElevation(floatToDp(5));
+                    else linearLayout.setElevation(floatToDp(10));
+                    isDrawerOpen = !isDrawerOpen;
+                    readyForChange = false;
+                }
+
+            }
+
+            @Override
+            public void onDrawerOpened(@NonNull View drawerView) {
+                if (!readyForChange) readyForChange = true;
+            }
+
+            @Override
+            public void onDrawerClosed(@NonNull View drawerView) {
+                if (!readyForChange) readyForChange = true;
+            }
+
+            @Override
+            public void onDrawerStateChanged(int newState) {
+
+            }
+        });
 
 
         // Set up the postLoad runnable

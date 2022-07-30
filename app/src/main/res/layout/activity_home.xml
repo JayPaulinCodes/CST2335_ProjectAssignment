@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:elevation="4dp">
+        android:elevation="5dp">
 
         <include android:id="@+id/activity_home_toolbar" layout="@layout/layout_toolbar" />
 
@@ -31,11 +31,23 @@
         android:indeterminate="true" />
 
     <FrameLayout
-        android:id="@+id/activity_home_frame"
-        android:layout_width="match_parent"
+        android:id="@+id/activity_home_frame1"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:elevation="2dp"
-        android:layout_marginTop="65dp">
+        android:layout_centerHorizontal="true"
+        android:elevation="5dp"
+        android:layout_marginTop="85dp"
+        android:layout_marginBottom="25dp">
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/activity_home_frame2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:elevation="5dp"
+        android:layout_below="@id/activity_home_frame1">
 
     </FrameLayout>
 

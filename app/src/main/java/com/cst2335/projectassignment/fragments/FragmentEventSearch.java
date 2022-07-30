@@ -14,7 +14,7 @@ import com.cst2335.projectassignment.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class EventSearch extends Fragment {
+public class FragmentEventSearch extends Fragment {
 
 //    // TODO: Rename parameter arguments, choose names that match
 //    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -26,7 +26,7 @@ public class EventSearch extends Fragment {
 //    private String mParam2;
 
     // TODO: Add JavaDoc Comment
-    public EventSearch() {
+    public FragmentEventSearch() {
         // Required empty public constructor
     }
 

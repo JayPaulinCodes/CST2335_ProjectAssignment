@@ -25,6 +25,12 @@
     <string name="searchBar_hint">Search for location or event type…</string>
     <string name="searchBar_searchButton">Search</string>
 
+    <!--  Home Page  -->
+    <string name="activityHome_searchButton_description">Search and find the \nperfect event for you!</string>
+    <string name="activityHome_searchButton_buttonLabel">Go To Search</string>
+    <string name="activityHome_favoriteButton_description">View your saved events!</string>
+    <string name="activityHome_favoriteButton_buttonLabel">Go To Favorites</string>
+
     <!--  Miscellaneous  -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

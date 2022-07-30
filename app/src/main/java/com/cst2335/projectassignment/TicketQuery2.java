@@ -8,7 +8,6 @@ import androidx.appcompat.view.ContextThemeWrapper;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import android.annotation.SuppressLint;
@@ -21,9 +20,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.TextView;
 
-import com.cst2335.projectassignment.fragments.EventSearch;
+import com.cst2335.projectassignment.fragments.FragmentEventSearch;
 import com.cst2335.projectassignment.objects.Event;
 import com.google.android.material.internal.NavigationMenuItemView;
 import com.google.android.material.navigation.NavigationView;
@@ -32,7 +30,7 @@ import com.google.android.material.progressindicator.CircularProgressIndicator;
 import java.util.ArrayList;
 
 // TODO: Add JavaDoc Comment
-public class TicketQuery extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class TicketQuery2 extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private static final String TAG = "TicketQuery";
     private ArrayList<Event> events = new ArrayList<>(  );
 
@@ -50,7 +48,7 @@ public class TicketQuery extends AppCompatActivity implements NavigationView.OnN
     private Runnable postLoad = () -> {
         // Load Fragment
         FragmentManager fragmentManager = getSupportFragmentManager();
-        EventSearch fragment_eventSearch = new EventSearch();
+        FragmentEventSearch fragment_eventSearch = new FragmentEventSearch();
         fragmentManager
                 .beginTransaction()
                 .replace(R.id.activity_ticketQuery_frame, fragment_eventSearch)

@@ -28,27 +28,34 @@
 
     <!--  Theme Components  -->
 
-        <!--  Colour Scheme for Navigation Drawer  -->
+        <!--  Style for Navigation Drawer  -->
         <style name="Theme.Components.NavigationDrawer" parent="Widget.Design.NavigationView">
             <item name="materialThemeOverlay">@style/Theme.Overlay.NavigationDrawer</item>
             <item name="itemTextColor">@color/black_coral</item>
             <item name="itemIconTint">@color/space_cadet</item>
         </style>
 
-        <!--  Colour Scheme for Buttons  -->
+        <!--  Style for Buttons  -->
         <style name="Theme.Components.Button" parent="Widget.AppCompat.Button">
             <item name="materialThemeOverlay">@style/Theme.Overlay.Button</item>
             <item name="android:textColor">@color/silver_sand</item>
             <item name="android:fontFamily">@font/bebasneue</item>
         </style>
 
-        <!--  Colour Scheme for AlertDialogs  -->
+        <!--  Style for Text View  -->
+        <style name="Theme.Components.TextView" parent="Theme.Base">
+            <item name="materialThemeOverlay">@style/Theme.Overlay.TextView</item>
+            <item name="android:fontFamily">@font/bebasneue</item>
+            <item name="android:textColor">@color/imperial_red</item>
+        </style>
+
+        <!--  Style for AlertDialogs  -->
         <style name="Theme.Components.AlertDialog" parent="@android:style/Theme.Dialog">
             <item name="android:background">@color/black_coral</item>
             <item name="android:textColor">@color/cultured</item>
         </style>
 
-        <!--  Colour Scheme for Search Bar Edit Text  -->
+        <!--  Style for Search Bar Edit Text  -->
         <style name="Theme.Components.SearchBar.EditText" parent="Theme.Base">
             <item name="materialThemeOverlay">@style/Theme.Overlay.SearchBar.EditText</item>
             <item name="android:textColorHighlight">@color/manatee</item>
@@ -58,7 +65,7 @@
 <!--            <item name="android:textColor">@color/black_coral</item>-->
         </style>
 
-        <!--  Colour Scheme for Circular Progress Indicator  -->
+        <!--  Style for Circular Progress Indicator  -->
         <style name="Theme.Components.CircularProgressIndicator" parent="Theme.Base">
             <item name="materialThemeOverlay">@style/Theme.Overlay.CircularProgressIndicator</item>
             <item name="android:textColorHighlight">@color/manatee</item>
@@ -73,11 +80,17 @@
         <!--  Overlay for NavigationDrawer  -->
         <style name="Theme.Overlay.NavigationDrawer" parent="">
             <item name="android:textColorSecondary">@color/space_cadet</item>
+            <item name="backgroundColor">@color/cultured</item>
         </style>
 
         <!--  Overlay for Button  -->
         <style name="Theme.Overlay.Button" parent="">
             <item name="colorPrimary">@color/crimson_ua</item>
+        </style>
+
+        <!--  Overlay for Text View  -->
+        <style name="Theme.Overlay.TextView" parent="">
+            <item name="android:colorPrimary">@color/imperial_red</item>
         </style>
 
         <!--  Overlay for Search Bar Edit Text  -->

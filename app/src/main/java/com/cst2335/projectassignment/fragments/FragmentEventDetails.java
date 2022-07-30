@@ -13,10 +13,10 @@ import com.cst2335.projectassignment.R;
 // TODO: Fix JavaDoc Comment
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link EventDetailsFragment#newInstance} factory method to
+ * Use the {@link FragmentEventDetails#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class EventDetailsFragment extends Fragment {
+public class FragmentEventDetails extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -28,7 +28,7 @@ public class EventDetailsFragment extends Fragment {
     private String mParam2;
 
     // TODO: Add JavaDoc Comment
-    public EventDetailsFragment() {
+    public FragmentEventDetails() {
         // Required empty public constructor
     }
 
@@ -42,8 +42,8 @@ public class EventDetailsFragment extends Fragment {
      * @return A new instance of fragment EventDetailsFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static EventDetailsFragment newInstance(String param1, String param2) {
-        EventDetailsFragment fragment = new EventDetailsFragment();
+    public static FragmentEventDetails newInstance(String param1, String param2) {
+        FragmentEventDetails fragment = new FragmentEventDetails();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
