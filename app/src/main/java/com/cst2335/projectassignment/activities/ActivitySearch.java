@@ -9,6 +9,7 @@ import com.cst2335.projectassignment.R;
 // TODO: Add JavaDoc Comment
 public class ActivitySearch extends AppCompatActivity {
 
+    // TODO: Add JavaDoc Comment
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -1,5 +1,6 @@
 package com.cst2335.projectassignment.utils;
 
+// TODO: Add JavaDoc Comment
 public class TicketQuery {
 
     public static final String ACTIVITY_HOME = "activityPage_home";
