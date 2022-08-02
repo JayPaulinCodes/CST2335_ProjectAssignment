@@ -14,7 +14,10 @@
         android:id="@+id/fragment_eventSearch_listView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@+id/fragment_eventSearch_searchBar"
+        android:padding="10dp"
         android:transcriptMode="alwaysScroll"
-        android:layout_below="@+id/fragment_eventSearch_searchBar"/>
+        android:divider="@android:color/transparent"
+        android:dividerHeight="10dp" />
 
 </RelativeLayout>
