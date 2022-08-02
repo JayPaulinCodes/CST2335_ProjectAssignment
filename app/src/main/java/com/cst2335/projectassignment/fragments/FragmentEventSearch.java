@@ -1,14 +1,28 @@
 package com.cst2335.projectassignment.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
 import com.cst2335.projectassignment.R;
+import com.cst2335.projectassignment.activities.ActivitySearch;
+import com.cst2335.projectassignment.activities.JActivity;
+import com.cst2335.projectassignment.objects.Event;
+import com.cst2335.projectassignment.utils.EventListAdapter;
+import com.cst2335.projectassignment.utils.HTTPRequest;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 // TODO: Fix JavaDoc Comment
 /**
@@ -16,21 +30,28 @@ import com.cst2335.projectassignment.R;
  */
 public class FragmentEventSearch extends Fragment {
 
-//    // TODO: Rename parameter arguments, choose names that match
-//    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-//    private static final String ARG_PARAM1 = "param1";
-//    private static final String ARG_PARAM2 = "param2";
-//
-//    // TODO: Rename and change types of parameters
-//    private String mParam1;
-//    private String mParam2;
+    private static final String ARG_CITY = ActivitySearch.ARG_CITY;
+
+    private Context context;
+    private JActivity jActivity;
+    private ActivitySearch activitySearch;
+    private String city;
+    private EventListAdapter listAdapter;
+
+    private ArrayList<Event> events;
 
     // TODO: Add JavaDoc Comment
     public FragmentEventSearch() {
         // Required empty public constructor
     }
 
-
+    // TODO: Add JavaDoc Comment
+    public FragmentEventSearch context(Context context) {
+        this.context = context;
+        this.jActivity = (JActivity) context;
+        this.activitySearch = (ActivitySearch) context;
+        return this;
+    }
 
 //    public static EventSearch newInstance(String param1, String param2) {
 //        EventSearch fragment = new EventSearch();
@@ -46,10 +67,23 @@ public class FragmentEventSearch extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-//        if (getArguments() != null) {
-//            mParam1 = getArguments().getString(ARG_PARAM1);
-//            mParam2 = getArguments().getString(ARG_PARAM2);
-//        }
+        if (getArguments() != null) {
+            city = getArguments().getString(ARG_CITY);
+        }
+
+        if (city != null) {
+            try {
+                JSONObject queryResults = jActivity.doHttpRequest(city, 100);
+                JSONArray queryResultsArray = queryResults.getJSONObject("_embedded").getJSONArray("events");
+
+                events = HTTPRequest.processHTTPJSONArray(queryResultsArray);
+
+
+                for (int i = 0; i < events.size(); i++) {
+                    Log.i("SSSSSSSSSS", events.get(i).getId());
+                }
+            } catch (Exception exception) { exception.printStackTrace(); }
+        }
     }
 
     // TODO: Add JavaDoc Comment
@@ -59,4 +93,17 @@ public class FragmentEventSearch extends Fragment {
 
         return view;
     }
+
+    // TODO: Add JavaDoc Comment
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        ListView listView = getView().findViewById(R.id.fragment_eventSearch_listView);
+        listView.setAdapter(listAdapter = new EventListAdapter(events, jActivity));
+    }
+
+    // TODO: Add JavaDoc Comment
+    public final ArrayList<Event> getEventList() { return events; }
+
+    // TODO: Add JavaDoc Comment
+    public final EventListAdapter getListAdapter() { return listAdapter; }
 }
