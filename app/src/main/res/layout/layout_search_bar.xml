@@ -12,7 +12,7 @@
         android:layout_centerHorizontal="true">
 
         <EditText
-            android:id="@+id/searchBar_editText"
+            android:id="@+id/searchBar_editText_city"
             style="@style/Theme.Components.SearchBar.EditText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -21,7 +21,20 @@
             android:layout_marginEnd="5dp"
             android:layout_marginBottom="5dp"
             android:height="50dp"
-            android:hint="@string/searchBar_hint" />
+            android:hint="@string/searchBar_editText_city_hint" />
+
+        <EditText
+            android:id="@+id/searchBar_editText_radius"
+            style="@style/Theme.Components.SearchBar.EditText"
+            android:inputType="number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            android:height="50dp"
+            android:hint="@string/searchBar_editText_radius_hint" />
 
         <Button
             android:id="@+id/searchBar_searchButton"
@@ -35,7 +48,7 @@
             android:layout_toEndOf="@+id/searchBar_editText"
             android:height="50dp"
             android:text="@string/searchBar_searchButton"
-            android:textSize="24sp"
+            android:textSize="16dp"
             app:icon="@drawable/search_icon_50_dark"
             app:iconSize="20dp" />
 
