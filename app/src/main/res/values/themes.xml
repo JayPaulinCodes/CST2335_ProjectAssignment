@@ -75,6 +75,22 @@
             <item name="trackThickness">5dp</item>
         </style>
 
+        <!--  Style for Event List Item Name  -->
+        <style name="Theme.Components.EventListItem.Name" parent="Theme.Components.TextView">
+            <item name="materialThemeOverlay">@style/Theme.Overlay.EventListItem.Name</item>
+            <item name="android:fontFamily">@font/bebasneue</item>
+            <item name="android:textColor">@color/black</item>
+            <item name="android:textSize">24dp</item>
+        </style>
+
+        <!--  Style for Event List Item Description  -->
+        <style name="Theme.Components.EventListItem.Description" parent="Theme.Components.TextView">
+            <item name="materialThemeOverlay">@style/Theme.Overlay.EventListItem.Description</item>
+            <item name="android:fontFamily">@font/bebasneue</item>
+            <item name="android:textColor">@color/black_coral</item>
+            <item name="android:textSize">12dp</item>
+        </style>
+
     <!--  Theme Overlays  -->
 
         <!--  Overlay for NavigationDrawer  -->
@@ -102,5 +118,13 @@
 
         <!--  Overlay for Circular Progress Indicator  -->
         <style name="Theme.Overlay.CircularProgressIndicator" parent="">
+        </style>
+
+        <!--  Overlay for Event List Item Name  -->
+        <style name="Theme.Overlay.EventListItem.Name" parent="">
+        </style>
+
+        <!--  Overlay for Event List Item Description  -->
+        <style name="Theme.Overlay.EventListItem.Description" parent="">
         </style>
 </resources>
