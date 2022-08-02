@@ -13,6 +13,7 @@ public class Event {
     private String additionalInfo;
     private String description;
     private String id;
+    private String image;
     private String info;
     private String locale;
     private String name;
@@ -21,7 +22,7 @@ public class Event {
     private String url;
 
     // TODO: Add JavaDoc Comment
-    public Event(Distance distance, EventPriceRange priceRange, EventStartDate startDate, EventStatus status, String additionalInfo, String description, String id, String info, String locale, String name, String pleaseNote, String type, String url, String... flags) {
+    public Event(Distance distance, EventPriceRange priceRange, EventStartDate startDate, EventStatus status, String additionalInfo, String description, String id, String image, String info, String locale, String name, String pleaseNote, String type, String url, String... flags) {
         this.distance = distance;
         this.priceRange = priceRange;
         this.startDate = startDate;
@@ -29,6 +30,7 @@ public class Event {
         this.additionalInfo = additionalInfo;
         this.description = description;
         this.id = id;
+        this.image = image;
         this.info = info;
         this.locale = locale;
         this.name = name;
@@ -149,6 +151,20 @@ public class Event {
      * @param id value to assign to variable id
      */
     public void setId(String id) { this.id = id; }
+
+    /**
+     * Accessor method for variable image
+     *
+     * @returns value of variable image
+     */
+    public String getImage() { return image; }
+
+    /**
+     * Mutator method for variable image
+     *
+     * @param image value to assign to variable image
+     */
+    public void setImage(String image) { this.image = image; }
 
     /**
      * Accessor method for variable info

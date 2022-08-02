@@ -8,15 +8,13 @@ public class EventStartDate {
     private Boolean toBeDetermined;
     private String dateTime;
     private String localDate;
-    private String localTime;
 
-    public EventStartDate(Boolean noSpecificTime, Boolean toBeAssigned, Boolean toBeDetermined, String dateTime, String localDate, String localTime) {
+    public EventStartDate(Boolean noSpecificTime, Boolean toBeAssigned, Boolean toBeDetermined, String dateTime, String localDate) {
         this.noSpecificTime = noSpecificTime;
         this.toBeAssigned = toBeAssigned;
         this.toBeDetermined = toBeDetermined;
         this.dateTime = dateTime;
         this.localDate = localDate;
-        this.localTime = localTime;
     }
 
     /**
@@ -89,17 +87,4 @@ public class EventStartDate {
      */
     public void setLocalDate(String localDate) { this.localDate = localDate; }
 
-    /**
-     * Accessor method for variable localTime
-     *
-     * @returns value of variable localTime
-     */
-    public String getLocalTime() { return localTime; }
-
-    /**
-     * Mutator method for variable localTime
-     *
-     * @param localTime value to assign to variable localTime
-     */
-    public void setLocalTime(String localTime) { this.localTime = localTime; }
 }

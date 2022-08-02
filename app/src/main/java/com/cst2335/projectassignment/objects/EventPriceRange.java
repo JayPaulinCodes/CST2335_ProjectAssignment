@@ -57,8 +57,18 @@ public class EventPriceRange {
     public void setCurrency(String currency) { this.currency = currency; }
 
     // TODO: Add JavaDoc Comment
-    public String getMinimumFormated() { return String.format("%d %s", minimum, currency); }
+    public String getMinimumFormatted() { return String.format("%.2f %s", minimum, currency); }
 
     // TODO: Add JavaDoc Comment
-    public String getMaximumFormated() { return String.format("%d %s", maximum, currency); }
+    public String getMaximumFormatted() { return String.format("%.2f %s", maximum, currency); }
+
+    // TODO: Add JavaDoc Comment
+    @Override
+    public String toString() {
+        return String.format(
+                "%s - %s",
+                getMinimumFormatted(),
+                getMaximumFormatted()
+                );
+    }
 }
