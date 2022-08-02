@@ -22,7 +22,8 @@
     <string name="alertDialog_appInfo_message">Here is some information about the app. %n%nCurrent Activity: %s%nApp Author: %s%nApp Version: %s</string>
 
     <!--  Search Bar  -->
-    <string name="searchBar_hint">Search for location or event type…</string>
+    <string name="searchBar_editText_city_hint">Search for city…</string>
+    <string name="searchBar_editText_radius_hint">Max search radius…</string>
     <string name="searchBar_searchButton">Search</string>
 
     <!--  Home Page  -->
