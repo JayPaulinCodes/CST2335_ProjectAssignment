@@ -1,16 +1,26 @@
 package com.cst2335.projectassignment.activities;
 
-import androidx.annotation.Dimension;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.view.ContextThemeWrapper;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Criteria;
+import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.TypedValue;
@@ -22,10 +32,17 @@ import android.widget.LinearLayout;
 import com.cst2335.projectassignment.R;
 import com.cst2335.projectassignment.fragments.FragmentEventSearch;
 import com.cst2335.projectassignment.fragments.FragmentHomeButton;
+import com.cst2335.projectassignment.utils.CityName;
 import com.cst2335.projectassignment.utils.TicketQuery;
 import com.google.android.material.internal.NavigationMenuItemView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.progressindicator.CircularProgressIndicator;
+
+import java.util.List;
+import java.util.Locale;
+import java.util.concurrent.ExecutionException;
+
+import javax.xml.transform.Result;
 
 // TODO: Add JavaDoc Comment
 public class ActivityHome extends JActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -33,6 +50,8 @@ public class ActivityHome extends JActivity implements NavigationView.OnNavigati
     public static final String ARG_DESTINATION_PAGE = "activityArg_destinationPage";
     public static final String ARG_BUTTON_LABEL = "activityArg_buttonLabel";
     public static final String ARG_DESCRIPTION = "activityArg_description";
+
+    private String city;
 
     private Runnable postLoad = () -> {
         // Load Fragments
@@ -79,6 +98,10 @@ public class ActivityHome extends JActivity implements NavigationView.OnNavigati
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        // Get current location
+        city = getCurrentCity();
+        log(city);
 
         // Set Up Toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -157,13 +180,13 @@ public class ActivityHome extends JActivity implements NavigationView.OnNavigati
 
         switch (item.getItemId()) {
             case R.id.menuToolbar_home:
-                // TODO: Send to home page
+                startActivity(new Intent(ActivityHome.this, ActivityHome.class));
                 break;
             case R.id.menuToolbar_search:
-                // TODO: Send to search page
+                startActivity(new Intent(ActivityHome.this, ActivitySearch.class));
                 break;
             case R.id.menuToolbar_favorites:
-                // TODO: Send to favorites page
+                startActivity(new Intent(ActivityHome.this, ActivityFavorites.class));
                 break;
             case R.id.menuToolbar_help:
                 // TODO: Show help dialog
@@ -198,13 +221,13 @@ public class ActivityHome extends JActivity implements NavigationView.OnNavigati
 
                 break;
             case R.id.menuDrawer_home:
-                // TODO: Send to home page
+                startActivity(new Intent(ActivityHome.this, ActivityHome.class));
                 break;
             case R.id.menuDrawer_search:
-                // TODO: Send to search page
+                startActivity(new Intent(ActivityHome.this, ActivitySearch.class));
                 break;
             case R.id.menuDrawer_favorites:
-                // TODO: Send to favorites page
+                startActivity(new Intent(ActivityHome.this, ActivityFavorites.class));
                 break;
             case R.id.menuDrawer_help:
                 // TODO: Show help dialog
