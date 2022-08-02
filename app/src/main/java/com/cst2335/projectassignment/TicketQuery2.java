@@ -220,9 +220,9 @@ public class TicketQuery2 extends AppCompatActivity implements NavigationView.On
 //                JSONObject resultJSON = null;
 //                Integer result_count = null;
 //                try {
-//                result = req.get();
-//                resultJSON = new JSONObject(result);
-//                result_count = resultJSON.getInt("count");
+//                    result = req.get();
+//                    resultJSON = new JSONObject(result);
+//                    result_count = resultJSON.getInt("count");
 //                } catch (Exception exception) { exception.printStackTrace(); }
 //
 //                log(Integer.toString(result_count));
