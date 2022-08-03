@@ -55,11 +55,15 @@ public class EventListAdapter extends BaseAdapter {
         TextView view_text_name = view.findViewById(R.id.eventListItem_textView_name);
         TextView view_text_description = view.findViewById(R.id.eventListItem_textView_description);
         TextView view_text_priceRange = view.findViewById(R.id.eventListItem_textView_priceRange);
+        TextView view_text_date = view.findViewById(R.id.eventListItem_textView_date);
+        TextView view_text_distance = view.findViewById(R.id.eventListItem_textView_distance);
 
         new DownloadImageTask(view_image).execute(event.getImage());
         view_text_name.setText(event.getName());
-        view_text_description.setText(event.getDescription());
-        view_text_priceRange.setText(event.getPriceRange().toString());
+        if (event.getDescription() != null) view_text_description.setText(event.getDescription());
+        if (event.getPriceRange() != null) view_text_priceRange.setText(event.getPriceRange().toString());
+        if (event.getStartDate() != null) view_text_date.setText(event.getStartDate().getLocalDateTimeFormatted());
+        if (event.getDistance() != null) view_text_distance.setText(event.getDistance().toString());
 
         return view;
     }

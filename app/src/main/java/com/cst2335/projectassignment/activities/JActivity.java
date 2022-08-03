@@ -1,6 +1,7 @@
 package com.cst2335.projectassignment.activities;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.location.Address;
 import android.location.Criteria;
 import android.location.Geocoder;
@@ -13,8 +14,10 @@ import android.util.TypedValue;
 
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import com.cst2335.projectassignment.utils.HTTPRequest;
+import com.cst2335.projectassignment.utils.TicketQuery;
 
 import org.json.JSONObject;
 
@@ -23,7 +26,7 @@ import java.util.List;
 import java.util.Locale;
 
 // TODO: Add JavaDoc Comment
-public class JActivity extends AppCompatActivity {
+public abstract class JActivity extends AppCompatActivity {
 
     // TODO: Add JavaDoc Comment
     @Override
@@ -105,5 +108,14 @@ public class JActivity extends AppCompatActivity {
     public final JSONObject doHttpRequest(String id) {
         return performHttpRequest(HTTPRequest.url(id));
     }
+
+    // TODO: Add JavaDoc Comment
+    public final SharedPreferences getSharedPreferences() { return getSharedPreferences(TicketQuery.PREFERENCES_FILE, Context.MODE_PRIVATE); }
+
+    // TODO: Add JavaDoc Comment
+    public final SharedPreferences.Editor getSharedPreferencesEditor() { return getSharedPreferences(TicketQuery.PREFERENCES_FILE, Context.MODE_PRIVATE).edit(); }
+
+    // TODO: Add JavaDoc Comment
+    public void onFragmentLoaded(Fragment fragment) {};
 
 }

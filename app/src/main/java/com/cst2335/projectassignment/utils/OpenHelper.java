@@ -5,13 +5,13 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class OpenHelper extends SQLiteOpenHelper {
-    public static final String FILE_NAME = "TicketMasterSearcher";
+    public static final String FILE_NAME = "TicketQuery";
     public static final int VERSION = 1;
 
-    public static final String TABLE_NAME = "Favorites";
+    public static final String TABLE_NAME = "FAVORITES";
     public static final String COL_ID = "_id";
-    public static final String COL_MESSAGE = "Message";
-    public static final String COL_SEND_RECEIVE = "SendOrReceive";
+    public static final String COL_EVENT_ID = "eventId";
+    public static final String COL_IS_EVENT_FAVORITE = "isFavorite";
 
     public OpenHelper(Context context) {
         super(context, FILE_NAME, null, VERSION);
@@ -23,8 +23,8 @@ public class OpenHelper extends SQLiteOpenHelper {
                 "Create table %s ( %s INTEGER PRIMARY KEY AUTOINCREMENT, %s TEXT, %s INTEGER );",
                 TABLE_NAME,
                 COL_ID,
-                COL_MESSAGE,
-                COL_SEND_RECEIVE
+                COL_EVENT_ID,
+                COL_IS_EVENT_FAVORITE
         );
 
         db.execSQL(query);

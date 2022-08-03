@@ -12,11 +12,11 @@ import com.cst2335.projectassignment.R;
 
 // TODO: Fix JavaDoc Comment
 /**
- * A simple {@link Fragment} subclass.
+ * A simple {@link JFragment} subclass.
  * Use the {@link FragmentEventDetails#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FragmentEventDetails extends Fragment {
+public class FragmentEventDetails extends JFragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER

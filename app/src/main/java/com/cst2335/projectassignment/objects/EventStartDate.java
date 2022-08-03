@@ -1,5 +1,10 @@
 package com.cst2335.projectassignment.objects;
 
+import android.util.Log;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 // TODO: Add JavaDoc Comment
 public class EventStartDate {
 
@@ -8,6 +13,8 @@ public class EventStartDate {
     private Boolean toBeDetermined;
     private String dateTime;
     private String localDate;
+    private String localDateTimeFormatted;
+    private LocalDateTime localDateTime;
 
     public EventStartDate(Boolean noSpecificTime, Boolean toBeAssigned, Boolean toBeDetermined, String dateTime, String localDate) {
         this.noSpecificTime = noSpecificTime;
@@ -15,6 +22,10 @@ public class EventStartDate {
         this.toBeDetermined = toBeDetermined;
         this.dateTime = dateTime;
         this.localDate = localDate;
+        this.localDateTime = LocalDateTime.parse(dateTime.replaceAll("Z$", ""));
+
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm");
+        this.localDateTimeFormatted = this.localDateTime.format(dateTimeFormatter);
     }
 
     /**
@@ -87,4 +98,31 @@ public class EventStartDate {
      */
     public void setLocalDate(String localDate) { this.localDate = localDate; }
 
+    /**
+     * Accessor method for variable localDateTimeFormatted
+     *
+     * @returns value of variable localDateTimeFormatted
+     */
+    public String getLocalDateTimeFormatted() { return localDateTimeFormatted; }
+
+    /**
+     * Mutator method for variable localDateTimeFormatted
+     *
+     * @param localDateTimeFormatted value to assign to variable localDateTimeFormatted
+     */
+    public void setLocalDateTimeFormatted(String localDateTimeFormatted) { this.localDateTimeFormatted = localDateTimeFormatted; }
+
+    /**
+     * Accessor method for variable localDateTime
+     *
+     * @returns value of variable localDateTime
+     */
+    public LocalDateTime getLocalDateTime() { return localDateTime; }
+
+    /**
+     * Mutator method for variable localDateTime
+     *
+     * @param localDateTime value to assign to variable localDateTime
+     */
+    public void setLocalDateTime(LocalDateTime localDateTime) { this.localDateTime = localDateTime; }
 }

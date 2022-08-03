@@ -93,6 +93,8 @@ public class HTTPRequest extends AsyncTask<String, Integer, String> {
 
             if (entry != null) {
 
+
+
                 String additionalInfo, description, id, image, info, locale, name, pleaseNote, type, url;
                 Distance distance;
                 EventPriceRange priceRange;

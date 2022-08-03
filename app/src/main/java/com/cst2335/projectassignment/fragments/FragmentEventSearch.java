@@ -10,6 +10,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import com.cst2335.projectassignment.R;
@@ -26,17 +28,20 @@ import java.util.ArrayList;
 
 // TODO: Fix JavaDoc Comment
 /**
- * A simple {@link Fragment} subclass.
+ * A simple {@link JFragment} subclass.
  */
-public class FragmentEventSearch extends Fragment {
+public class FragmentEventSearch extends JFragment {
 
     private static final String ARG_CITY = ActivitySearch.ARG_CITY;
 
     private Context context;
     private JActivity jActivity;
-    private ActivitySearch activitySearch;
+//    private ActivitySearch activitySearch;
     private String city;
-    private EventListAdapter listAdapter;
+//    private EventListAdapter listAdapter;
+//    private Button searchButton;
+//    private EditText editText_city;
+//    private EditText editText_radius;
 
     private ArrayList<Event> events;
 
@@ -49,7 +54,7 @@ public class FragmentEventSearch extends Fragment {
     public FragmentEventSearch context(Context context) {
         this.context = context;
         this.jActivity = (JActivity) context;
-        this.activitySearch = (ActivitySearch) context;
+//        this.activitySearch = (ActivitySearch) context;
         return this;
     }
 
@@ -77,11 +82,11 @@ public class FragmentEventSearch extends Fragment {
                 JSONArray queryResultsArray = queryResults.getJSONObject("_embedded").getJSONArray("events");
 
                 events = HTTPRequest.processHTTPJSONArray(queryResultsArray);
-
-
-                for (int i = 0; i < events.size(); i++) {
-                    Log.i("SSSSSSSSSS", events.get(i).getId());
-                }
+//
+//
+//                for (int i = 0; i < events.size(); i++) {
+//                    Log.i("SSSSSSSSSS", events.get(i).getId());
+//                }
             } catch (Exception exception) { exception.printStackTrace(); }
         }
     }
@@ -97,13 +102,26 @@ public class FragmentEventSearch extends Fragment {
     // TODO: Add JavaDoc Comment
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        ListView listView = getView().findViewById(R.id.fragment_eventSearch_listView);
-        listView.setAdapter(listAdapter = new EventListAdapter(events, jActivity));
+//        ListView listView = getView().findViewById(R.id.fragment_eventSearch_listView);
+//        listView.setAdapter(listAdapter = new EventListAdapter(events, jActivity));
+//
+//        searchButton = getView().findViewById(R.id.fragment_eventSearch_searchBar).findViewById(R.id.searchBar_searchButton);
+
+//        Log.i("FRAGEVENTSEARCH", searchButton.getText().toString());
     }
 
     // TODO: Add JavaDoc Comment
     public final ArrayList<Event> getEventList() { return events; }
+//
+//    // TODO: Add JavaDoc Comment
+//    public final EventListAdapter getListAdapter() { return listAdapter; }
+//
+//    /**
+//     * Accessor method for variable searchButton
+//     *
+//     * @returns value of variable searchButton
+//     */
+//    public Button getSearchButton() { return searchButton; }
 
-    // TODO: Add JavaDoc Comment
-    public final EventListAdapter getListAdapter() { return listAdapter; }
+
 }

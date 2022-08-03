@@ -34,9 +34,26 @@
         android:id="@+id/eventListItem_textView_priceRange"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:paddingBottom="3dp"
         android:paddingRight="3dp" />
+
+    <TextView
+        android:id="@+id/eventListItem_textView_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_above="@id/eventListItem_textView_priceRange"
+        android:paddingRight="3dp" />
+
+    <TextView
+        android:id="@+id/eventListItem_textView_distance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@id/eventListItem_imageView"
+        android:paddingBottom="3dp"
+        android:paddingLeft="3dp" />
 
 </RelativeLayout>

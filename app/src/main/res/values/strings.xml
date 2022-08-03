@@ -35,6 +35,9 @@
     <!--  Miscellaneous  -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <!--  Messages  -->
+    <string name="message_invalidSearchInput">Invalid input in the following fields: </string>
+
     <!--  WORDS  -->
     <string name="blank" />
     <string name="open">open</string>
@@ -43,5 +46,7 @@
     <string name="author">author</string>
     <string name="version">version</string>
     <string name="search">search</string>
+    <string name="city">city</string>
+    <string name="radius">radius</string>
 
 </resources>

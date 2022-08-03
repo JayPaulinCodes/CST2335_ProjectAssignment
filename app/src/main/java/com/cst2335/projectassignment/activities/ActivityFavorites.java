@@ -8,10 +8,13 @@ import androidx.appcompat.view.ContextThemeWrapper;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Menu;
@@ -21,6 +24,7 @@ import android.widget.LinearLayout;
 
 import com.cst2335.projectassignment.R;
 import com.cst2335.projectassignment.fragments.FragmentHomeButton;
+import com.cst2335.projectassignment.utils.OpenHelper;
 import com.cst2335.projectassignment.utils.TicketQuery;
 import com.google.android.material.internal.NavigationMenuItemView;
 import com.google.android.material.navigation.NavigationView;
@@ -28,6 +32,9 @@ import com.google.android.material.progressindicator.CircularProgressIndicator;
 
 // TODO: Add JavaDoc Comment
 public class ActivityFavorites extends JActivity implements NavigationView.OnNavigationItemSelectedListener {
+
+    private OpenHelper openHelper;
+    private SQLiteDatabase sqLiteDatabase;
 
     private Runnable postLoad = () -> {
         // Load Fragments
@@ -52,6 +59,12 @@ public class ActivityFavorites extends JActivity implements NavigationView.OnNav
         CircularProgressIndicator progressIndicator = findViewById(R.id.activity_favorites_progressIndicator);
         progressIndicator.setIndeterminate(false);
         progressIndicator.setVisibility(View.INVISIBLE);
+
+        // Handle City Shit
+        String currentCity = getCurrentCity();
+        String lastCity = getSharedPreferences().getString(TicketQuery.PREFERENCE_LAST_USER_CITY, "N/A");
+        if (lastCity.equals("N/A")) getSharedPreferencesEditor().putString(TicketQuery.PREFERENCE_LAST_USER_CITY, currentCity);
+        else if (!lastCity.equals(currentCity)) getSharedPreferencesEditor().putString(TicketQuery.PREFERENCE_LAST_USER_CITY, currentCity);
     };
 
     // TODO: Add JavaDoc Comment
@@ -59,6 +72,11 @@ public class ActivityFavorites extends JActivity implements NavigationView.OnNav
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favorites);
+
+        // Set up database
+        openHelper = new OpenHelper(this);
+        sqLiteDatabase = openHelper.getWritableDatabase();
+        Cursor results = sqLiteDatabase.rawQuery("Select * from " + openHelper.TABLE_NAME + ";",null);
 
         // Set Up Toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -196,4 +214,7 @@ public class ActivityFavorites extends JActivity implements NavigationView.OnNav
 
         return false;
     }
+
+    @Override
+    public void onFragmentLoaded(Fragment fragment) {}
 }

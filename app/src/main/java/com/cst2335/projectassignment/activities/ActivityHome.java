@@ -8,6 +8,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import android.Manifest;
@@ -15,6 +16,8 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.location.Address;
 import android.location.Criteria;
 import android.location.Geocoder;
@@ -27,12 +30,14 @@ import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.cst2335.projectassignment.R;
 import com.cst2335.projectassignment.fragments.FragmentEventSearch;
 import com.cst2335.projectassignment.fragments.FragmentHomeButton;
 import com.cst2335.projectassignment.utils.CityName;
+import com.cst2335.projectassignment.utils.OpenHelper;
 import com.cst2335.projectassignment.utils.TicketQuery;
 import com.google.android.material.internal.NavigationMenuItemView;
 import com.google.android.material.navigation.NavigationView;
@@ -51,7 +56,8 @@ public class ActivityHome extends JActivity implements NavigationView.OnNavigati
     public static final String ARG_BUTTON_LABEL = "activityArg_buttonLabel";
     public static final String ARG_DESCRIPTION = "activityArg_description";
 
-    private String city;
+    private OpenHelper openHelper;
+    private SQLiteDatabase sqLiteDatabase;
 
     private Runnable postLoad = () -> {
         // Load Fragments
@@ -86,6 +92,11 @@ public class ActivityHome extends JActivity implements NavigationView.OnNavigati
                 .replace(R.id.activity_home_frame2, fragment_homeButton_favorites)
                 .commit();
 
+        // Handle City Shit
+        String currentCity = getCurrentCity();
+        String lastCity = getSharedPreferences().getString(TicketQuery.PREFERENCE_LAST_USER_CITY, "N/A");
+        if (lastCity.equals("N/A")) getSharedPreferencesEditor().putString(TicketQuery.PREFERENCE_LAST_USER_CITY, currentCity);
+        else if (!lastCity.equals(currentCity)) getSharedPreferencesEditor().putString(TicketQuery.PREFERENCE_LAST_USER_CITY, currentCity);
 
         // Hide the progress indicator
         CircularProgressIndicator progressIndicator = findViewById(R.id.activity_home_progressIndicator);
@@ -99,9 +110,10 @@ public class ActivityHome extends JActivity implements NavigationView.OnNavigati
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        // Get current location
-        city = getCurrentCity();
-        log(city);
+        // Set up database
+        openHelper = new OpenHelper(this);
+        sqLiteDatabase = openHelper.getWritableDatabase();
+        Cursor results = sqLiteDatabase.rawQuery("Select * from " + openHelper.TABLE_NAME + ";",null);
 
         // Set Up Toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -239,4 +251,7 @@ public class ActivityHome extends JActivity implements NavigationView.OnNavigati
 
         return false;
     }
+
+    @Override
+    public void onFragmentLoaded(Fragment fragment) {}
 }

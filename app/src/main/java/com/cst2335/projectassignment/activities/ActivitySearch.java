@@ -8,15 +8,21 @@ import androidx.appcompat.view.ContextThemeWrapper;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
@@ -24,28 +30,50 @@ import com.cst2335.projectassignment.R;
 import com.cst2335.projectassignment.fragments.FragmentEventSearch;
 import com.cst2335.projectassignment.objects.Event;
 import com.cst2335.projectassignment.utils.EventListAdapter;
+import com.cst2335.projectassignment.utils.HTTPRequest;
+import com.cst2335.projectassignment.utils.OpenHelper;
+import com.cst2335.projectassignment.utils.TicketQuery;
 import com.google.android.material.internal.NavigationMenuItemView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.progressindicator.CircularProgressIndicator;
+import com.google.android.material.snackbar.Snackbar;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 // TODO: Add JavaDoc Comment
 public class ActivitySearch extends JActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     public static final String ARG_CITY = "activityArg_city";
 
+    private Boolean loaded = false;
     private ArrayList<Event> events = new ArrayList<>(  );
     private EventListAdapter listAdapter;
+    private OpenHelper openHelper;
+    private SQLiteDatabase sqLiteDatabase;
+    private Button searchButton;
+    private EditText editText_city;
+    private EditText editText_radius;
+    private View fragmentEventSearch_view;
 
     private Runnable postLoad = () -> {
+        // Pause for a bit to allow time to load
+
         // Load Fragments
         FragmentManager fragmentManager = getSupportFragmentManager();
 
         FragmentEventSearch fragment_eventSearch = new FragmentEventSearch().context(ActivitySearch.this);
         Bundle arguments_eventSearch = new Bundle();
 
-        arguments_eventSearch.putString(ARG_CITY, getCurrentCity());
+        // Handle City Shit
+        String currentCity = getCurrentCity();
+        String lastCity = getSharedPreferences().getString(TicketQuery.PREFERENCE_LAST_USER_CITY, "N/A");
+        if (lastCity.equals("N/A")) getSharedPreferencesEditor().putString(TicketQuery.PREFERENCE_LAST_USER_CITY, currentCity);
+        else if (!lastCity.equals(currentCity)) getSharedPreferencesEditor().putString(TicketQuery.PREFERENCE_LAST_USER_CITY, currentCity);
+        arguments_eventSearch.putString(ARG_CITY, currentCity);
 
         fragment_eventSearch.setArguments(arguments_eventSearch);
 
@@ -54,24 +82,23 @@ public class ActivitySearch extends JActivity implements NavigationView.OnNaviga
                 .replace(R.id.activity_search_frame, fragment_eventSearch)
                 .commit();
 
-        events = fragment_eventSearch.getEventList();
-
-
         // Hide the progress indicator
         CircularProgressIndicator progressIndicator = findViewById(R.id.activity_search_progressIndicator);
         progressIndicator.setIndeterminate(false);
         progressIndicator.setVisibility(View.INVISIBLE);
 
-        // Other Stuff
-        listAdapter = fragment_eventSearch.getListAdapter();
     };
-
 
     // TODO: Add JavaDoc Comment
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
+
+        // Set up database
+        openHelper = new OpenHelper(this);
+        sqLiteDatabase = openHelper.getWritableDatabase();
+        Cursor results = sqLiteDatabase.rawQuery("Select * from " + openHelper.TABLE_NAME + ";",null);
 
         // Set Up Toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -88,7 +115,7 @@ public class ActivitySearch extends JActivity implements NavigationView.OnNaviga
         drawer.addDrawerListener(new DrawerLayout.DrawerListener() {
             boolean isDrawerOpen = false;
             boolean readyForChange = true;
-            LinearLayout linearLayout = findViewById(R.id.activity_home_linearLayout);
+            LinearLayout linearLayout = findViewById(R.id.activity_search_linearLayout);
 
             @Override
             public void onDrawerSlide(@NonNull View drawerView, float slideOffset) {
@@ -117,9 +144,12 @@ public class ActivitySearch extends JActivity implements NavigationView.OnNaviga
             }
         });
 
+        log("1");
 
         // Set up the postLoad runnable
         new Handler().postDelayed(postLoad, 2000);
+
+        log("2");
     }
 
     // TODO: Add JavaDoc Comment
@@ -208,5 +238,68 @@ public class ActivitySearch extends JActivity implements NavigationView.OnNaviga
         drawerLayout.closeDrawer(GravityCompat.START);
 
         return false;
+    }
+
+    // TODO: Add JavaDoc Comment
+    @Override
+    public void onFragmentLoaded(Fragment fragment) {
+        log("555 " + fragment.getClass().getName());
+        FragmentEventSearch fragmentEventSearch = (FragmentEventSearch) fragment;
+        fragmentEventSearch_view = fragmentEventSearch.getView();
+        View searchBar = fragmentEventSearch_view.findViewById(R.id.fragment_eventSearch_searchBar);
+
+
+        events = fragmentEventSearch.getEventList();
+        ListView listView = fragmentEventSearch_view.findViewById(R.id.fragment_eventSearch_listView);
+        listView.setAdapter(listAdapter = new EventListAdapter(events, this));
+        searchButton = searchBar.findViewById(R.id.searchBar_searchButton);
+        editText_city = searchBar.findViewById(R.id.searchBar_editText_city);
+        editText_radius = searchBar.findViewById(R.id.searchBar_editText_radius);
+
+        searchButton.setOnClickListener((c) -> searchEvent());
+    }
+
+    private void searchEvent() {
+        log(events.size() + " LLLLLLLLLLLLLLLLLLLLLLLLLL");
+        Boolean canRun = true;
+        ArrayList<String> invalidFields = new ArrayList<String>();
+        StringBuilder errorStringBuilder = new StringBuilder();
+        errorStringBuilder.append(word(R.string.message_invalidSearchInput, false));
+        errorStringBuilder.append(" ");
+
+        // Check for text in city field
+        if (editText_city.getText().length() <= 0) invalidFields.add(word(R.string.city, true));
+
+        // Check for a radius
+        if (editText_radius.getText().length() <= 0) invalidFields.add(word(R.string.radius, true));
+
+        if (invalidFields.size() > 0) canRun = false;
+
+        if (canRun) {
+            String city = editText_city.getText().toString();
+            Integer radius = Integer.parseInt(editText_radius.getText().toString());
+
+            // Do HTTP search
+            try {
+                JSONObject queryResults = doHttpRequest(city, radius);
+                JSONArray queryResultsArray = queryResults.getJSONObject("_embedded").getJSONArray("events");
+                events = HTTPRequest.processHTTPJSONArray(queryResultsArray);
+            } catch (Exception exception) { exception.printStackTrace(); }
+
+            // NotifyDataSetChanged
+            ListView listView = fragmentEventSearch_view.findViewById(R.id.fragment_eventSearch_listView);
+            listView.setAdapter(listAdapter = new EventListAdapter(events, this));
+
+            // Not sure why this doesn't work
+//            listAdapter.notifyDataSetChanged();
+        } else {
+            errorStringBuilder.append(String.join(", ", invalidFields));
+            sendSnackbar(errorStringBuilder.toString());
+        }
+    }
+
+    private void sendSnackbar(String message) {
+        Snackbar snackbar = Snackbar.make(searchButton, message, Snackbar.LENGTH_INDEFINITE);
+        snackbar.setAction(word(R.string.close, true), click -> snackbar.dismiss()).show();
     }
 }

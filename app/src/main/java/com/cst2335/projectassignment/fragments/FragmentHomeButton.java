@@ -20,7 +20,7 @@ import com.cst2335.projectassignment.activities.ActivitySearch;
 import com.cst2335.projectassignment.utils.TicketQuery;
 
 // TODO: Add JavaDoc Comment
-public class FragmentHomeButton extends Fragment {
+public class FragmentHomeButton extends JFragment {
 
     private static final String ARG_DESTINATION_PAGE = ActivityHome.ARG_DESTINATION_PAGE;
     private static final String ARG_BUTTON_LABEL = ActivityHome.ARG_BUTTON_LABEL;
