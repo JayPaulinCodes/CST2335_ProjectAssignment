@@ -29,18 +29,14 @@ import com.google.android.material.progressindicator.CircularProgressIndicator;
 
 import java.util.ArrayList;
 
-// TODO: Add JavaDoc Comment
 public class TicketQuery2 extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private static final String TAG = "TicketQuery";
     private ArrayList<Event> events = new ArrayList<>(  );
-
-    // TODO: Add JavaDoc Comment
+    
     private static final void log(String message) { Log.i(TAG, message); }
-
-    // TODO: Add JavaDoc Comment
+    
     private final String word(@StringRes int string, Boolean capitalize) { return (capitalize) ? capitalize(getString(string)) : getString(string); }
-
-    // TODO: Add JavaDoc Comment
+    
     private static final String capitalize(String str) { return (str == null || str.isEmpty()) ? str : str.substring(0, 1).toUpperCase() + str.substring(1); }
 
 
@@ -59,8 +55,7 @@ public class TicketQuery2 extends AppCompatActivity implements NavigationView.On
         progressIndicator.setIndeterminate(false);
         progressIndicator.setVisibility(View.INVISIBLE);
     };
-
-    // TODO: Add JavaDoc Comment
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,8 +77,7 @@ public class TicketQuery2 extends AppCompatActivity implements NavigationView.On
         new Handler().postDelayed(postLoad, 5000);
 
     }
-
-    // TODO: Add JavaDoc Comment
+    
     @Override
     @SuppressLint("RestrictedApi")
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -105,7 +99,6 @@ public class TicketQuery2 extends AppCompatActivity implements NavigationView.On
     }
 
     // Handle Toolbar Select
-    // TODO: Add JavaDoc Comment
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
@@ -128,7 +121,6 @@ public class TicketQuery2 extends AppCompatActivity implements NavigationView.On
     }
 
     // Handle Drawer Select
-    // TODO: Add JavaDoc Comment
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
 
@@ -170,29 +162,24 @@ public class TicketQuery2 extends AppCompatActivity implements NavigationView.On
 
         return false;
     }
-
-    // TODO: Add JavaDoc Comment
+    
     private class EventsListAdapter extends BaseAdapter {
-
-        // TODO: Add JavaDoc Comment
+        
         @Override
         public int getCount() {
             return events.size();
         }
-
-        // TODO: Add JavaDoc Comment
+        
         @Override
         public Object getItem(int position) {
             return null;
         }
-
-        // TODO: Add JavaDoc Comment
+        
         @Override
         public long getItemId(int position) {
             return 0;
         }
-
-        // TODO: Add JavaDoc Comment
+        
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             LayoutInflater inflater = getLayoutInflater();
