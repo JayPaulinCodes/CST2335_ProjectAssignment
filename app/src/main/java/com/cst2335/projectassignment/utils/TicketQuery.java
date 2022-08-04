@@ -6,12 +6,15 @@ import org.json.JSONObject;
 public class TicketQuery {
     public final static String PREFERENCES_FILE = "TicketQueryData";
     public final static String PREFERENCE_LAST_USER_CITY = "preference_lastUserCity";
+    public final static String PREFERENCE_LAST_SEARCH_CITY = "preference_lastSearch_city";
+    public final static String PREFERENCE_LAST_SEARCH_RADIUS = "preference_lastSearch_radius";
 
     public static final String ACTIVITY_HOME = "activityPage_home";
     public static final String ACTIVITY_SEARCH = "activityPage_search";
     public static final String ACTIVITY_FAVORITES = "activityPage_favorites";
 
 
+    // TODO: Add JavaDoc Comment
     public static final JSONObject fetchFromAPI(String city, Integer radius) {
         HTTPRequest httpRequest = new HTTPRequest();
         httpRequest.execute(httpRequest.url(city, radius));

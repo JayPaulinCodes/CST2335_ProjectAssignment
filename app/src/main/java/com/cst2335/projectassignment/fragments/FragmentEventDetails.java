@@ -1,5 +1,6 @@
 package com.cst2335.projectassignment.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,65 +8,68 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.cst2335.projectassignment.R;
+import com.cst2335.projectassignment.activities.ActivitySearch;
+import com.cst2335.projectassignment.activities.JActivity;
+import com.cst2335.projectassignment.objects.Event;
+import com.cst2335.projectassignment.utils.DownloadImageTask;
 
-// TODO: Fix JavaDoc Comment
-/**
- * A simple {@link JFragment} subclass.
- * Use the {@link FragmentEventDetails#newInstance} factory method to
- * create an instance of this fragment.
- */
+// TODO: Add JavaDoc Comment
 public class FragmentEventDetails extends JFragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+//    private static final String ARG_CITY = ActivitySearch.ARG_CITY;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private Context context;
+    private Event event;
 
     // TODO: Add JavaDoc Comment
     public FragmentEventDetails() {
         // Required empty public constructor
     }
 
-    // TODO: Fix JavaDoc Comment
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment EventDetailsFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static FragmentEventDetails newInstance(String param1, String param2) {
-        FragmentEventDetails fragment = new FragmentEventDetails();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
+    // TODO: Add JavaDoc Comment
+    public FragmentEventDetails context(Context context) {
+        this.context = context;
+        return this;
+    }
+
+    // TODO: Add JavaDoc Comment
+    public FragmentEventDetails event(Event event) {
+        this.event = event;
+        return this;
     }
 
     // TODO: Add JavaDoc Comment
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+//        if (getArguments() != null) {
+//            mParam1 = getArguments().getString(ARG_PARAM1);
+//            mParam2 = getArguments().getString(ARG_PARAM2);
+//        }
     }
 
     // TODO: Add JavaDoc Comment
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_event_details, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_event_details, container, false);
+
+        ImageButton view_closeButton = view.findViewById(R.id.fragment_eventDetails_closeButton);
+        ImageView view_image = view.findViewById(R.id.fragment_eventDetails_image);
+        TextView view_name = view.findViewById(R.id.fragment_eventDetails_name);
+        TextView view_priceRange = view.findViewById(R.id.fragment_eventDetails_priceRange);
+        TextView view_dateTime = view.findViewById(R.id.fragment_eventDetails_dateTime);
+        TextView view_info = view.findViewById(R.id.fragment_eventDetails_info);
+        Button view_urlButton = view.findViewById(R.id.fragment_eventDetails_urlButton);
+        Button view_favoriteButton = view.findViewById(R.id.fragment_eventDetails_favoriteButton);
+
+        new DownloadImageTask(view_image).execute(event.getImage());
+
+        return view;
     }
 }

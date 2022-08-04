@@ -33,15 +33,12 @@ import java.util.ArrayList;
 public class FragmentEventSearch extends JFragment {
 
     private static final String ARG_CITY = ActivitySearch.ARG_CITY;
+    private static final String ARG_RADIUS = ActivitySearch.ARG_RADIUS;
 
     private Context context;
     private JActivity jActivity;
-//    private ActivitySearch activitySearch;
     private String city;
-//    private EventListAdapter listAdapter;
-//    private Button searchButton;
-//    private EditText editText_city;
-//    private EditText editText_radius;
+    private Integer radius;
 
     private ArrayList<Event> events;
 
@@ -54,18 +51,8 @@ public class FragmentEventSearch extends JFragment {
     public FragmentEventSearch context(Context context) {
         this.context = context;
         this.jActivity = (JActivity) context;
-//        this.activitySearch = (ActivitySearch) context;
         return this;
     }
-
-//    public static EventSearch newInstance(String param1, String param2) {
-//        EventSearch fragment = new EventSearch();
-//        Bundle args = new Bundle();
-//        args.putString(ARG_PARAM1, param1);
-//        args.putString(ARG_PARAM2, param2);
-//        fragment.setArguments(args);
-//        return fragment;
-//    }
 
     // TODO: Add JavaDoc Comment
     @Override
@@ -74,19 +61,17 @@ public class FragmentEventSearch extends JFragment {
 
         if (getArguments() != null) {
             city = getArguments().getString(ARG_CITY);
+            radius = getArguments().getInt(ARG_RADIUS);
         }
 
-        if (city != null) {
+        if (radius <= 0 || radius == null) radius = 100;
+
+        if (city != null && radius != null) {
             try {
-                JSONObject queryResults = jActivity.doHttpRequest(city, 100);
+                JSONObject queryResults = jActivity.doHttpRequest(city, radius);
                 JSONArray queryResultsArray = queryResults.getJSONObject("_embedded").getJSONArray("events");
 
                 events = HTTPRequest.processHTTPJSONArray(queryResultsArray);
-//
-//
-//                for (int i = 0; i < events.size(); i++) {
-//                    Log.i("SSSSSSSSSS", events.get(i).getId());
-//                }
             } catch (Exception exception) { exception.printStackTrace(); }
         }
     }
@@ -100,28 +85,6 @@ public class FragmentEventSearch extends JFragment {
     }
 
     // TODO: Add JavaDoc Comment
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-//        ListView listView = getView().findViewById(R.id.fragment_eventSearch_listView);
-//        listView.setAdapter(listAdapter = new EventListAdapter(events, jActivity));
-//
-//        searchButton = getView().findViewById(R.id.fragment_eventSearch_searchBar).findViewById(R.id.searchBar_searchButton);
-
-//        Log.i("FRAGEVENTSEARCH", searchButton.getText().toString());
-    }
-
-    // TODO: Add JavaDoc Comment
     public final ArrayList<Event> getEventList() { return events; }
-//
-//    // TODO: Add JavaDoc Comment
-//    public final EventListAdapter getListAdapter() { return listAdapter; }
-//
-//    /**
-//     * Accessor method for variable searchButton
-//     *
-//     * @returns value of variable searchButton
-//     */
-//    public Button getSearchButton() { return searchButton; }
-
 
 }

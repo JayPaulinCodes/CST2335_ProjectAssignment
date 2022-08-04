@@ -6,31 +6,76 @@
     android:layout_height="match_parent"
     tools:context=".fragments.FragmentEventDetails">
 
+    <ImageButton
+        android:id="@+id/fragment_eventDetails_closeButton"
+        android:src="@drawable/close_icon_60_dark"
+        android:elevation="1dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true" />
 
     <ImageView
         android:id="@+id/fragment_eventDetails_image"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true" />
 
     <TextView
         android:id="@+id/fragment_eventDetails_name"
+        android:theme="@style/Theme.Components.EventListItem.Name"
+        android:layout_marginStart="5dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fragment_eventDetails_image"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/fragment_eventDetails_priceRange"
+        android:layout_marginStart="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fragment_eventDetails_name" />
+
+    <TextView
+        android:id="@+id/fragment_eventDetails_dateTime"
+        android:layout_marginStart="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fragment_eventDetails_priceRange" />
 
     <TextView
         android:id="@+id/fragment_eventDetails_info"
+        android:theme="@style/Theme.Components.EventListItem.Description"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="5dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fragment_eventDetails_dateTime" />
 
     <Button
-        android:id="@+id/fragment_eventDetails_url"
+        android:id="@+id/fragment_eventDetails_urlButton"
+        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="15dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_above="@+id/fragment_eventDetails_favoriteButton" />
 
     <Button
-        android:id="@+id/fragment_eventDetails_favorite"
+        android:id="@+id/fragment_eventDetails_favoriteButton"
+        android:layout_marginBottom="15dp"
+        android:layout_marginEnd="15dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true" />
 
 
 

@@ -21,13 +21,16 @@ import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.cst2335.projectassignment.R;
+import com.cst2335.projectassignment.fragments.FragmentEventDetails;
 import com.cst2335.projectassignment.fragments.FragmentEventSearch;
+import com.cst2335.projectassignment.fragments.JFragment;
 import com.cst2335.projectassignment.objects.Event;
 import com.cst2335.projectassignment.utils.EventListAdapter;
 import com.cst2335.projectassignment.utils.HTTPRequest;
@@ -48,6 +51,7 @@ import java.util.Arrays;
 public class ActivitySearch extends JActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     public static final String ARG_CITY = "activityArg_city";
+    public static final String ARG_RADIUS = "activityArg_radius";
 
     private Boolean loaded = false;
     private ArrayList<Event> events = new ArrayList<>(  );
@@ -74,6 +78,7 @@ public class ActivitySearch extends JActivity implements NavigationView.OnNaviga
         if (lastCity.equals("N/A")) getSharedPreferencesEditor().putString(TicketQuery.PREFERENCE_LAST_USER_CITY, currentCity);
         else if (!lastCity.equals(currentCity)) getSharedPreferencesEditor().putString(TicketQuery.PREFERENCE_LAST_USER_CITY, currentCity);
         arguments_eventSearch.putString(ARG_CITY, currentCity);
+        arguments_eventSearch.putInt(ARG_RADIUS, 100);
 
         fragment_eventSearch.setArguments(arguments_eventSearch);
 
@@ -243,24 +248,49 @@ public class ActivitySearch extends JActivity implements NavigationView.OnNaviga
     // TODO: Add JavaDoc Comment
     @Override
     public void onFragmentLoaded(Fragment fragment) {
-        log("555 " + fragment.getClass().getName());
-        FragmentEventSearch fragmentEventSearch = (FragmentEventSearch) fragment;
-        fragmentEventSearch_view = fragmentEventSearch.getView();
-        View searchBar = fragmentEventSearch_view.findViewById(R.id.fragment_eventSearch_searchBar);
+        Class<? extends Fragment> fragmentClass = fragment.getClass();
+//        log("555 " + fragment.getClass().getName());
+
+        if (fragmentClass == FragmentEventSearch.class) {
+            FragmentEventSearch fragmentEventSearch = (FragmentEventSearch) fragment;
+            fragmentEventSearch_view = fragmentEventSearch.getView();
+            View searchBar = fragmentEventSearch_view.findViewById(R.id.fragment_eventSearch_searchBar);
 
 
-        events = fragmentEventSearch.getEventList();
-        ListView listView = fragmentEventSearch_view.findViewById(R.id.fragment_eventSearch_listView);
-        listView.setAdapter(listAdapter = new EventListAdapter(events, this));
-        searchButton = searchBar.findViewById(R.id.searchBar_searchButton);
-        editText_city = searchBar.findViewById(R.id.searchBar_editText_city);
-        editText_radius = searchBar.findViewById(R.id.searchBar_editText_radius);
+            events = fragmentEventSearch.getEventList();
+            ListView listView = fragmentEventSearch_view.findViewById(R.id.fragment_eventSearch_listView);
+            listView.setAdapter(listAdapter = new EventListAdapter(events, this));
+            searchButton = searchBar.findViewById(R.id.searchBar_searchButton);
+            editText_city = searchBar.findViewById(R.id.searchBar_editText_city);
+            editText_radius = searchBar.findViewById(R.id.searchBar_editText_radius);
 
-        searchButton.setOnClickListener((c) -> searchEvent());
+            searchButton.setOnClickListener(this::searchEvent);
+
+            listView.setOnItemClickListener(this::listItemSelectEvent);
+        } else if (fragmentClass == FragmentEventDetails.class) {
+
+        }
     }
 
-    private void searchEvent() {
-        log(events.size() + " LLLLLLLLLLLLLLLLLLLLLLLLLL");
+    private void listItemSelectEvent(AdapterView<?> parent, View view, int position, long id) {
+        Event selectedEvent = (Event) listAdapter.getItem(position);
+
+        // Load Fragments
+        FragmentManager fragmentManager = getSupportFragmentManager();
+
+        FragmentEventDetails fragment_eventDetails = new FragmentEventDetails().context(ActivitySearch.this).event(selectedEvent);
+//        Bundle arguments_eventDetails = new Bundle();
+
+//        fragment_eventDetails.setArguments(arguments_eventDetails);
+
+        fragmentManager
+                .beginTransaction()
+                .replace(R.id.activity_search_frame, fragment_eventDetails)
+                .commit();
+
+    }
+
+    private void searchEvent(View view) {
         Boolean canRun = true;
         ArrayList<String> invalidFields = new ArrayList<String>();
         StringBuilder errorStringBuilder = new StringBuilder();
@@ -292,6 +322,18 @@ public class ActivitySearch extends JActivity implements NavigationView.OnNaviga
 
             // Not sure why this doesn't work
 //            listAdapter.notifyDataSetChanged();
+
+            // Update shared preferences with last search
+            getSharedPreferencesEditor().putString(TicketQuery.PREFERENCE_LAST_SEARCH_CITY, city);
+            getSharedPreferencesEditor().putInt(TicketQuery.PREFERENCE_LAST_SEARCH_RADIUS, radius);
+
+//            String currentLastSearch_city = getSharedPreferences().getString(TicketQuery.PREFERENCE_LAST_SEARCH_CITY, "N/A");
+//            Integer currentLastSearch_radius = getSharedPreferences().getInt(TicketQuery.PREFERENCE_LAST_SEARCH_RADIUS, -1);
+//
+//            if (currentLastSearch_city.equals("N/A") || currentLastSearch_radius == -1) {
+//                // No data present
+//            }
+
         } else {
             errorStringBuilder.append(String.join(", ", invalidFields));
             sendSnackbar(errorStringBuilder.toString());
