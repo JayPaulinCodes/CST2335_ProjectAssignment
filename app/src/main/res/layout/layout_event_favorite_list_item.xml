@@ -21,14 +21,14 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/favoriteEventListItem_imageView" />
 
-<!--    <TextView-->
-<!--        android:id="@+id/favoriteEventListItem_textView_description"-->
-<!--        android:theme="@style/Theme.Components.EventListItem.Description"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_toRightOf="@id/favoriteEventListItem_imageView"-->
-<!--        android:layout_below="@id/favoriteEventListItem_textView_name"-->
-<!--        android:paddingTop="5dp" />-->
+    <TextView
+        android:id="@+id/favoriteEventListItem_textView_description"
+        android:theme="@style/Theme.Components.EventListItem.Description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/favoriteEventListItem_imageView"
+        android:layout_below="@id/favoriteEventListItem_textView_name"
+        android:paddingTop="5dp" />
 
     <TextView
         android:id="@+id/favoriteEventListItem_textView_date"
