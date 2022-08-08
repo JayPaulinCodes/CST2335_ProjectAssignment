@@ -21,6 +21,14 @@
     <!--  Alert Dialogs  -->
     <string name="alertDialog_appInfo_title">App Info</string>
     <string name="alertDialog_appInfo_message">Here is some information about the app. %n%nCurrent Activity: %s%nApp Author: %s%nApp Version: %s</string>
+    <string name="alertDialog_noFavorites_title">No Events Saved!</string>
+    <string name="alertDialog_noFavorites_message">There are no events saved in your favorites, try searching for one first!</string>
+    <string name="alertDialog_activityFavorites_helpTitle">Help Page: Favorites</string>
+    <string name="alertDialog_activityFavorites_helpMessage">The favorites page will show you each of the events you have saved to your favorites list.%n%nTo view more details about a event click on the event.</string>
+    <string name="alertDialog_activityHome_helpTitle">Help Page: Home</string>
+    <string name="alertDialog_activityHome_helpMessage">Start by choosing one of our 2 option, search or favorites.%n%nSearch option will bring you to a page where you can search for events and then view more details about them.%n%nFavorites option will bring you to a page where you can view all of your saved events.</string>
+    <string name="alertDialog_activitySearch_helpTitle">Help Page: Search</string>
+    <string name="alertDialog_activitySearch_helpMessage">The search page allows you to search for events based off of a city and radius.%n%nEnter a city in the city box and a number radius in the radius box, then push the search button and scroll the list of events.%n%nOnce you see an event that interests you click on the event to see more details about that event.</string>
 
     <!--  Search Bar  -->
     <string name="searchBar_editText_city_hint">Search for city…</string>
@@ -45,6 +53,10 @@
     <string name="fragment_eventDetails_url">Go To Site</string>
     <string name="fragment_eventDetails_favoriteAdd">Add To Favorites</string>
     <string name="fragment_eventDetails_favoriteRemove">Remove From Favorites</string>
+
+    <!--  Fragment Favorite Event Details  -->
+    <string name="fragment_favoriteEventDetails_url">Go To Site</string>
+    <string name="fragment_favoriteEventDetails_favoriteRemove">Remove From Favorites</string>
 
     <!--  Fragment Favorite Event List Item  -->
     <string name="favoriteEventListItem_button_remove">Remove From Favorites</string>
