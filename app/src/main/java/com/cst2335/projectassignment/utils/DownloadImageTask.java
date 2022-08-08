@@ -12,6 +12,7 @@ import java.io.InputStream;
 // https://stackoverflow.com/a/9288544/17193562
 // TODO: Add JavaDoc Comment
 public class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+    // TODO: Refactor Code
     @SuppressLint("StaticFieldLeak")
     ImageView bmImage;
 
