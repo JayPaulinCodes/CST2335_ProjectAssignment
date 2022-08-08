@@ -1,27 +1,29 @@
 package com.cst2335.projectassignment.utils;
 
-import android.content.Context;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cst2335.projectassignment.R;
+import com.cst2335.projectassignment.activities.ActivityFavorites;
 import com.cst2335.projectassignment.activities.JActivity;
 import com.cst2335.projectassignment.objects.Event;
 
 import java.util.ArrayList;
 
 // TODO: Add JavaDoc Comment
-public class EventListAdapter extends BaseAdapter {
+public class FavoriteEventListAdapter extends BaseAdapter {
 
     private JActivity jActivity;
     private ArrayList<Event> list;
 
     // TODO: Add JavaDoc Comment
-    public EventListAdapter(ArrayList<Event> list, JActivity jActivity) {
+    public FavoriteEventListAdapter(ArrayList<Event> list, JActivity jActivity) {
         super();
         this.jActivity = jActivity;
         this.list = list;
@@ -54,18 +56,18 @@ public class EventListAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         Event event = list.get(position);
-        View view = jActivity.getLayoutInflater().inflate(R.layout.layout_event_list_item, parent, false);
+        View view = jActivity.getLayoutInflater().inflate(R.layout.layout_event_favorite_list_item, parent, false);
 
-        ImageView view_image = view.findViewById(R.id.eventListItem_imageView);
-        TextView view_text_name = view.findViewById(R.id.eventListItem_textView_name);
-        TextView view_text_description = view.findViewById(R.id.eventListItem_textView_description);
-        TextView view_text_priceRange = view.findViewById(R.id.eventListItem_textView_priceRange);
-        TextView view_text_date = view.findViewById(R.id.eventListItem_textView_date);
-        TextView view_text_distance = view.findViewById(R.id.eventListItem_textView_distance);
+        ImageView view_image = view.findViewById(R.id.favoriteEventListItem_imageView);
+        TextView view_text_name = view.findViewById(R.id.favoriteEventListItem_textView_name);
+//        TextView view_text_description = view.findViewById(R.id.favoriteEventListItem_textView_description);
+        TextView view_text_priceRange = view.findViewById(R.id.favoriteEventListItem_textView_priceRange);
+        TextView view_text_date = view.findViewById(R.id.favoriteEventListItem_textView_date);
+        TextView view_text_distance = view.findViewById(R.id.favoriteEventListItem_textView_distance);
 
         new DownloadImageTask(view_image).execute(event.getImage());
         view_text_name.setText(event.getName());
-        if (event.getDescription() != null) view_text_description.setText(event.getDescription());
+//        if (event.getDescription() != null) view_text_description.setText(event.getDescription());
         if (event.getPriceRange() != null) view_text_priceRange.setText(event.getPriceRange().toString());
         if (event.getStartDate() != null) view_text_date.setText(event.getStartDate().getLocalDateTimeFormatted());
         if (event.getDistance() != null) view_text_distance.setText(event.getDistance().toString());

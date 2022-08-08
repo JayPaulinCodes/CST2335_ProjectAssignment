@@ -64,7 +64,7 @@ public class FragmentEventSearch extends JFragment {
             radius = getArguments().getInt(ARG_RADIUS);
         }
 
-        if (radius <= 0 || radius == null) radius = 100;
+        if (radius == null || radius <= 0) radius = 100;
 
         if (city != null && radius != null) {
             try {

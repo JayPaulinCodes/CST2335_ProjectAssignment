@@ -1,8 +1,16 @@
 package com.cst2335.projectassignment.utils;
 
+import android.annotation.SuppressLint;
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+
+import com.cst2335.projectassignment.objects.Event;
+
+import java.util.ArrayList;
 
 public class OpenHelper extends SQLiteOpenHelper {
     public static final String FILE_NAME = "TicketQuery";
@@ -13,6 +21,7 @@ public class OpenHelper extends SQLiteOpenHelper {
     public static final String COL_EVENT_ID = "eventId";
     public static final String COL_IS_EVENT_FAVORITE = "isFavorite";
 
+    // TODO: Add JavaDoc Comment
     public OpenHelper(Context context) {
         super(context, FILE_NAME, null, VERSION);
     }
@@ -41,4 +50,7 @@ public class OpenHelper extends SQLiteOpenHelper {
 
         this.onCreate(db);
     }
+
+
+
 }

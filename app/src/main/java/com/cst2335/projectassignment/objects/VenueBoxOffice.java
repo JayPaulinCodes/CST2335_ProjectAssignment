@@ -1,6 +1,9 @@
 package com.cst2335.projectassignment.objects;
 
 // TODO: Add JavaDoc Comment
+/**
+ * @deprecated Not used
+ */
 public class VenueBoxOffice {
 
     private String acceptedPayment;

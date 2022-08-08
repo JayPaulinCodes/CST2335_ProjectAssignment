@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="150dp"
+    android:padding="5dp"
+    android:background="@drawable/fragment_event_list_item_border"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/favoriteEventListItem_imageView"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="10dp" />
+
+    <TextView
+        android:id="@+id/favoriteEventListItem_textView_name"
+        android:theme="@style/Theme.Components.EventListItem.Name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/favoriteEventListItem_imageView" />
+
+<!--    <TextView-->
+<!--        android:id="@+id/favoriteEventListItem_textView_description"-->
+<!--        android:theme="@style/Theme.Components.EventListItem.Description"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_toRightOf="@id/favoriteEventListItem_imageView"-->
+<!--        android:layout_below="@id/favoriteEventListItem_textView_name"-->
+<!--        android:paddingTop="5dp" />-->
+
+    <TextView
+        android:id="@+id/favoriteEventListItem_textView_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_above="@id/favoriteEventListItem_textView_priceRange"
+        android:paddingRight="3dp" />
+
+    <TextView
+        android:id="@+id/favoriteEventListItem_textView_priceRange"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:paddingBottom="3dp"
+        android:paddingRight="3dp" />
+
+    <TextView
+        android:id="@+id/favoriteEventListItem_textView_distance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@id/favoriteEventListItem_imageView"
+        android:paddingBottom="3dp"
+        android:paddingLeft="3dp" />
+
+<!--    <Button-->
+<!--        android:id="@+id/favoriteEventListItem_button_remove"-->
+<!--        android:text="@string/favoriteEventListItem_button_remove"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:elevation="1dp" />-->
+
+</RelativeLayout>

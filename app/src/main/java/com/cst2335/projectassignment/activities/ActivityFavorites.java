@@ -20,39 +20,55 @@ import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 
 import com.cst2335.projectassignment.R;
+import com.cst2335.projectassignment.fragments.FragmentEventDetails;
+import com.cst2335.projectassignment.fragments.FragmentEventFavorites;
+import com.cst2335.projectassignment.fragments.FragmentEventSearch;
+import com.cst2335.projectassignment.fragments.FragmentFavoriteEventDetails;
 import com.cst2335.projectassignment.fragments.FragmentHomeButton;
+import com.cst2335.projectassignment.objects.Event;
+import com.cst2335.projectassignment.utils.EventListAdapter;
+import com.cst2335.projectassignment.utils.FavoriteEventListAdapter;
 import com.cst2335.projectassignment.utils.OpenHelper;
 import com.cst2335.projectassignment.utils.TicketQuery;
 import com.google.android.material.internal.NavigationMenuItemView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.progressindicator.CircularProgressIndicator;
 
+import java.util.ArrayList;
+
 // TODO: Add JavaDoc Comment
 public class ActivityFavorites extends JActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private OpenHelper openHelper;
     private SQLiteDatabase sqLiteDatabase;
+    private View fragmentEventFavorite_view;
+    private ArrayList<Event> events = new ArrayList<>(  );
+    private FavoriteEventListAdapter listAdapter;
+
+    public SQLiteDatabase getDB() { return sqLiteDatabase; }
 
     private Runnable postLoad = () -> {
         // Load Fragments
-//        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+
+        FragmentEventFavorites fragment_eventFavorite = new FragmentEventFavorites().context(ActivityFavorites.this);
+//        Bundle arguments_eventFavorite = new Bundle();
 //
-//        FragmentHomeButton fragment_homeButton_search = new FragmentHomeButton().context(ActivityHome.this);
-//        Bundle arguments_homeButton_search = new Bundle();
+//        arguments_eventFavorite.putString(ARG_CITY, currentCity);
 //
-//        arguments_homeButton_search.putString(ARG_DESTINATION_PAGE, TicketQuery.ACTIVITY_SEARCH);
-//        arguments_homeButton_search.putString(ARG_BUTTON_LABEL, word(R.string.activityHome_searchButton_buttonLabel, false));
-//        arguments_homeButton_search.putString(ARG_DESCRIPTION, word(R.string.activityHome_searchButton_description, false));
-//
-//        fragment_homeButton_search.setArguments(arguments_homeButton_search);
-//
-//        fragmentManager
-//                .beginTransaction()
-//                .replace(R.id.activity_home_frame1, fragment_homeButton_search)
-//                .commit();
+//        fragment_eventFavorite.setArguments(arguments_eventFavorite);
+
+        fragmentManager
+                .beginTransaction()
+                .replace(R.id.activity_favorites_frame, fragment_eventFavorite)
+                .commit();
 
 
         // Hide the progress indicator
@@ -76,7 +92,7 @@ public class ActivityFavorites extends JActivity implements NavigationView.OnNav
         // Set up database
         openHelper = new OpenHelper(this);
         sqLiteDatabase = openHelper.getWritableDatabase();
-        Cursor results = sqLiteDatabase.rawQuery("Select * from " + openHelper.TABLE_NAME + ";",null);
+//        Cursor results = sqLiteDatabase.rawQuery("Select * from " + openHelper.TABLE_NAME + ";",null);
 
         // Set Up Toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -93,7 +109,7 @@ public class ActivityFavorites extends JActivity implements NavigationView.OnNav
         drawer.addDrawerListener(new DrawerLayout.DrawerListener() {
             boolean isDrawerOpen = false;
             boolean readyForChange = true;
-            LinearLayout linearLayout = findViewById(R.id.activity_home_linearLayout);
+            LinearLayout linearLayout = findViewById(R.id.activity_favorites_linearLayout);
 
             @Override
             public void onDrawerSlide(@NonNull View drawerView, float slideOffset) {
@@ -215,6 +231,65 @@ public class ActivityFavorites extends JActivity implements NavigationView.OnNav
         return false;
     }
 
+    // TODO: Add JavaDoc Comment
     @Override
-    public void onFragmentLoaded(Fragment fragment) {}
+    public void onFragmentLoaded(Fragment fragment) {
+        Class<? extends Fragment> fragmentClass = fragment.getClass();
+
+        if (fragmentClass == FragmentEventFavorites.class) {
+            FragmentEventFavorites fragmentEventFavorite = (FragmentEventFavorites) fragment;
+            fragmentEventFavorite_view = fragmentEventFavorite.getView();
+
+            events = fragmentEventFavorite.getEventList();
+
+            String query = String.format(
+                    "SELECT * FROM %s WHERE %s = 1;",
+                    OpenHelper.TABLE_NAME,
+                    OpenHelper.COL_IS_EVENT_FAVORITE
+            );
+
+            Cursor cursor = sqLiteDatabase.rawQuery(query, null);
+
+            if (cursor.getCount() == 0) {
+                // TODO: Notify of no favorite items
+                this.finish();
+            }
+
+            ListView listView = fragmentEventFavorite_view.findViewById(R.id.fragment_eventFavorite_listView);
+            listView.setAdapter(listAdapter = new FavoriteEventListAdapter(events, this));
+
+            listView.setOnItemClickListener(this::listItemSelectEvent);
+        }
+
+    }
+
+    private void listItemSelectEvent(AdapterView<?> parent, View view, int position, long id) {
+        Event selectedEvent = (Event) listAdapter.getItem(position);
+
+        // Load Fragments
+        FragmentManager fragmentManager = getSupportFragmentManager();
+
+        FragmentFavoriteEventDetails fragment_eventDetails = new FragmentFavoriteEventDetails().context(ActivityFavorites.this).event(selectedEvent);
+//        Bundle arguments_eventDetails = new Bundle();
+
+//        fragment_eventDetails.setArguments(arguments_eventDetails);
+
+        fragmentManager
+                .beginTransaction()
+                .replace(R.id.activity_favorites_frame, fragment_eventDetails)
+                .commit();
+
+    }
+
+    public void refreshList(ArrayList<Event> events) {
+        this.events = events;
+
+        // NotifyDataSetChanged
+//        ListView listView = fragmentEventFavorite_view.findViewById(R.id.fragment_eventFavorite_listView);
+//        listView.setAdapter(listAdapter = new FavoriteEventListAdapter(events, this));
+
+        // Not sure why this doesn't work
+        listAdapter.setList(events);
+        listAdapter.notifyDataSetChanged();
+    }
 }

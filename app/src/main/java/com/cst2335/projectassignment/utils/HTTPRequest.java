@@ -77,8 +77,110 @@ public class HTTPRequest extends AsyncTask<String, Integer, String> {
 
     // TODO: Add JavaDoc Comment
     public static final String url(String id) {
-        String output = BASE_URL;
+        String output = BASE_URL_DIRECT;
         return output.replace("%APIKEY%", KEY).replace("%ID%", id);
+    }
+
+    public static final Event processEventJSON(JSONObject eventJSON) {
+        String additionalInfo, description, id, image, info, locale, name, pleaseNote, type, url;
+        Distance distance;
+        EventPriceRange priceRange;
+        EventStartDate startDate;
+        EventStatus status;
+
+        try {
+            additionalInfo = eventJSON.getString("additionalInfo");
+        } catch (Exception exception) { additionalInfo = null; }
+
+        try {
+            description = eventJSON.getString("description");
+        } catch (Exception exception) { description = null; }
+
+        try {
+            id = eventJSON.getString("id");
+        } catch (Exception exception) { id = null; }
+
+        try {
+            JSONArray imagesJSON = eventJSON.getJSONArray("images");
+            JSONObject images_firstJSON = imagesJSON.getJSONObject(0);
+            image = images_firstJSON.getString("url");
+        } catch (Exception exception) { image = null; }
+
+        try {
+            info = eventJSON.getString("info");
+        } catch (Exception exception) { info = null; }
+
+        try {
+            locale = eventJSON.getString("locale");
+        } catch (Exception exception) { locale = null; }
+
+        try {
+            name = eventJSON.getString("name");
+        } catch (Exception exception) { name = null; }
+
+        try {
+            pleaseNote = eventJSON.getString("pleaseNote");
+        } catch (Exception exception) { pleaseNote = null; }
+
+        try {
+            type = eventJSON.getString("type");
+        } catch (Exception exception) { type = null; }
+
+        try {
+            url = eventJSON.getString("url");
+        } catch (Exception exception) { url = null; }
+
+        try {
+            String distance_units = eventJSON.getString("units");
+            Double distance_distance = eventJSON.getDouble("distance");
+            distance = new Distance(distance_distance, distance_units);
+        } catch (Exception exception) { distance = null; }
+
+        try {
+            JSONArray priceRangesJSON = eventJSON.getJSONArray("priceRanges");
+            JSONObject firstPriceRangeJSON = priceRangesJSON.getJSONObject(0);
+            String priceRange_currency = firstPriceRangeJSON.getString("currency");
+            Double priceRange_minimum = firstPriceRangeJSON.getDouble("min");
+            Double priceRange_maximum = firstPriceRangeJSON.getDouble("max");
+            priceRange = new EventPriceRange(priceRange_currency, priceRange_minimum, priceRange_maximum);
+        } catch (Exception exception) { priceRange = null; }
+
+        try {
+            JSONObject datesJSON = eventJSON.getJSONObject("dates");
+            JSONObject dates_startJSON = datesJSON.getJSONObject("start");
+            Boolean startDate_noSpecificTime = dates_startJSON.getBoolean("noSpecificTime");
+            Boolean startDate_toBeAssigned = dates_startJSON.getBoolean("dateTBA");
+            Boolean startDate_toBeDetermined = dates_startJSON.getBoolean("dateTBD");
+            String startDate_dateTime = dates_startJSON.getString("dateTime");
+            String startDate_localDate = dates_startJSON.getString("localDate");
+            startDate = new EventStartDate(startDate_noSpecificTime, startDate_toBeAssigned, startDate_toBeDetermined, startDate_dateTime ,startDate_localDate);
+        } catch (Exception exception) { startDate = null; }
+
+        try {
+            JSONObject datesJSON = eventJSON.getJSONObject("dates");
+            JSONObject dates_statusJSON = datesJSON.getJSONObject("status");
+            String status_code = dates_statusJSON.getString("code");
+            status = EventStatus.valueOf(status_code);
+        } catch (Exception exception) { status = null; }
+
+        Log.i("EVENT", id);
+
+        return new Event(
+                distance,
+                priceRange,
+                startDate,
+                status,
+                additionalInfo,
+                description,
+                id,
+                image,
+                info,
+                locale,
+                name,
+                pleaseNote,
+                type,
+                url
+        );
     }
 
     // TODO: Add JavaDoc Comment
@@ -91,110 +193,7 @@ public class HTTPRequest extends AsyncTask<String, Integer, String> {
                 entry = array.getJSONObject(i);
             } catch (Exception exception) {}
 
-            if (entry != null) {
-
-
-
-                String additionalInfo, description, id, image, info, locale, name, pleaseNote, type, url;
-                Distance distance;
-                EventPriceRange priceRange;
-                EventStartDate startDate;
-                EventStatus status;
-
-                try {
-                    additionalInfo = entry.getString("additionalInfo");
-                } catch (Exception exception) { additionalInfo = null; }
-
-                try {
-                    description = entry.getString("description");
-                } catch (Exception exception) { description = null; }
-
-                try {
-                    id = entry.getString("id");
-                } catch (Exception exception) { id = null; }
-
-                try {
-                    JSONArray imagesJSON = entry.getJSONArray("images");
-                    JSONObject images_firstJSON = imagesJSON.getJSONObject(0);
-                    image = images_firstJSON.getString("url");
-                } catch (Exception exception) { image = null; }
-
-                try {
-                    info = entry.getString("info");
-                } catch (Exception exception) { info = null; }
-
-                try {
-                    locale = entry.getString("locale");
-                } catch (Exception exception) { locale = null; }
-
-                try {
-                    name = entry.getString("name");
-                } catch (Exception exception) { name = null; }
-
-                try {
-                    pleaseNote = entry.getString("pleaseNote");
-                } catch (Exception exception) { pleaseNote = null; }
-
-                try {
-                    type = entry.getString("type");
-                } catch (Exception exception) { type = null; }
-
-                try {
-                    url = entry.getString("url");
-                } catch (Exception exception) { url = null; }
-
-                try {
-                    String distance_units = entry.getString("units");
-                    Double distance_distance = entry.getDouble("distance");
-                    distance = new Distance(distance_distance, distance_units);
-                } catch (Exception exception) { distance = null; }
-
-                try {
-                    JSONArray priceRangesJSON = entry.getJSONArray("priceRanges");
-                    JSONObject firstPriceRangeJSON = priceRangesJSON.getJSONObject(0);
-                    String priceRange_currency = firstPriceRangeJSON.getString("currency");
-                    Double priceRange_minimum = firstPriceRangeJSON.getDouble("min");
-                    Double priceRange_maximum = firstPriceRangeJSON.getDouble("max");
-                    priceRange = new EventPriceRange(priceRange_currency, priceRange_minimum, priceRange_maximum);
-                } catch (Exception exception) { priceRange = null; }
-
-                try {
-                    JSONObject datesJSON = entry.getJSONObject("dates");
-                    JSONObject dates_startJSON = datesJSON.getJSONObject("start");
-                    Boolean startDate_noSpecificTime = dates_startJSON.getBoolean("noSpecificTime");
-                    Boolean startDate_toBeAssigned = dates_startJSON.getBoolean("dateTBA");
-                    Boolean startDate_toBeDetermined = dates_startJSON.getBoolean("dateTBD");
-                    String startDate_dateTime = dates_startJSON.getString("dateTime");
-                    String startDate_localDate = dates_startJSON.getString("localDate");
-                    startDate = new EventStartDate(startDate_noSpecificTime, startDate_toBeAssigned, startDate_toBeDetermined, startDate_dateTime ,startDate_localDate);
-                } catch (Exception exception) { startDate = null; }
-
-                try {
-                    JSONObject datesJSON = entry.getJSONObject("dates");
-                    JSONObject dates_statusJSON = datesJSON.getJSONObject("status");
-                    String status_code = dates_statusJSON.getString("code");
-                    status = EventStatus.valueOf(status_code);
-                } catch (Exception exception) { status = null; }
-
-                Event event = new Event(
-                    distance,
-                    priceRange,
-                    startDate,
-                    status,
-                    additionalInfo,
-                    description,
-                    id,
-                    image,
-                    info,
-                    locale,
-                    name,
-                    pleaseNote,
-                    type,
-                    url
-                );
-
-                events.add(event);
-            }
+            if (entry != null) events.add(processEventJSON(entry));
 
         }
 

@@ -63,6 +63,8 @@ public class ActivitySearch extends JActivity implements NavigationView.OnNaviga
     private EditText editText_radius;
     private View fragmentEventSearch_view;
 
+    public SQLiteDatabase getDB() { return sqLiteDatabase; }
+
     private Runnable postLoad = () -> {
         // Pause for a bit to allow time to load
 
@@ -149,12 +151,8 @@ public class ActivitySearch extends JActivity implements NavigationView.OnNaviga
             }
         });
 
-        log("1");
-
         // Set up the postLoad runnable
         new Handler().postDelayed(postLoad, 2000);
-
-        log("2");
     }
 
     // TODO: Add JavaDoc Comment
@@ -317,11 +315,12 @@ public class ActivitySearch extends JActivity implements NavigationView.OnNaviga
             } catch (Exception exception) { exception.printStackTrace(); }
 
             // NotifyDataSetChanged
-            ListView listView = fragmentEventSearch_view.findViewById(R.id.fragment_eventSearch_listView);
-            listView.setAdapter(listAdapter = new EventListAdapter(events, this));
+//            ListView listView = fragmentEventSearch_view.findViewById(R.id.fragment_eventSearch_listView);
+//            listView.setAdapter(listAdapter = new EventListAdapter(events, this));
 
             // Not sure why this doesn't work
-//            listAdapter.notifyDataSetChanged();
+            listAdapter.setList(events);
+            listAdapter.notifyDataSetChanged();
 
             // Update shared preferences with last search
             getSharedPreferencesEditor().putString(TicketQuery.PREFERENCE_LAST_SEARCH_CITY, city);

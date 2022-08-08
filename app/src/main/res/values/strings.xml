@@ -37,6 +37,20 @@
 
     <!--  Messages  -->
     <string name="message_invalidSearchInput">Invalid input in the following fields: </string>
+    <string name="message_addedToFavorites">Event Added To Favorites List</string>
+    <string name="message_removedFromFavorites">Event Removed From Favorites List</string>
+
+    <!--  Fragment Event Details  -->
+    <string name="fragment_eventDetails_url">Go To Site</string>
+    <string name="fragment_eventDetails_favoriteAdd">Add To Favorites</string>
+    <string name="fragment_eventDetails_favoriteRemove">Remove From Favorites</string>
+
+    <!--  Fragment Favorite Event Details  -->
+    <string name="fragment_favoriteEventDetails_url">Go To Site</string>
+    <string name="fragment_favoriteEventDetails_favoriteRemove">Remove From Favorites</string>
+
+    <!--  Fragment Favorite Event List Item  -->
+    <string name="favoriteEventListItem_button_remove">Remove From Favorites</string>
 
     <!--  WORDS  -->
     <string name="blank" />

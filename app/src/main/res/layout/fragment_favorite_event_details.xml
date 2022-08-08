@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.FragmentEventDetails"
+    tools:context=".fragments.FragmentFavoriteEventDetails"
     android:scrollbars="vertical" >
 
     <ImageButton
-        android:id="@+id/fragment_eventDetails_closeButton"
+        android:id="@+id/fragment_favoriteEventDetails_closeButton"
         android:src="@drawable/close_icon_30_dark"
         android:elevation="1dp"
         android:layout_marginTop="5dp"
@@ -19,7 +19,7 @@
         android:layout_alignParentEnd="true" />
 
     <ImageView
-        android:id="@+id/fragment_eventDetails_image"
+        android:id="@+id/fragment_favoriteEventDetails_image"
         android:layout_marginStart="5dp"
         android:layout_marginEnd="5dp"
         android:layout_marginBottom="1dp"
@@ -29,40 +29,41 @@
         android:layout_alignParentTop="true" />
 
     <TextView
-        android:id="@+id/fragment_eventDetails_name"
+        android:id="@+id/fragment_favoriteEventDetails_name"
         android:theme="@style/Theme.Components.EventListItem.Name"
         android:layout_marginStart="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/fragment_eventDetails_image"
+        android:layout_below="@id/fragment_favoriteEventDetails_image"
         android:layout_alignParentStart="true" />
 
     <TextView
-        android:id="@+id/fragment_eventDetails_priceRange"
+        android:id="@+id/fragment_favoriteEventDetails_priceRange"
         android:layout_marginStart="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/fragment_eventDetails_name" />
+        android:layout_below="@id/fragment_favoriteEventDetails_name" />
 
     <TextView
-        android:id="@+id/fragment_eventDetails_dateTime"
+        android:id="@+id/fragment_favoriteEventDetails_dateTime"
         android:layout_marginStart="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/fragment_eventDetails_priceRange" />
+        android:layout_below="@id/fragment_favoriteEventDetails_priceRange" />
 
     <TextView
-        android:id="@+id/fragment_eventDetails_info"
+        android:id="@+id/fragment_favoriteEventDetails_info"
         android:theme="@style/Theme.Components.EventListItem.Description"
         android:textSize="17dp"
         android:layout_marginTop="15dp"
         android:layout_marginStart="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/fragment_eventDetails_dateTime" />
+        android:layout_below="@id/fragment_favoriteEventDetails_dateTime" />
 
     <Button
-        android:id="@+id/fragment_eventDetails_favoriteButton"
+        android:id="@+id/fragment_favoriteEventDetails_favoriteButton"
+        android:text="@string/fragment_favoriteEventDetails_favoriteRemove"
         android:layout_marginTop="5dp"
         android:layout_marginStart="5dp"
         android:layout_width="wrap_content"
@@ -71,8 +72,8 @@
         android:layout_alignParentTop="true" />
 
     <Button
-        android:id="@+id/fragment_eventDetails_urlButton"
-        android:text="@string/fragment_eventDetails_url"
+        android:id="@+id/fragment_favoriteEventDetails_urlButton"
+        android:text="@string/fragment_favoriteEventDetails_url"
         android:layout_marginEnd="5dp"
         android:layout_marginBottom="5dp"
         android:layout_width="wrap_content"

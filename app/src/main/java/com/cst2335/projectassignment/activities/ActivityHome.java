@@ -252,6 +252,7 @@ public class ActivityHome extends JActivity implements NavigationView.OnNavigati
         return false;
     }
 
+    // TODO: Add JavaDoc Comment
     @Override
     public void onFragmentLoaded(Fragment fragment) {}
 }
