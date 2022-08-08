@@ -227,7 +227,13 @@ public class ActivityFavorites extends JActivity implements NavigationView.OnNav
                 startActivity(new Intent(ActivityFavorites.this, ActivityFavorites.class));
                 break;
             case R.id.menuDrawer_help:
-                // TODO: Show help dialog
+                new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.Theme_Components_AlertDialog))
+                        .setTitle(getString(R.string.alertDialog_activityFavorites_helpTitle))
+                        .setMessage(String.format(word(R.string.alertDialog_activityFavorites_helpMessage, false)))
+                        .setNeutralButton(word(R.string.close, true), (click, arg) -> {})
+                        .setNeutralButtonIcon(getDrawable(R.drawable.close_icon_60_dark))
+                        .create()
+                        .show();
                 break;
         }
 
