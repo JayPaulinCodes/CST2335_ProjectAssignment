@@ -50,7 +50,7 @@ public class Venue {
     /**
      * Accessor method for variable distance
      *
-     * @returns value of variable distance
+     * @return value of variable distance
      */
     public Distance getDistance() { return distance; }
 
@@ -64,7 +64,7 @@ public class Venue {
     /**
      * Accessor method for variable accessibleSeatingDetail
      *
-     * @returns value of variable accessibleSeatingDetail
+     * @return value of variable accessibleSeatingDetail
      */
     public String getAccessibleSeatingDetail() { return accessibleSeatingDetail; }
 
@@ -78,7 +78,7 @@ public class Venue {
     /**
      * Accessor method for variable additionalInfo
      *
-     * @returns value of variable additionalInfo
+     * @return value of variable additionalInfo
      */
     public String getAdditionalInfo() { return additionalInfo; }
 
@@ -92,7 +92,7 @@ public class Venue {
     /**
      * Accessor method for variable addressLine1
      *
-     * @returns value of variable addressLine1
+     * @return value of variable addressLine1
      */
     public String getAddressLine1() { return addressLine1; }
 
@@ -106,7 +106,7 @@ public class Venue {
     /**
      * Accessor method for variable addressLine2
      *
-     * @returns value of variable addressLine2
+     * @return value of variable addressLine2
      */
     public String getAddressLine2() { return addressLine2; }
 
@@ -120,7 +120,7 @@ public class Venue {
     /**
      * Accessor method for variable addressLine3
      *
-     * @returns value of variable addressLine3
+     * @return value of variable addressLine3
      */
     public String getAddressLine3() { return addressLine3; }
 
@@ -134,7 +134,7 @@ public class Venue {
     /**
      * Accessor method for variable childRule
      *
-     * @returns value of variable childRule
+     * @return value of variable childRule
      */
     public String getChildRule() { return childRule; }
 
@@ -148,7 +148,7 @@ public class Venue {
     /**
      * Accessor method for variable city
      *
-     * @returns value of variable city
+     * @return value of variable city
      */
     public String getCity() { return city; }
 
@@ -162,7 +162,7 @@ public class Venue {
     /**
      * Accessor method for variable country
      *
-     * @returns value of variable country
+     * @return value of variable country
      */
     public String getCountry() { return country; }
 
@@ -176,7 +176,7 @@ public class Venue {
     /**
      * Accessor method for variable description
      *
-     * @returns value of variable description
+     * @return value of variable description
      */
     public String getDescription() { return description; }
 
@@ -190,7 +190,7 @@ public class Venue {
     /**
      * Accessor method for variable generalRule
      *
-     * @returns value of variable generalRule
+     * @return value of variable generalRule
      */
     public String getGeneralRule() { return generalRule; }
 
@@ -204,7 +204,7 @@ public class Venue {
     /**
      * Accessor method for variable id
      *
-     * @returns value of variable id
+     * @return value of variable id
      */
     public String getId() { return id; }
 
@@ -218,7 +218,7 @@ public class Venue {
     /**
      * Accessor method for variable name
      *
-     * @returns value of variable name
+     * @return value of variable name
      */
     public String getName() { return name; }
 
@@ -232,7 +232,7 @@ public class Venue {
     /**
      * Accessor method for variable parkingInfo
      *
-     * @returns value of variable parkingInfo
+     * @return value of variable parkingInfo
      */
     public String getParkingInfo() { return parkingInfo; }
 
@@ -246,7 +246,7 @@ public class Venue {
     /**
      * Accessor method for variable postalCode
      *
-     * @returns value of variable postalCode
+     * @return value of variable postalCode
      */
     public String getPostalCode() { return postalCode; }
 
@@ -260,7 +260,7 @@ public class Venue {
     /**
      * Accessor method for variable state
      *
-     * @returns value of variable state
+     * @return value of variable state
      */
     public String getState() { return state; }
 
@@ -274,7 +274,7 @@ public class Venue {
     /**
      * Accessor method for variable url
      *
-     * @returns value of variable url
+     * @return value of variable url
      */
     public String getUrl() { return url; }
 
@@ -288,7 +288,7 @@ public class Venue {
     /**
      * Accessor method for variable boxOffice
      *
-     * @returns value of variable boxOffice
+     * @return value of variable boxOffice
      */
     public VenueBoxOffice getBoxOffice() { return boxOffice; }
 

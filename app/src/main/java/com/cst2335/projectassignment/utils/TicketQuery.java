@@ -7,8 +7,6 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.cst2335.projectassignment.objects.Event;
 
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -20,36 +18,36 @@ public class TicketQuery {
     public final static String PREFERENCE_LAST_SEARCH_CITY = "preference_lastSearch_city";
     public final static String PREFERENCE_LAST_SEARCH_RADIUS = "preference_lastSearch_radius";
 
-    public static final String ACTIVITY_HOME = "activityPage_home";
+//    public static final String ACTIVITY_HOME = "activityPage_home";
     public static final String ACTIVITY_SEARCH = "activityPage_search";
     public static final String ACTIVITY_FAVORITES = "activityPage_favorites";
 
 
     // TODO: Add JavaDoc Comment
-    public static final JSONObject fetchFromAPI(String city, Integer radius) {
-        HTTPRequest httpRequest = new HTTPRequest();
-        httpRequest.execute(httpRequest.url(city, radius));
-
-        String result = null;
-        JSONObject resultJSON = null;
-        try {
-            result = httpRequest.get();
-            resultJSON = new JSONObject(result);
-        } catch (Exception exception) {
-            exception.printStackTrace();
-            resultJSON = null;
-        }
-
-        return resultJSON;
-    }
+//    public static JSONObject fetchFromAPI(String city, Integer radius) {
+//        HTTPRequest httpRequest = new HTTPRequest();
+//        httpRequest.execute(HTTPRequest.url(city, radius));
+//
+//        String result = null;
+//        JSONObject resultJSON = null;
+//        try {
+//            result = httpRequest.get();
+//            resultJSON = new JSONObject(result);
+//        } catch (Exception exception) {
+//            exception.printStackTrace();
+//            resultJSON = null;
+//        }
+//
+//        return resultJSON;
+//    }
 
     // TODO: Add JavaDoc Comment
-    public static final JSONObject fetchFromAPI(String eventId) {
+    public static JSONObject fetchFromAPI(String eventId) {
         HTTPRequest httpRequest = new HTTPRequest();
-        httpRequest.execute(httpRequest.url(eventId));
+        httpRequest.execute(HTTPRequest.url(eventId));
 
-        String result = null;
-        JSONObject resultJSON = null;
+        String result;
+        JSONObject resultJSON;
         try {
             result = httpRequest.get();
             resultJSON = new JSONObject(result);
@@ -73,14 +71,14 @@ public class TicketQuery {
         );
 
         Cursor cursor = db.rawQuery(query, null);
-        int colIndex_id = cursor.getColumnIndex(OpenHelper.COL_ID);
+//        int colIndex_id = cursor.getColumnIndex(OpenHelper.COL_ID);
         int colIndex_eventId = cursor.getColumnIndex(OpenHelper.COL_EVENT_ID);
-        int colIndex_isEventFavorite = cursor.getColumnIndex(OpenHelper.COL_IS_EVENT_FAVORITE);
+//        int colIndex_isEventFavorite = cursor.getColumnIndex(OpenHelper.COL_IS_EVENT_FAVORITE);
 
         while (cursor.moveToNext()) {
-            int eventDb_id = cursor.getInt(colIndex_id);
+//            int eventDb_id = cursor.getInt(colIndex_id);
             String eventDb_eventId = cursor.getString(colIndex_eventId);
-            int eventDb_isEventFavorite = cursor.getInt(colIndex_isEventFavorite);
+//            int eventDb_isEventFavorite = cursor.getInt(colIndex_isEventFavorite);
 
             try {
                 JSONObject queryResults = TicketQuery.fetchFromAPI(eventDb_eventId);
@@ -109,8 +107,7 @@ public class TicketQuery {
 
         cursor.close();
 
-        if (cursorCount > 0) return true;
-        else return false;
+        return cursorCount > 0;
     }
 
     // TODO: Add JavaDoc Comment
@@ -125,7 +122,7 @@ public class TicketQuery {
         contentValues.put(OpenHelper.COL_EVENT_ID, eventId);
         contentValues.put(OpenHelper.COL_IS_EVENT_FAVORITE, favValue);
 
-        long id = db.replace(OpenHelper.TABLE_NAME, null, contentValues);
+        db.replace(OpenHelper.TABLE_NAME, null, contentValues);
     }
 
     // TODO: Add JavaDoc Comment
@@ -140,8 +137,14 @@ public class TicketQuery {
         Cursor cursor = db.rawQuery(query, null);
         int colIndex_id = cursor.getColumnIndex(OpenHelper.COL_ID);
 
-        if (cursor.moveToFirst()) return cursor.getInt(colIndex_id);
-        else return null;
+        if (cursor.moveToFirst()) {
+            cursor.close();
+            return cursor.getInt(colIndex_id);
+        }
+        else {
+            cursor.close();
+            return null;
+        }
     }
 
     // TODO: Add JavaDoc Comment
@@ -157,26 +160,29 @@ public class TicketQuery {
 
         if (isEventInDB(db, eventId)) {
             Cursor cursor = db.rawQuery(query, null);
-            int colIndex_id = cursor.getColumnIndex(OpenHelper.COL_ID);
-            int colIndex_eventId = cursor.getColumnIndex(OpenHelper.COL_EVENT_ID);
+//            int colIndex_id = cursor.getColumnIndex(OpenHelper.COL_ID);
+//            int colIndex_eventId = cursor.getColumnIndex(OpenHelper.COL_EVENT_ID);
             int colIndex_isEventFavorite = cursor.getColumnIndex(OpenHelper.COL_IS_EVENT_FAVORITE);
 
             if (cursor.moveToFirst()) {
-                int eventDb_id = cursor.getInt(colIndex_id);
-                String eventDb_eventId = cursor.getString(colIndex_eventId);
+//                int eventDb_id = cursor.getInt(colIndex_id);
+//                String eventDb_eventId = cursor.getString(colIndex_eventId);
                 int eventDb_isEventFavorite = cursor.getInt(colIndex_isEventFavorite);
 
                 if (eventDb_isEventFavorite == 0) output = false;
                 else if (eventDb_isEventFavorite == 1) output = true;
             }
+
+            cursor.close();
         } else {
             output = false;
 
             ContentValues contentValues = new ContentValues();
             contentValues.put(OpenHelper.COL_EVENT_ID, eventId);
             contentValues.put(OpenHelper.COL_IS_EVENT_FAVORITE, 0);
-            long id = db.insert(OpenHelper.TABLE_NAME, "NullColumnName", contentValues);
+            db.insert(OpenHelper.TABLE_NAME, "NullColumnName", contentValues);
         }
+
 
         return output;
     }

@@ -180,7 +180,13 @@ public class ActivityFavorites extends JActivity implements NavigationView.OnNav
                 startActivity(new Intent(ActivityFavorites.this, ActivityFavorites.class));
                 break;
             case R.id.menuToolbar_help:
-                // TODO: Show help dialog
+                new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.Theme_Components_AlertDialog))
+                        .setTitle(getString(R.string.alertDialog_activityFavorites_helpTitle))
+                        .setMessage(String.format(word(R.string.alertDialog_activityFavorites_helpMessage, false)))
+                        .setNeutralButton(word(R.string.close, true), (click, arg) -> {})
+                        .setNeutralButtonIcon(getDrawable(R.drawable.close_icon_60_dark))
+                        .create()
+                        .show();
                 break;
         }
 
@@ -251,8 +257,13 @@ public class ActivityFavorites extends JActivity implements NavigationView.OnNav
             Cursor cursor = sqLiteDatabase.rawQuery(query, null);
 
             if (cursor.getCount() == 0) {
-                // TODO: Notify of no favorite items
-                this.finish();
+                new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.Theme_Components_AlertDialog))
+                        .setTitle(getString(R.string.alertDialog_noFavorites_title))
+                        .setMessage(String.format(getString(R.string.alertDialog_noFavorites_message)))
+                        .setNeutralButton(word(R.string.close, true), (click, arg) -> { this.finish(); })
+                        .setNeutralButtonIcon(getDrawable(R.drawable.close_icon_60_dark))
+                        .create()
+                        .show();
             }
 
             ListView listView = fragmentEventFavorite_view.findViewById(R.id.fragment_eventFavorite_listView);

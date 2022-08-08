@@ -16,8 +16,8 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 // TODO: Add JavaDoc Comment
@@ -43,12 +43,12 @@ public class HTTPRequest extends AsyncTask<String, Integer, String> {
 
             InputStream response = urlConnection.getInputStream();
 
-            BufferedReader reader = new BufferedReader(new InputStreamReader(response, "UTF-8"), 8);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(response, StandardCharsets.UTF_8), 8);
             StringBuilder stringBuilder = new StringBuilder();
 
-            String line = null;
+            String line;
             while ((line = reader.readLine()) != null) {
-                stringBuilder.append(line + "\n");
+                stringBuilder.append(line).append("\n");
             }
 
             resultOutput = stringBuilder.toString();
@@ -70,18 +70,16 @@ public class HTTPRequest extends AsyncTask<String, Integer, String> {
     }
 
     // TODO: Add JavaDoc Comment
-    public static final String url(String city, Integer radius) {
-        String output = BASE_URL;
-        return output.replace("%APIKEY%", KEY).replace("%CITY%", city).replace("%RADIUS%", String.valueOf(radius));
+    public static String url(String city, Integer radius) {
+        return BASE_URL.replace("%APIKEY%", KEY).replace("%CITY%", city).replace("%RADIUS%", String.valueOf(radius));
     }
 
     // TODO: Add JavaDoc Comment
-    public static final String url(String id) {
-        String output = BASE_URL_DIRECT;
-        return output.replace("%APIKEY%", KEY).replace("%ID%", id);
+    public static String url(String id) {
+        return BASE_URL_DIRECT.replace("%APIKEY%", KEY).replace("%ID%", id);
     }
 
-    public static final Event processEventJSON(JSONObject eventJSON) {
+    public static Event processEventJSON(JSONObject eventJSON) {
         String additionalInfo, description, id, image, info, locale, name, pleaseNote, type, url;
         Distance distance;
         EventPriceRange priceRange;
@@ -184,14 +182,14 @@ public class HTTPRequest extends AsyncTask<String, Integer, String> {
     }
 
     // TODO: Add JavaDoc Comment
-    public static final ArrayList<Event> processHTTPJSONArray(JSONArray array) {
-        ArrayList<Event> events = new ArrayList<Event>();
+    public static ArrayList<Event> processHTTPJSONArray(JSONArray array) {
+        ArrayList<Event> events = new ArrayList<>();
 
         for (int i = 0; i < array.length(); i++) {
             JSONObject entry = null;
             try {
                 entry = array.getJSONObject(i);
-            } catch (Exception exception) {}
+            } catch (Exception ignored) {}
 
             if (entry != null) events.add(processEventJSON(entry));
 

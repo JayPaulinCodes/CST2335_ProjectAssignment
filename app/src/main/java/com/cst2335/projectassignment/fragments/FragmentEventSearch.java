@@ -3,22 +3,14 @@ package com.cst2335.projectassignment.fragments;
 import android.content.Context;
 import android.os.Bundle;
 
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ListView;
 
 import com.cst2335.projectassignment.R;
 import com.cst2335.projectassignment.activities.ActivitySearch;
 import com.cst2335.projectassignment.activities.JActivity;
 import com.cst2335.projectassignment.objects.Event;
-import com.cst2335.projectassignment.utils.EventListAdapter;
 import com.cst2335.projectassignment.utils.HTTPRequest;
 
 import org.json.JSONArray;
@@ -66,7 +58,7 @@ public class FragmentEventSearch extends JFragment {
 
         if (radius == null || radius <= 0) radius = 100;
 
-        if (city != null && radius != null) {
+        if (city != null) {
             try {
                 JSONObject queryResults = jActivity.doHttpRequest(city, radius);
                 JSONArray queryResultsArray = queryResults.getJSONObject("_embedded").getJSONArray("events");
@@ -79,9 +71,8 @@ public class FragmentEventSearch extends JFragment {
     // TODO: Add JavaDoc Comment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_event_search, container, false);
 
-        return view;
+        return inflater.inflate(R.layout.fragment_event_search, container, false);
     }
 
     // TODO: Add JavaDoc Comment

@@ -15,7 +15,7 @@ public class Distance {
     /**
      * Accessor method for variable distance
      *
-     * @returns value of variable distance
+     * @return value of variable distance
      */
     public Double getDistance() { return distance; }
 
@@ -29,7 +29,7 @@ public class Distance {
     /**
      * Accessor method for variable units
      *
-     * @returns value of variable units
+     * @return value of variable units
      */
     public String getUnits() { return units; }
 

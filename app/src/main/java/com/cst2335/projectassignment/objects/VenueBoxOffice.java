@@ -20,7 +20,7 @@ public class VenueBoxOffice {
     /**
      * Accessor method for variable acceptedPayment
      *
-     * @returns value of variable acceptedPayment
+     * @return value of variable acceptedPayment
      */
     public String getAcceptedPayment() { return acceptedPayment; }
 
@@ -34,7 +34,7 @@ public class VenueBoxOffice {
     /**
      * Accessor method for variable openHours
      *
-     * @returns value of variable openHours
+     * @return value of variable openHours
      */
     public String getOpenHours() { return openHours; }
 
@@ -48,7 +48,7 @@ public class VenueBoxOffice {
     /**
      * Accessor method for variable phoneNumber
      *
-     * @returns value of variable phoneNumber
+     * @return value of variable phoneNumber
      */
     public String getPhoneNumber() { return phoneNumber; }
 

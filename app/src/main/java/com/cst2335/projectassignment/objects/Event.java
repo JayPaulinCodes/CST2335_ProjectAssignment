@@ -43,7 +43,7 @@ public class Event {
     /**
      * Accessor method for variable flags
      *
-     * @returns value of variable flags
+     * @return value of variable flags
      */
     public ArrayList<String> getFlags() { return flags; }
 
@@ -57,7 +57,7 @@ public class Event {
     /**
      * Accessor method for variable distance
      *
-     * @returns value of variable distance
+     * @return value of variable distance
      */
     public Distance getDistance() { return distance; }
 
@@ -71,7 +71,7 @@ public class Event {
     /**
      * Accessor method for variable priceRange
      *
-     * @returns value of variable priceRange
+     * @return value of variable priceRange
      */
     public EventPriceRange getPriceRange() { return priceRange; }
 
@@ -85,7 +85,7 @@ public class Event {
     /**
      * Accessor method for variable startDate
      *
-     * @returns value of variable startDate
+     * @return value of variable startDate
      */
     public EventStartDate getStartDate() { return startDate; }
 
@@ -99,7 +99,7 @@ public class Event {
     /**
      * Accessor method for variable status
      *
-     * @returns value of variable status
+     * @return value of variable status
      */
     public EventStatus getStatus() { return status; }
 
@@ -113,7 +113,7 @@ public class Event {
     /**
      * Accessor method for variable additionalInfo
      *
-     * @returns value of variable additionalInfo
+     * @return value of variable additionalInfo
      */
     public String getAdditionalInfo() { return additionalInfo; }
 
@@ -127,7 +127,7 @@ public class Event {
     /**
      * Accessor method for variable description
      *
-     * @returns value of variable description
+     * @return value of variable description
      */
     public String getDescription() { return description; }
 
@@ -141,7 +141,7 @@ public class Event {
     /**
      * Accessor method for variable id
      *
-     * @returns value of variable id
+     * @return value of variable id
      */
     public String getId() { return id; }
 
@@ -155,7 +155,7 @@ public class Event {
     /**
      * Accessor method for variable image
      *
-     * @returns value of variable image
+     * @return value of variable image
      */
     public String getImage() { return image; }
 
@@ -169,7 +169,7 @@ public class Event {
     /**
      * Accessor method for variable info
      *
-     * @returns value of variable info
+     * @return value of variable info
      */
     public String getInfo() { return info; }
 
@@ -183,7 +183,7 @@ public class Event {
     /**
      * Accessor method for variable locale
      *
-     * @returns value of variable locale
+     * @return value of variable locale
      */
     public String getLocale() { return locale; }
 
@@ -197,7 +197,7 @@ public class Event {
     /**
      * Accessor method for variable name
      *
-     * @returns value of variable name
+     * @return value of variable name
      */
     public String getName() { return name; }
 
@@ -211,7 +211,7 @@ public class Event {
     /**
      * Accessor method for variable pleaseNote
      *
-     * @returns value of variable pleaseNote
+     * @return value of variable pleaseNote
      */
     public String getPleaseNote() { return pleaseNote; }
 
@@ -225,7 +225,7 @@ public class Event {
     /**
      * Accessor method for variable type
      *
-     * @returns value of variable type
+     * @return value of variable type
      */
     public String getType() { return type; }
 
@@ -239,7 +239,7 @@ public class Event {
     /**
      * Accessor method for variable url
      *
-     * @returns value of variable url
+     * @return value of variable url
      */
     public String getUrl() { return url; }
 

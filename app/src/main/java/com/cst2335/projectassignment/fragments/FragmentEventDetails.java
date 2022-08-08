@@ -2,12 +2,10 @@ package com.cst2335.projectassignment.fragments;
 
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import android.util.Log;
@@ -22,11 +20,10 @@ import android.widget.Toast;
 
 import com.cst2335.projectassignment.R;
 import com.cst2335.projectassignment.activities.ActivitySearch;
-import com.cst2335.projectassignment.activities.JActivity;
 import com.cst2335.projectassignment.objects.Event;
 import com.cst2335.projectassignment.utils.DownloadImageTask;
-import com.cst2335.projectassignment.utils.OpenHelper;
 import com.cst2335.projectassignment.utils.TicketQuery;
+
 
 // TODO: Add JavaDoc Comment
 public class FragmentEventDetails extends JFragment {
@@ -92,7 +89,7 @@ public class FragmentEventDetails extends JFragment {
             startActivity(intent);
         });
 
-        SQLiteDatabase db = ((ActivitySearch) getActivity()).getDB();
+        SQLiteDatabase db = ((ActivitySearch) requireActivity()).getDB();
 
         boolean isFavorite = TicketQuery.isEventFavorite(db, event.getId());
 
@@ -118,18 +115,19 @@ public class FragmentEventDetails extends JFragment {
         view_closeButton.setOnClickListener(v -> {
             ActivitySearch activity = (ActivitySearch) getActivity();
             // Load Fragments
-            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+            FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
 
             FragmentEventSearch fragment_eventSearch = new FragmentEventSearch().context(getActivity());
             Bundle arguments_eventSearch = new Bundle();
 
             // Handle City Shit
+            assert activity != null;
             String lastSearch_city = activity.getSharedPreferences().getString(TicketQuery.PREFERENCE_LAST_SEARCH_CITY, activity.getCurrentCity());
             int lastSearch_radius = activity.getSharedPreferences().getInt(TicketQuery.PREFERENCE_LAST_SEARCH_RADIUS, 100);
 
 
-            arguments_eventSearch.putString(activity.ARG_CITY, lastSearch_city);
-            arguments_eventSearch.putInt(activity.ARG_RADIUS, lastSearch_radius);
+            arguments_eventSearch.putString(ActivitySearch.ARG_CITY, lastSearch_city);
+            arguments_eventSearch.putInt(ActivitySearch.ARG_RADIUS, lastSearch_radius);
 
             fragment_eventSearch.setArguments(arguments_eventSearch);
 

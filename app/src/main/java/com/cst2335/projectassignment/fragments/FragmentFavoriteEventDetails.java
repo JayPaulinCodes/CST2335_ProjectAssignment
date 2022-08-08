@@ -19,7 +19,6 @@ import androidx.fragment.app.FragmentManager;
 
 import com.cst2335.projectassignment.R;
 import com.cst2335.projectassignment.activities.ActivityFavorites;
-import com.cst2335.projectassignment.activities.ActivitySearch;
 import com.cst2335.projectassignment.objects.Event;
 import com.cst2335.projectassignment.utils.DownloadImageTask;
 import com.cst2335.projectassignment.utils.TicketQuery;
@@ -88,11 +87,9 @@ public class FragmentFavoriteEventDetails extends JFragment {
             startActivity(intent);
         });
 
-        SQLiteDatabase db = ((ActivityFavorites) getActivity()).getDB();
+        SQLiteDatabase db = ((ActivityFavorites) requireActivity()).getDB();
 
         view_favoriteButton.setOnClickListener(v -> {
-            Button button = v.findViewById(R.id.fragment_favoriteEventDetails_favoriteButton);
-
             TicketQuery.setEventFavorite(db, event.getId(), false);
             Toast.makeText(getActivity(), R.string.message_removedFromFavorites, Toast.LENGTH_LONG).show();
 
@@ -107,7 +104,7 @@ public class FragmentFavoriteEventDetails extends JFragment {
     private void startFavoriteActivity(View view) {
         ActivityFavorites activity = (ActivityFavorites) getActivity();
         // Load Fragments
-        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
 
         FragmentEventFavorites fragment_eventFavorite = new FragmentEventFavorites().context(getActivity());
 

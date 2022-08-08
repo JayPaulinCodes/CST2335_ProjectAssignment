@@ -1,16 +1,9 @@
 package com.cst2335.projectassignment.utils;
 
-import android.annotation.SuppressLint;
-import android.content.ContentValues;
 import android.content.Context;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
-import com.cst2335.projectassignment.objects.Event;
-
-import java.util.ArrayList;
 
 public class OpenHelper extends SQLiteOpenHelper {
     public static final String FILE_NAME = "TicketQuery";

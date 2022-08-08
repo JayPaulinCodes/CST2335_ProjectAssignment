@@ -4,6 +4,8 @@ import androidx.fragment.app.Fragment;
 
 import com.cst2335.projectassignment.activities.JActivity;
 
+import java.util.Objects;
+
 // TODO: Add JavaDoc Comments
 public class JFragment extends Fragment {
 
@@ -12,7 +14,7 @@ public class JFragment extends Fragment {
     public void onStart() {
         super.onStart();
 
-        ((JActivity) getActivity()).onFragmentLoaded(this);
+        ((JActivity) requireActivity()).onFragmentLoaded(this);
     }
 
 }

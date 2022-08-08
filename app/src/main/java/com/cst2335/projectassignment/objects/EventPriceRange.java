@@ -17,7 +17,7 @@ public class EventPriceRange {
     /**
      * Accessor method for variable maximum
      *
-     * @returns value of variable maximum
+     * @return value of variable maximum
      */
     public Double getMaximum() { return maximum; }
 
@@ -31,7 +31,7 @@ public class EventPriceRange {
     /**
      * Accessor method for variable minimum
      *
-     * @returns value of variable minimum
+     * @return value of variable minimum
      */
     public Double getMinimum() { return minimum; }
 
@@ -45,7 +45,7 @@ public class EventPriceRange {
     /**
      * Accessor method for variable currency
      *
-     * @returns value of variable currency
+     * @return value of variable currency
      */
     public String getCurrency() { return currency; }
 

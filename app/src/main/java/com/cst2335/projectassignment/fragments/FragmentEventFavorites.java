@@ -6,13 +6,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import com.cst2335.projectassignment.R;
 import com.cst2335.projectassignment.activities.ActivityFavorites;
 import com.cst2335.projectassignment.activities.JActivity;
 import com.cst2335.projectassignment.objects.Event;
-import com.cst2335.projectassignment.utils.OpenHelper;
 import com.cst2335.projectassignment.utils.TicketQuery;
 
 import java.util.ArrayList;
@@ -43,15 +41,14 @@ public class FragmentEventFavorites extends JFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        events = TicketQuery.getFavoriteEvents(((ActivityFavorites) getActivity()).getDB());
+        events = TicketQuery.getFavoriteEvents(((ActivityFavorites) requireActivity()).getDB());
     }
 
     // TODO: Add JavaDoc Comment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_event_favorites, container, false);
 
-        return view;
+        return inflater.inflate(R.layout.fragment_event_favorites, container, false);
     }
 
     // TODO: Add JavaDoc Comment

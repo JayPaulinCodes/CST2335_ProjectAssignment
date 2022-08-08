@@ -63,7 +63,6 @@ public abstract class JActivity extends AppCompatActivity {
         String provider = locationManager.getBestProvider(criteria, false);
 
         // TODO: Ensure proper permissions
-
         Location location = locationManager.getLastKnownLocation(provider);
 
         if (location != null) {

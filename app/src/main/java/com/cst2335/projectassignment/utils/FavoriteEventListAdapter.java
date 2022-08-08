@@ -1,16 +1,13 @@
 package com.cst2335.projectassignment.utils;
 
-import android.util.Log;
+import android.annotation.SuppressLint;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cst2335.projectassignment.R;
-import com.cst2335.projectassignment.activities.ActivityFavorites;
 import com.cst2335.projectassignment.activities.JActivity;
 import com.cst2335.projectassignment.objects.Event;
 
@@ -19,7 +16,7 @@ import java.util.ArrayList;
 // TODO: Add JavaDoc Comment
 public class FavoriteEventListAdapter extends BaseAdapter {
 
-    private JActivity jActivity;
+    private final JActivity jActivity;
     private ArrayList<Event> list;
 
     // TODO: Add JavaDoc Comment
@@ -56,7 +53,7 @@ public class FavoriteEventListAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         Event event = list.get(position);
-        View view = jActivity.getLayoutInflater().inflate(R.layout.layout_event_favorite_list_item, parent, false);
+        @SuppressLint("ViewHolder") View view = jActivity.getLayoutInflater().inflate(R.layout.layout_event_favorite_list_item, parent, false);
 
         ImageView view_image = view.findViewById(R.id.favoriteEventListItem_imageView);
         TextView view_text_name = view.findViewById(R.id.favoriteEventListItem_textView_name);

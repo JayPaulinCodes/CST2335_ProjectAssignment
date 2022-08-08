@@ -1,12 +1,11 @@
 package com.cst2335.projectassignment.utils;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.os.AsyncTask;
-
-import com.cst2335.projectassignment.activities.JActivity;
 
 import java.io.IOException;
 import java.util.List;
@@ -15,7 +14,8 @@ import java.util.Locale;
 // TODO: Add JavaDoc Comment
 public class CityName extends AsyncTask<Location, Integer, List<Address>> {
 
-    private Context context;
+    @SuppressLint("StaticFieldLeak")
+    private final Context context;
 
     // TODO: Add JavaDoc Comment
     public CityName(Context context) {

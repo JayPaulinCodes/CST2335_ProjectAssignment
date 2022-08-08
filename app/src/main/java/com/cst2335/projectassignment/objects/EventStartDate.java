@@ -31,7 +31,7 @@ public class EventStartDate {
     /**
      * Accessor method for variable noSpecificTime
      *
-     * @returns value of variable noSpecificTime
+     * @return value of variable noSpecificTime
      */
     public Boolean getNoSpecificTime() { return noSpecificTime; }
 
@@ -45,7 +45,7 @@ public class EventStartDate {
     /**
      * Accessor method for variable toBeAssigned
      *
-     * @returns value of variable toBeAssigned
+     * @return value of variable toBeAssigned
      */
     public Boolean getToBeAssigned() { return toBeAssigned; }
 
@@ -59,7 +59,7 @@ public class EventStartDate {
     /**
      * Accessor method for variable toBeDetermined
      *
-     * @returns value of variable toBeDetermined
+     * @return value of variable toBeDetermined
      */
     public Boolean getToBeDetermined() { return toBeDetermined; }
 
@@ -73,7 +73,7 @@ public class EventStartDate {
     /**
      * Accessor method for variable dateTime
      *
-     * @returns value of variable dateTime
+     * @return value of variable dateTime
      */
     public String getDateTime() { return dateTime; }
 
@@ -87,7 +87,7 @@ public class EventStartDate {
     /**
      * Accessor method for variable localDate
      *
-     * @returns value of variable localDate
+     * @return value of variable localDate
      */
     public String getLocalDate() { return localDate; }
 
@@ -101,7 +101,7 @@ public class EventStartDate {
     /**
      * Accessor method for variable localDateTimeFormatted
      *
-     * @returns value of variable localDateTimeFormatted
+     * @return value of variable localDateTimeFormatted
      */
     public String getLocalDateTimeFormatted() { return localDateTimeFormatted; }
 
@@ -115,7 +115,7 @@ public class EventStartDate {
     /**
      * Accessor method for variable localDateTime
      *
-     * @returns value of variable localDateTime
+     * @return value of variable localDateTime
      */
     public LocalDateTime getLocalDateTime() { return localDateTime; }
 
