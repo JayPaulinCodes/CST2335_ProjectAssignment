@@ -70,5 +70,11 @@
     <string name="search">search</string>
     <string name="city">city</string>
     <string name="radius">radius</string>
+    <string name="permission">permission</string>
+    <string name="granted">granted</string>
+    <string name="denied">denied</string>
+    <string name="location">location</string>
+    <string name="fine">fine</string>
+    <string name="coarse">coarse</string>
 
 </resources>

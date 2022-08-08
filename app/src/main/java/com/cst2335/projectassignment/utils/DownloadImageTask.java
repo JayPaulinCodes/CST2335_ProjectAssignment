@@ -4,37 +4,34 @@ import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
-import android.util.Log;
 import android.widget.ImageView;
 
 import java.io.InputStream;
+import java.net.URL;
 
 // https://stackoverflow.com/a/9288544/17193562
 // TODO: Add JavaDoc Comment
 public class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
-    // TODO: Refactor Code
     @SuppressLint("StaticFieldLeak")
-    ImageView bmImage;
+    private ImageView imageView;
 
     // TODO: Add JavaDoc Comment
-    public DownloadImageTask(ImageView bmImage) {
-        this.bmImage = bmImage;
+    public DownloadImageTask(ImageView imageView) {
+        this.imageView = imageView;
     }
 
     protected Bitmap doInBackground(String... urls) {
-        String urldisplay = urls[0];
-        Bitmap mIcon11 = null;
+        Bitmap bitmapIcon = null;
+
         try {
-            InputStream in = new java.net.URL(urldisplay).openStream();
-            mIcon11 = BitmapFactory.decodeStream(in);
-        } catch (Exception e) {
-            Log.e("Error", e.getMessage());
-            e.printStackTrace();
-        }
-        return mIcon11;
+            InputStream inputStream = new URL(urls[0]).openStream();
+            bitmapIcon = BitmapFactory.decodeStream(inputStream);
+        } catch (Exception exception) { exception.printStackTrace(); }
+
+        return bitmapIcon;
     }
 
     protected void onPostExecute(Bitmap result) {
-        bmImage.setImageBitmap(result);
+        imageView.setImageBitmap(result);
     }
 }

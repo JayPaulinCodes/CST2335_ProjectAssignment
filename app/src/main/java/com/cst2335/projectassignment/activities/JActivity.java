@@ -18,8 +18,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
+import com.cst2335.projectassignment.R;
 import com.cst2335.projectassignment.utils.HTTPRequest;
 import com.cst2335.projectassignment.utils.TicketQuery;
 
@@ -32,14 +34,21 @@ import java.util.Locale;
 // TODO: Add JavaDoc Comment
 public abstract class JActivity extends AppCompatActivity {
 
-    public static final int PERMISSION_CODE = 100;
+    public static final int PERMISSION_CODE_FINE_LOCATION = 100;
+    public static final int PERMISSION_CODE_COARSE_LOCATION = 101;
 
     // TODO: Add JavaDoc Comment
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-//        checkPermissions();
+        if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{ Manifest.permission.ACCESS_FINE_LOCATION }, PERMISSION_CODE_FINE_LOCATION);
+        }
+
+        if (checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{ Manifest.permission.ACCESS_COARSE_LOCATION }, PERMISSION_CODE_COARSE_LOCATION);
+        }
     }
 
     // TODO: Add JavaDoc Comment
@@ -59,54 +68,39 @@ public abstract class JActivity extends AppCompatActivity {
 
     // TODO: Add JavaDoc Comment
     public final Float floatToDp(float flt) {
-        return TypedValue.applyDimension( TypedValue.COMPLEX_UNIT_DIP, flt, JActivity.this.getResources().getDisplayMetrics() );
+        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, flt, JActivity.this.getResources().getDisplayMetrics());
     }
 
     // TODO: Add JavaDoc Comment
     public final String getCurrentCity() {
         String result = null;
 
-        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        Criteria criteria = new Criteria();
-        String provider = locationManager.getBestProvider(criteria, false);
+        if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
+            checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED
+        ) {
+            LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+            Criteria criteria = new Criteria();
+            String provider = locationManager.getBestProvider(criteria, false);
 
-//        checkPermissions();
+            Location location = locationManager.getLastKnownLocation(provider);
 
-//        String permission_accessFineLocation = Manifest.permission.ACCESS_FINE_LOCATION;
-//        String permission_accessCoarseLocation = Manifest.permission.ACCESS_COARSE_LOCATION;
-//        String permission_internet = Manifest.permission.INTERNET;
-//
-//        int result_accessFineLocation = checkCallingOrSelfPermission(permission_accessFineLocation);
-//        int result_accessCoarseLocation = checkCallingOrSelfPermission(permission_accessCoarseLocation);
-//        int result_internet = checkCallingOrSelfPermission(permission_internet);
-//
-//        if (result_accessFineLocation != PackageManager.PERMISSION_GRANTED) requestPermissions(new String[]{ permission_accessFineLocation }, PERMISSION_CODE);
-//        if (result_accessCoarseLocation != PackageManager.PERMISSION_GRANTED) requestPermissions(new String[]{ permission_accessCoarseLocation }, PERMISSION_CODE);
-//        if (result_internet != PackageManager.PERMISSION_GRANTED) requestPermissions(new String[]{ permission_internet }, PERMISSION_CODE);
-//
-//        int newResult_accessFineLocation = checkCallingOrSelfPermission(permission_accessFineLocation);
-//        int newResult_accessCoarseLocation = checkCallingOrSelfPermission(permission_accessCoarseLocation);
-//        int newResult_internet = checkCallingOrSelfPermission(permission_internet);
+            if (location != null) {
+                double lat = location.getLatitude();
+                double lng = location.getLongitude();
 
-        // TODO: CHECK FOR PERMS
+                Geocoder geoCoder = new Geocoder(this, Locale.getDefault());
 
-        Location location = locationManager.getLastKnownLocation(provider);
-
-        if (location != null) {
-            double lat = location.getLatitude();
-            double lng = location.getLongitude();
-
-            Geocoder geoCoder = new Geocoder(this, Locale.getDefault());
-
-            try {
-                List<Address> address = geoCoder.getFromLocation(lat, lng, 1);
-                result = address.get(0).getLocality();
-            } catch (Exception exception) {
-                result = null;
+                try {
+                    List<Address> address = geoCoder.getFromLocation(lat, lng, 1);
+                    result = address.get(0).getLocality();
+                } catch (Exception exception) {
+                    result = null;
+                }
             }
-        }
 
-        return result;
+            return result;
+        } else return "N/A";
+
     }
 
     // TODO: Add JavaDoc Comment
@@ -144,29 +138,50 @@ public abstract class JActivity extends AppCompatActivity {
     // TODO: Add JavaDoc Comment
     public void onFragmentLoaded(Fragment fragment) {};
 
-    public void checkPermissions() {
-        String permission_accessFineLocation = Manifest.permission.ACCESS_FINE_LOCATION;
-        String permission_accessCoarseLocation = Manifest.permission.ACCESS_COARSE_LOCATION;
-        String permission_internet = Manifest.permission.INTERNET;
-
-        int result_accessFineLocation = checkCallingOrSelfPermission(permission_accessFineLocation);
-        int result_accessCoarseLocation = checkCallingOrSelfPermission(permission_accessCoarseLocation);
-        int result_internet = checkCallingOrSelfPermission(permission_internet);
-
-        if (result_accessFineLocation != PackageManager.PERMISSION_GRANTED) requestPermissions(new String[]{ permission_accessFineLocation }, PERMISSION_CODE);
-        if (result_accessCoarseLocation != PackageManager.PERMISSION_GRANTED) requestPermissions(new String[]{ permission_accessCoarseLocation }, PERMISSION_CODE);
-        if (result_internet != PackageManager.PERMISSION_GRANTED) requestPermissions(new String[]{ permission_internet }, PERMISSION_CODE);
-    }
-
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
-        if (requestCode == PERMISSION_CODE) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
-                Toast.makeText(JActivity.this, "Permissions Granted", Toast.LENGTH_SHORT) .show();
-            else
-                Toast.makeText(JActivity.this, "Permissions Denied", Toast.LENGTH_SHORT) .show();
+        if (requestCode == PERMISSION_CODE_FINE_LOCATION) {
+            String msg;
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                msg = String.format(
+                        "%s %s %s %s",
+                        word(R.string.fine, true),
+                        word(R.string.location, true),
+                        word(R.string.permission, true),
+                        word(R.string.granted, true)
+                );
+            } else {
+                msg = String.format(
+                        "%s %s %s %s",
+                        word(R.string.fine, true),
+                        word(R.string.location, true),
+                        word(R.string.permission, true),
+                        word(R.string.denied, true)
+                );
+            }
+            Toast.makeText(JActivity.this, msg, Toast.LENGTH_SHORT) .show();
+        } else if (requestCode == PERMISSION_CODE_COARSE_LOCATION) {
+            String msg;
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                msg = String.format(
+                        "%s %s %s %s",
+                        word(R.string.coarse, true),
+                        word(R.string.location, true),
+                        word(R.string.permission, true),
+                        word(R.string.granted, true)
+                );
+            } else {
+                msg = String.format(
+                        "%s %s %s %s",
+                        word(R.string.coarse, true),
+                        word(R.string.location, true),
+                        word(R.string.permission, true),
+                        word(R.string.denied, true)
+                );
+            }
+            Toast.makeText(JActivity.this, msg, Toast.LENGTH_SHORT).show();
         }
     }
 
