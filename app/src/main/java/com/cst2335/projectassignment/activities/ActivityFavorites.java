@@ -3,7 +3,6 @@ package com.cst2335.projectassignment.activities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.view.ContextThemeWrapper;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -21,19 +20,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.cst2335.projectassignment.R;
-import com.cst2335.projectassignment.fragments.FragmentEventDetails;
 import com.cst2335.projectassignment.fragments.FragmentEventFavorites;
-import com.cst2335.projectassignment.fragments.FragmentEventSearch;
 import com.cst2335.projectassignment.fragments.FragmentFavoriteEventDetails;
-import com.cst2335.projectassignment.fragments.FragmentHomeButton;
 import com.cst2335.projectassignment.objects.Event;
-import com.cst2335.projectassignment.utils.EventListAdapter;
 import com.cst2335.projectassignment.utils.FavoriteEventListAdapter;
 import com.cst2335.projectassignment.utils.OpenHelper;
 import com.cst2335.projectassignment.utils.TicketQuery;
@@ -43,7 +36,12 @@ import com.google.android.material.progressindicator.CircularProgressIndicator;
 
 import java.util.ArrayList;
 
-// TODO: Add JavaDoc Comment
+/**
+ * Activity class for the favorites page.
+ *
+ * @see JActivity
+ * @author Jacob Paulin
+ */
 public class ActivityFavorites extends JActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private OpenHelper openHelper;
@@ -83,7 +81,12 @@ public class ActivityFavorites extends JActivity implements NavigationView.OnNav
         else if (!lastCity.equals(currentCity)) getSharedPreferencesEditor().putString(TicketQuery.PREFERENCE_LAST_USER_CITY, currentCity);
     };
 
-    // TODO: Add JavaDoc Comment
+    /**
+     * onCreate method for the favorites activity.
+     * This is where the code in this class starts from.
+     *
+     * @param savedInstanceState Bundle argument passed though from parent class
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -143,7 +146,13 @@ public class ActivityFavorites extends JActivity implements NavigationView.OnNav
         new Handler().postDelayed(postLoad, 2000);
     }
 
-    // TODO: Add JavaDoc Comment
+    /**
+     * This is a method we use to setup the toolbar for the app.
+     * Here we use it to set the relevant data at the bottom of the Nav Drawer
+     *
+     * @param menu Menu in question
+     * @return boolean
+     */
     @Override
     @SuppressLint("RestrictedApi")
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -164,8 +173,13 @@ public class ActivityFavorites extends JActivity implements NavigationView.OnNav
         return super.onCreateOptionsMenu(menu);
     }
 
-    // Handle Toolbar Select
-    // TODO: Add JavaDoc Comment
+    /**
+     * This method handles the toolbar items and
+     * what to do when they are selected
+     *
+     * @param item The toolbar MenuItem that was selected
+     * @return boolean
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
@@ -193,8 +207,13 @@ public class ActivityFavorites extends JActivity implements NavigationView.OnNav
         return true;
     }
 
-    // Handle Drawer Select
-    // TODO: Add JavaDoc Comment
+    /**
+     * This method handles the navigation drawer items and
+     * what to do when they are selected
+     *
+     * @param item The navigation drawer MenuItem that was selected
+     * @return boolean
+     */
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
 
@@ -243,7 +262,15 @@ public class ActivityFavorites extends JActivity implements NavigationView.OnNav
         return false;
     }
 
-    // TODO: Add JavaDoc Comment
+    /**
+     * This is a method in JActivity which is called by
+     * a JFragment object once the fragment is loaded and
+     * on the screen visible to the user
+     *
+     * @param fragment The fragment which has just loaded
+     * @see JActivity
+     * @see com.cst2335.projectassignment.fragments.JFragment
+     */
     @Override
     public void onFragmentLoaded(Fragment fragment) {
         Class<? extends Fragment> fragmentClass = fragment.getClass();

@@ -31,13 +31,24 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
-// TODO: Add JavaDoc Comment
+/**
+ * Custom created AppCompatActivity class which we use to
+ * add and implement multiple helper methods.
+ *
+ * @see AppCompatActivity
+ * @author Jacob Paulin
+ */
 public abstract class JActivity extends AppCompatActivity {
 
     public static final int PERMISSION_CODE_FINE_LOCATION = 100;
     public static final int PERMISSION_CODE_COARSE_LOCATION = 101;
 
-    // TODO: Add JavaDoc Comment
+    /**
+     * onCreate method for the JActivity class.
+     * This is where the code in this class starts from.
+     *
+     * @param savedInstanceState Bundle argument passed though from parent class
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,27 +62,63 @@ public abstract class JActivity extends AppCompatActivity {
         }
     }
 
-    // TODO: Add JavaDoc Comment
+    /**
+     * This is a method in JActivity which is called by
+     * a JFragment object once the fragment is loaded and
+     * on the screen visible to the user
+     *
+     * @param fragment The fragment which has just loaded
+     * @see JActivity
+     * @see com.cst2335.projectassignment.fragments.JFragment
+     */
+    public void onFragmentLoaded(Fragment fragment) {};
+
+    /**
+     * Utility method used to quickly log stuff to console.
+     *
+     * @param message The message to log to console
+     */
     public final void log(String message) {
         Log.i(this.getLocalClassName(), message);
     }
 
-    // TODO: Add JavaDoc Comment
+    /**
+     * Quickly retrieves a word from the strings.xml file and
+     * gives the option to capitalize the first letter as well.
+     *
+     * @param string The string to retrieve
+     * @param capitalize If the first letter should be capitalized
+     * @return String with or without a capital first letter
+     */
     public final String word(@StringRes int string, Boolean capitalize) {
         return (capitalize) ? capitalize(getString(string)) : getString(string);
     }
 
-    // TODO: Add JavaDoc Comment
-    public static final String capitalize(String str) {
-        return (str == null || str.isEmpty()) ? str : str.substring(0, 1).toUpperCase() + str.substring(1);
+    /**
+     * Capitalized the first letter of a string.
+     *
+     * @param string The string you wish to capitalize
+     * @return Your string with a capital for the first letter
+     */
+    public static String capitalize(String string) {
+        return (string == null || string.isEmpty()) ? string : string.substring(0, 1).toUpperCase() + string.substring(1);
     }
 
-    // TODO: Add JavaDoc Comment
+    /**
+     * Converts a float number to a dp number for XML use.
+     *
+     * @param flt The float number to convert.
+     * @return Your float in dp
+     */
     public final Float floatToDp(float flt) {
         return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, flt, JActivity.this.getResources().getDisplayMetrics());
     }
 
-    // TODO: Add JavaDoc Comment
+    /**
+     * Uses locations services to find the current city of the user
+     *
+     * @return The current city the user is in
+     */
     public final String getCurrentCity() {
         String result = null;
 
@@ -103,7 +150,11 @@ public abstract class JActivity extends AppCompatActivity {
 
     }
 
-    // TODO: Add JavaDoc Comment
+    /**
+     *
+     * @param url
+     * @return
+     */
     public final JSONObject performHttpRequest(String url) {
         String result = null;
         JSONObject resultJSON = null;
@@ -134,9 +185,6 @@ public abstract class JActivity extends AppCompatActivity {
 
     // TODO: Add JavaDoc Comment
     public final SharedPreferences.Editor getSharedPreferencesEditor() { return getSharedPreferences(TicketQuery.PREFERENCES_FILE, Context.MODE_PRIVATE).edit(); }
-
-    // TODO: Add JavaDoc Comment
-    public void onFragmentLoaded(Fragment fragment) {};
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
