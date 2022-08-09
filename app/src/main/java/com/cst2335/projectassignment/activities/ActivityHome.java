@@ -34,9 +34,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.cst2335.projectassignment.R;
-import com.cst2335.projectassignment.fragments.FragmentEventSearch;
 import com.cst2335.projectassignment.fragments.FragmentHomeButton;
-import com.cst2335.projectassignment.utils.CityName;
 import com.cst2335.projectassignment.utils.OpenHelper;
 import com.cst2335.projectassignment.utils.TicketQuery;
 import com.google.android.material.internal.NavigationMenuItemView;

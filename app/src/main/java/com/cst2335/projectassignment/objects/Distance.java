@@ -1,12 +1,21 @@
 package com.cst2335.projectassignment.objects;
 
-// TODO: Add JavaDoc Comment
+/**
+ * Object used to represent and store
+ * distance for events
+ *
+ * @author Jacob Paulin
+ */
 public class Distance {
 
     private Double distance;
     private String units;
 
-    // TODO: Add JavaDoc Comment
+    /**
+     * Constructor method for the Distance object.
+     * @param distance
+     * @param units
+     */
     public Distance(Double distance, String units) {
         this.distance = distance;
         this.units = units;

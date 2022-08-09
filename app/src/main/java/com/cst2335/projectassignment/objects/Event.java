@@ -2,7 +2,12 @@ package com.cst2335.projectassignment.objects;
 
 import java.util.ArrayList;
 
-// TODO: Add JavaDoc Comment
+/**
+ * Object used to represent events
+ * and store their properties
+ *
+ * @author Jacob Paulin
+ */
 public class Event {
 
     private ArrayList<String> flags = new ArrayList<>();
@@ -21,7 +26,24 @@ public class Event {
     private String type;
     private String url;
 
-    // TODO: Add JavaDoc Comment
+    /**
+     * Constructor for the event object
+     * @param distance
+     * @param priceRange
+     * @param startDate
+     * @param status
+     * @param additionalInfo
+     * @param description
+     * @param id
+     * @param image
+     * @param info
+     * @param locale
+     * @param name
+     * @param pleaseNote
+     * @param type
+     * @param url
+     * @param flags
+     */
     public Event(Distance distance, EventPriceRange priceRange, EventStartDate startDate, EventStatus status, String additionalInfo, String description, String id, String image, String info, String locale, String name, String pleaseNote, String type, String url, String... flags) {
         this.distance = distance;
         this.priceRange = priceRange;

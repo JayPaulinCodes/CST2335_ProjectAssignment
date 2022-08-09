@@ -1,7 +1,9 @@
 package com.cst2335.projectassignment.objects;
 
-// TODO: Add JavaDoc Comment
 /**
+ * Object to represent and store data
+ * regarding a venue for an event
+ *
  * @deprecated Not used
  */
 public class Venue {
@@ -25,7 +27,27 @@ public class Venue {
     private String url;
     private VenueBoxOffice boxOffice;
 
-    // TODO: Add JavaDoc Comment
+    /**
+     * Constructor for the venue object
+     * @param distance
+     * @param accessibleSeatingDetail
+     * @param additionalInfo
+     * @param addressLine1
+     * @param addressLine2
+     * @param addressLine3
+     * @param childRule
+     * @param city
+     * @param country
+     * @param description
+     * @param generalRule
+     * @param id
+     * @param name
+     * @param parkingInfo
+     * @param postalCode
+     * @param state
+     * @param url
+     * @param boxOffice
+     */
     public Venue(Distance distance, String accessibleSeatingDetail, String additionalInfo, String addressLine1, String addressLine2, String addressLine3, String childRule, String city, String country, String description, String generalRule, String id, String name, String parkingInfo, String postalCode, String state, String url, VenueBoxOffice boxOffice) {
         this.distance = distance;
         this.accessibleSeatingDetail = accessibleSeatingDetail;

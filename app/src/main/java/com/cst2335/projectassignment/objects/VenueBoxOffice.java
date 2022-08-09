@@ -1,7 +1,10 @@
 package com.cst2335.projectassignment.objects;
 
-// TODO: Add JavaDoc Comment
 /**
+ * Object to represent and store data
+ * regarding a venue's box office for
+ * an event's venue
+ *
  * @deprecated Not used
  */
 public class VenueBoxOffice {
@@ -10,7 +13,12 @@ public class VenueBoxOffice {
     private String openHours;
     private String phoneNumber;
 
-    // TODO: Add JavaDoc Comment
+    /**
+     * Constructor for the VenueBoxOffice object
+     * @param acceptedPayment
+     * @param openHours
+     * @param phoneNumber
+     */
     public VenueBoxOffice(String acceptedPayment, String openHours, String phoneNumber) {
         this.acceptedPayment = acceptedPayment;
         this.openHours = openHours;

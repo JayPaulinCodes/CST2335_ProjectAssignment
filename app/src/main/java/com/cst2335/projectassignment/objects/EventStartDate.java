@@ -5,7 +5,12 @@ import android.util.Log;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-// TODO: Add JavaDoc Comment
+/**
+ * Object used to represent and store
+ * start dates for events
+ *
+ * @author Jacob Paulin
+ */
 public class EventStartDate {
 
     private Boolean noSpecificTime;

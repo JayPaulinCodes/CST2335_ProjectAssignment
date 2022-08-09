@@ -18,9 +18,11 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-// TODO: Fix JavaDoc Comment
 /**
- * A simple {@link JFragment} subclass.
+ * Fragment class for the event search fragment
+ *
+ * @see JFragment
+ * @author Jacob Paulin
  */
 public class FragmentEventSearch extends JFragment {
 
@@ -34,19 +36,26 @@ public class FragmentEventSearch extends JFragment {
 
     private ArrayList<Event> events;
 
-    // TODO: Add JavaDoc Comment
-    public FragmentEventSearch() {
-        // Required empty public constructor
-    }
+    /**
+     * Required empty public constructor
+     */
+    public FragmentEventSearch() {}
 
-    // TODO: Add JavaDoc Comment
+    /**
+     * Used to set the context
+     * @param context Context
+     * @return this
+     */
     public FragmentEventSearch context(Context context) {
         this.context = context;
         this.jActivity = (JActivity) context;
         return this;
     }
 
-    // TODO: Add JavaDoc Comment
+    /**
+     * Method which is triggered on the creation of the fragment
+     * @param savedInstanceState
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,14 +77,24 @@ public class FragmentEventSearch extends JFragment {
         }
     }
 
-    // TODO: Add JavaDoc Comment
+    /**
+     * Method which is called to create the view for the fragment
+     * @param inflater LayoutInflater
+     * @param container ViewGroup
+     * @param savedInstanceState Bundle
+     * @return View for the fragment
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         return inflater.inflate(R.layout.fragment_event_search, container, false);
     }
 
-    // TODO: Add JavaDoc Comment
+    /**
+     * Accessor method for variable events
+     *
+     * @return value of variable events
+     */
     public final ArrayList<Event> getEventList() { return events; }
 
 }

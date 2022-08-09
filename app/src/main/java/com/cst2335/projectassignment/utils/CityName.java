@@ -11,13 +11,21 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
-// TODO: Add JavaDoc Comment
+/**
+ * Class used to determine the current city the user is in
+ *
+ * @deprecated No longer used
+ */
 public class CityName extends AsyncTask<Location, Integer, List<Address>> {
 
     @SuppressLint("StaticFieldLeak")
     private final Context context;
 
-    // TODO: Add JavaDoc Comment
+    /**
+     * Constructor for the CityName class
+     *
+     * @deprecated No longer used
+     */
     public CityName(Context context) {
         this.context = context;
     }

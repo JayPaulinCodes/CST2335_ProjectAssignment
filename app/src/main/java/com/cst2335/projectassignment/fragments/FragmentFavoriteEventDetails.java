@@ -23,7 +23,12 @@ import com.cst2335.projectassignment.objects.Event;
 import com.cst2335.projectassignment.utils.DownloadImageTask;
 import com.cst2335.projectassignment.utils.TicketQuery;
 
-// TODO: Add JavaDoc Comment
+/**
+ * Fragment class for the favorite event details fragment
+ *
+ * @see JFragment
+ * @author Jacob Paulin
+ */
 public class FragmentFavoriteEventDetails extends JFragment {
 
 //    private static final String ARG_CITY = ActivitySearch.ARG_CITY;
@@ -31,24 +36,35 @@ public class FragmentFavoriteEventDetails extends JFragment {
     private Context context;
     private Event event;
 
-    // TODO: Add JavaDoc Comment
-    public FragmentFavoriteEventDetails() {
-        // Required empty public constructor
-    }
+    /**
+     * Required empty public constructor
+     */
+    public FragmentFavoriteEventDetails() {}
 
-    // TODO: Add JavaDoc Comment
+    /**
+     * Used to set the context
+     * @param context Context
+     * @return this
+     */
     public FragmentFavoriteEventDetails context(Context context) {
         this.context = context;
         return this;
     }
 
-    // TODO: Add JavaDoc Comment
+    /**
+     * Used to set the event
+     * @param event Event
+     * @return this
+     */
     public FragmentFavoriteEventDetails event(Event event) {
         this.event = event;
         return this;
     }
 
-    // TODO: Add JavaDoc Comment
+    /**
+     * Method which is triggered on the creation of the fragment
+     * @param savedInstanceState
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,7 +74,13 @@ public class FragmentFavoriteEventDetails extends JFragment {
 //        }
     }
 
-    // TODO: Add JavaDoc Comment
+    /**
+     * Method which is called to create the view for the fragment
+     * @param inflater LayoutInflater
+     * @param container ViewGroup
+     * @param savedInstanceState Bundle
+     * @return View for the fragment
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_favorite_event_details, container, false);

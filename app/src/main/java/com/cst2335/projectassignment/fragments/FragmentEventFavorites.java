@@ -16,7 +16,12 @@ import com.cst2335.projectassignment.utils.TicketQuery;
 import java.util.ArrayList;
 
 
-// TODO: Add JavaDoc Comment
+/**
+ * Fragment class for the event favorites fragment
+ *
+ * @see JFragment
+ * @author Jacob Paulin
+ */
 public class FragmentEventFavorites extends JFragment {
 
     private Context context;
@@ -24,19 +29,26 @@ public class FragmentEventFavorites extends JFragment {
 
     private ArrayList<Event> events;
 
-    // TODO: Add JavaDoc Comment
-    public FragmentEventFavorites() {
-        // Required empty public constructor
-    }
+    /**
+     * Required empty public constructor
+     */
+    public FragmentEventFavorites() {}
 
-    // TODO: Add JavaDoc Comment
+    /**
+     * Used to set the context
+     * @param context Context
+     * @return this
+     */
     public FragmentEventFavorites context(Context context) {
         this.context = context;
         this.jActivity = (JActivity) context;
         return this;
     }
 
-    // TODO: Add JavaDoc Comment
+    /**
+     * Method which is triggered on the creation of the fragment
+     * @param savedInstanceState
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,13 +56,23 @@ public class FragmentEventFavorites extends JFragment {
         events = TicketQuery.getFavoriteEvents(((ActivityFavorites) requireActivity()).getDB());
     }
 
-    // TODO: Add JavaDoc Comment
+    /**
+     * Method which is called to create the view for the fragment
+     * @param inflater LayoutInflater
+     * @param container ViewGroup
+     * @param savedInstanceState Bundle
+     * @return View for the fragment
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         return inflater.inflate(R.layout.fragment_event_favorites, container, false);
     }
 
-    // TODO: Add JavaDoc Comment
+    /**
+     * Accessor method for variable events
+     *
+     * @return value of variable events
+     */
     public final ArrayList<Event> getEventList() { return events; }
 }

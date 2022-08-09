@@ -1,13 +1,23 @@
 package com.cst2335.projectassignment.objects;
 
-// TODO: Add JavaDoc Comment
+/**
+ * Object used to represent and store
+ * price ranges for events
+ *
+ * @author Jacob Paulin
+ */
 public class EventPriceRange {
 
     private Double maximum;
     private Double minimum;
     private String currency;
 
-    // TODO: Add JavaDoc Comment
+    /**
+     * Constructor method for the EventPriceRange class
+     * @param currency The currency the price is in
+     * @param minimum Bottom of the price range
+     * @param maximum Top of the price range
+     */
     public EventPriceRange(String currency, Double minimum, Double maximum) {
         this.currency = currency;
         this.minimum = minimum;
@@ -56,13 +66,22 @@ public class EventPriceRange {
      */
     public void setCurrency(String currency) { this.currency = currency; }
 
-    // TODO: Add JavaDoc Comment
+    /**
+     * Returns the bottom of the price range in a formatted way
+     * @return Bottom of the price range and the currency
+     */
     public String getMinimumFormatted() { return String.format("%.2f %s", minimum, currency); }
 
-    // TODO: Add JavaDoc Comment
+    /**
+     * Returns the top of the price range in a formatted way
+     * @return Top of the price range and the currency
+     */
     public String getMaximumFormatted() { return String.format("%.2f %s", maximum, currency); }
 
-    // TODO: Add JavaDoc Comment
+    /**
+     * Formats the price range into a legible format
+     * @return The price range
+     */
     @Override
     public String toString() {
         return String.format(

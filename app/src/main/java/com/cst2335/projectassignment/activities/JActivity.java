@@ -170,20 +170,35 @@ public abstract class JActivity extends AppCompatActivity {
         return resultJSON;
     }
 
-    // TODO: Add JavaDoc Comment
+    /**
+     * Performs a http request to the API we use and returns the JSONObject
+     * @param city The city to look up
+     * @param radius The radius to search
+     * @return JSONObject retrieved from the API request
+     */
     public final JSONObject doHttpRequest(String city, Integer radius) {
         return performHttpRequest(HTTPRequest.url(city, radius));
     }
 
-    // TODO: Add JavaDoc Comment
+    /**
+     * Performs a http request to the API we use and returns the JSONObject
+     * @param id The event ID to search up
+     * @return JSONObject retrieved from the API request
+     */
     public final JSONObject doHttpRequest(String id) {
         return performHttpRequest(HTTPRequest.url(id));
     }
 
-    // TODO: Add JavaDoc Comment
+    /**
+     * Simple way of getting the shared preferences object
+     * @return SharedPreferences
+     */
     public final SharedPreferences getSharedPreferences() { return getSharedPreferences(TicketQuery.PREFERENCES_FILE, Context.MODE_PRIVATE); }
 
-    // TODO: Add JavaDoc Comment
+    /**
+     * Simple way of getting the shared preferences editor object
+     * @return SharedPreferences.Editor
+     */
     public final SharedPreferences.Editor getSharedPreferencesEditor() { return getSharedPreferences(TicketQuery.PREFERENCES_FILE, Context.MODE_PRIVATE).edit(); }
 
     @Override

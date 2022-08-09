@@ -9,13 +9,21 @@ import android.widget.ImageView;
 import java.io.InputStream;
 import java.net.URL;
 
-// https://stackoverflow.com/a/9288544/17193562
-// TODO: Add JavaDoc Comment
+/**
+ * Used to set the image on a ImageView outside of the XML
+ * <br>
+ * Class created by <a href="https://stackoverflow.com/a/9288544/17193562">Android Developer on StackOverflow</a>
+ *
+ * @author <a href="https://stackoverflow.com/a/9288544/17193562">Android Developer on StackOverflow</a>
+ */
 public class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
     @SuppressLint("StaticFieldLeak")
     private ImageView imageView;
 
-    // TODO: Add JavaDoc Comment
+    /**
+     * Constructor for the DownloadImageTask class
+     * @param imageView The {@link ImageView} to apply the image to
+     */
     public DownloadImageTask(ImageView imageView) {
         this.imageView = imageView;
     }
