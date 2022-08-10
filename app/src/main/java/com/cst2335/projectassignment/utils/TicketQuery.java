@@ -164,8 +164,9 @@ public class TicketQuery {
         int colIndex_id = cursor.getColumnIndex(OpenHelper.COL_ID);
 
         if (cursor.moveToFirst()) {
+            int out = cursor.getInt(colIndex_id);
             cursor.close();
-            return cursor.getInt(colIndex_id);
+            return out;
         }
         else {
             cursor.close();
