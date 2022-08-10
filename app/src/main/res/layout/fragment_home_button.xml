@@ -1,0 +1,40 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    tools:context=".fragments.FragmentHomeButton"
+    android:background="@drawable/fragment_home_button_border">
+
+
+    <TextView
+        android:id="@+id/fragment_homeButton_text"
+        style="@style/Theme.Components.TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:padding="15dp"
+        android:textSize="20dp"
+        android:elevation="5dp"
+        android:textAlignment="center"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/fragment_homeButton_button"
+        style="@style/Theme.Components.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:padding="15dp"
+        android:elevation="5dp"
+        android:layout_below="@+id/fragment_homeButton_text"
+        android:layout_centerHorizontal="true" />
+
+
+</RelativeLayout>

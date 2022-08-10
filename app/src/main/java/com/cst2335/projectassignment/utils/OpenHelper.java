@@ -4,15 +4,24 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+/**
+ * OpenHelper class to handle the SQLite database used by the app
+ *
+ * @author Jacob Paulin
+ */
 public class OpenHelper extends SQLiteOpenHelper {
-    public static final String FILE_NAME = "TicketMasterSearcher";
+    public static final String FILE_NAME = "TicketQuery";
     public static final int VERSION = 1;
 
-    public static final String TABLE_NAME = "Favorites";
+    public static final String TABLE_NAME = "FAVORITES";
     public static final String COL_ID = "_id";
-    public static final String COL_MESSAGE = "Message";
-    public static final String COL_SEND_RECEIVE = "SendOrReceive";
+    public static final String COL_EVENT_ID = "eventId";
+    public static final String COL_IS_EVENT_FAVORITE = "isFavorite";
 
+    /**
+     * Constructor for the OpenHelper class used to intantiate an instance of this class.
+     * @param context The context, typically the activity where this class is being used
+     */
     public OpenHelper(Context context) {
         super(context, FILE_NAME, null, VERSION);
     }
@@ -23,8 +32,8 @@ public class OpenHelper extends SQLiteOpenHelper {
                 "Create table %s ( %s INTEGER PRIMARY KEY AUTOINCREMENT, %s TEXT, %s INTEGER );",
                 TABLE_NAME,
                 COL_ID,
-                COL_MESSAGE,
-                COL_SEND_RECEIVE
+                COL_EVENT_ID,
+                COL_IS_EVENT_FAVORITE
         );
 
         db.execSQL(query);
@@ -41,4 +50,7 @@ public class OpenHelper extends SQLiteOpenHelper {
 
         this.onCreate(db);
     }
+
+
+
 }

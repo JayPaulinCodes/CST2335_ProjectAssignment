@@ -3,21 +3,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.cst2335.projectassignment">
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:icon="@drawable/brand_icon_80"
+        android:label="@string/brandName"
+        android:roundIcon="@drawable/brand_icon_80"
         android:supportsRtl="true"
-        android:theme="@style/Theme.CST2335_ProjectAssignment"
+        android:theme="@style/Theme.Base"
         tools:targetApi="31">
         <activity
-            android:name=".TicketQuery"
-            android:exported="true">
+            android:name=".activities.ActivitySearch"
+            android:exported="false"
+            android:theme="@style/Theme.Base" />
+        <activity
+            android:name=".activities.ActivityFavorites"
+            android:exported="false"
+            android:theme="@style/Theme.Base" />
+        <activity
+            android:name=".activities.ActivityHome"
+            android:exported="true"
+            android:theme="@style/Theme.Base">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--  Specs  -->
+    <string name="brandName">TicketQuery</string>
+    <string name="appVersion">1.0.0</string>
+    <string name="appAuthor">Jacob Paulin</string>
+
+    <!--  Drawer Menu  -->
+    <string name="menuDrawer_navigation">Navigation</string>
+    <string name="menuDrawer_home">Page d\'Accueil</string>
+    <string name="menuDrawer_favorites">Préféré</string>
+    <string name="menuDrawer_search">Chercher</string>
+    <string name="menuDrawer_miscellaneous">Divers</string>
+    <string name="menuDrawer_help">Aide</string>
+    <string name="menuDrawer_about">À Propos De Nous</string>
+
+    <!--  Toolbar Menu  -->
+    <string name="menuToolbar_home">Page d\'Accueil</string>
+
+    <!--  Alert Dialogs  -->
+    <string name="alertDialog_appInfo_title">Info D\'application</string>
+    <string name="alertDialog_appInfo_message">Voici quelques informations à propos de l\'application. %n%nCet Activité: %s%nAuteur de l\'application : %s%nVersion de l\'application : %s</string>
+    <string name="alertDialog_noFavorites_title">Aucun Événement Sauvegarder!</string>
+    <string name="alertDialog_noFavorites_message">Il n\'y a aucun événement enregistré dans vos favoris, essayez d\'abord d\'en rechercher un!</string>
+    <string name="alertDialog_activityFavorites_helpTitle">Page D\'aide: Préféré</string>
+    <string name="alertDialog_activityFavorites_helpMessage">La page des préféré vous montrera chacun des événements que vous avez enregistrés dans votre liste de préféré.%n%nPour afficher plus de détails sur un événement, cliquez sur l\'événement.</string>
+    <string name="alertDialog_activityHome_helpTitle">Page D\'aide: Page d\'Accueil</string>
+    <string name="alertDialog_activityHome_helpMessage">Start by choosing one of our 2 option, search or favorites.%n%nSearch option will bring you to a page where you can search for events and then view more details about them.%n%nFavorites option will bring you to a page where you can view all of your saved events.</string>
+    <string name="alertDialog_activitySearch_helpTitle">Page D\'aide: Chercher</string>
+    <string name="alertDialog_activitySearch_helpMessage">La page de recherche vous permet de rechercher des événements en fonction d\'une ville et d\'un rayon.%n%nEntrez une ville dans la zone de la ville et un rayon numérique dans la zone du rayon, puis appuyez sur le bouton de chercher et faites défiler la liste des événements.%n %nUne fois que vous voyez un événement qui vous intéresse, cliquez sur l\'événement pour voir plus de détails sur cet événement.</string>
+
+    <!--  Search Bar  -->
+    <string name="searchBar_editText_city_hint">Chercher pour une vile…</string>
+    <string name="searchBar_editText_radius_hint">Rayon maximum…</string>
+    <string name="searchBar_searchButton">Chercher</string>
+
+    <!--  Home Page  -->
+    <string name="activityHome_searchButton_description">Cherchez et trouvez l\'événement \nparfait pour vous !</string>
+    <string name="activityHome_searchButton_buttonLabel">Allez Au Page De Cherchez</string>
+    <string name="activityHome_favoriteButton_description">Affichez vos événements enregistrés !</string>
+    <string name="activityHome_favoriteButton_buttonLabel">Allez Au Page De Préféré</string>
+
+    <!--  Messages  -->
+    <string name="message_invalidSearchInput">Saisie invalide dans les champs suivants:</string>
+    <string name="message_addedToFavorites">Événement ajouté à la liste des préférés</string>
+    <string name="message_removedFromFavorites">Événement supprimé du liste des préférés</string>
+
+    <!--  Fragment Event Details  -->
+    <string name="fragment_eventDetails_url">Aller sur le site</string>
+    <string name="fragment_eventDetails_favoriteAdd">Ajouté à la liste des préférés</string>
+    <string name="fragment_eventDetails_favoriteRemove">Supprimé du liste des préférés</string>
+
+    <!--  Fragment Favorite Event Details  -->
+    <string name="fragment_favoriteEventDetails_url">Aller sur le site</string>
+    <string name="fragment_favoriteEventDetails_favoriteRemove">Supprimé du liste des préférés</string>
+
+    <!--  Fragment Favorite Event List Item  -->
+    <string name="favoriteEventListItem_button_remove">Supprimé du liste des préférés</string>
+
+    <!--  WORDS  -->
+    <string name="blank" />
+    <string name="open">ouvrir</string>
+    <string name="close">fermer</string>
+    <string name="activity">activité</string>
+    <string name="author">auteur</string>
+    <string name="version">version</string>
+    <string name="search">chercher</string>
+    <string name="city">vile</string>
+    <string name="radius">rayon</string>
+    <string name="permission">permission</string>
+    <string name="granted">accorder</string>
+    <string name="denied">refuser</string>
+    <string name="location">localisation</string>
+    <string name="fine">fin</string>
+    <string name="coarse">grossier</string>
+
+</resources>
