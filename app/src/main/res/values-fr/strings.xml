@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!--  TODO: Translate to french  -->
-
     <!--  Specs  -->
     <string name="brandName">TicketQuery</string>
     <string name="appVersion">1.0.0</string>

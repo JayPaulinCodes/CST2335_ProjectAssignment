@@ -11,7 +11,11 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-// TODO: Add JavaDoc Comment
+/**
+ * Utility class with constants and usefull helper methods used throughout the app
+ *
+ * @author Jacob Paulin
+ */
 public class TicketQuery {
     public final static String PREFERENCES_FILE = "TicketQueryData";
     public final static String PREFERENCE_LAST_USER_CITY = "preference_lastUserCity";
@@ -23,7 +27,6 @@ public class TicketQuery {
     public static final String ACTIVITY_FAVORITES = "activityPage_favorites";
 
 
-    // TODO: Add JavaDoc Comment
 //    public static JSONObject fetchFromAPI(String city, Integer radius) {
 //        HTTPRequest httpRequest = new HTTPRequest();
 //        httpRequest.execute(HTTPRequest.url(city, radius));
@@ -41,7 +44,11 @@ public class TicketQuery {
 //        return resultJSON;
 //    }
 
-    // TODO: Add JavaDoc Comment
+    /**
+     * Does a HTTPRequest for a specific event using the event id
+     * @param eventId the id of the event to fetch
+     * @return the JSONObject of the event
+     */
     public static JSONObject fetchFromAPI(String eventId) {
         HTTPRequest httpRequest = new HTTPRequest();
         httpRequest.execute(HTTPRequest.url(eventId));
@@ -60,7 +67,11 @@ public class TicketQuery {
     }
 
 
-    // TODO: Add JavaDoc Comment
+    /**
+     * Method used to retrieve all the events which are saved as favorites
+     * @param db An instance of the SQLite database
+     * @return List of favorited events
+     */
     public static ArrayList<Event> getFavoriteEvents(SQLiteDatabase db) {
         ArrayList<Event> events = new ArrayList<>();
 
@@ -92,7 +103,12 @@ public class TicketQuery {
         return events;
     }
 
-    // TODO: Add JavaDoc Comment
+    /**
+     * Checks if a event is in the database
+     * @param db An instance of the SQLite database
+     * @param eventId The id of the event to find
+     * @return True if the event is in the database and false if it's not
+     */
     public static boolean isEventInDB(SQLiteDatabase db, String eventId) {
         String query = String.format(
                 "SELECT * FROM %s WHERE %s = '%s';",
@@ -110,7 +126,12 @@ public class TicketQuery {
         return cursorCount > 0;
     }
 
-    // TODO: Add JavaDoc Comment
+    /**
+     * Sets the favorite status of a specific event in the database
+     * @param db An instance of the SQLite database
+     * @param eventId The id of the event to find
+     * @param isFavorite True if the event is a favorite and false otherwise
+     */
     public static void setEventFavorite(SQLiteDatabase db, String eventId, boolean isFavorite) {
         int favValue;
 
@@ -125,7 +146,12 @@ public class TicketQuery {
         db.replace(OpenHelper.TABLE_NAME, null, contentValues);
     }
 
-    // TODO: Add JavaDoc Comment
+    /**
+     * Find the id used by a specific event in the SQLite database
+     * @param db An instance of the SQLite database
+     * @param eventId The id of the event to find
+     * @return The id used by the event in the SQLite database
+     */
     public static Integer getEventDBId(SQLiteDatabase db, String eventId) {
         String query = String.format(
                 "SELECT * FROM %s WHERE %s = '%s';",
@@ -147,7 +173,12 @@ public class TicketQuery {
         }
     }
 
-    // TODO: Add JavaDoc Comment
+    /**
+     * Checks if a specific item is saved in the SQLite database as a favorite
+     * @param db An instance of the SQLite database
+     * @param eventId The id of the event to find
+     * @return True if the event is a favorite and false otherwise
+     */
     @SuppressLint("Range")
     public static Boolean isEventFavorite(SQLiteDatabase db, String eventId) {
         Boolean output = null;

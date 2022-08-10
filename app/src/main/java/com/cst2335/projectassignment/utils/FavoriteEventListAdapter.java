@@ -13,43 +13,72 @@ import com.cst2335.projectassignment.objects.Event;
 
 import java.util.ArrayList;
 
-// TODO: Add JavaDoc Comment
+/**
+ * List Adapter class for the list of events on the favorites page.
+ *
+ * @author Jacob Paulin
+ */
 public class FavoriteEventListAdapter extends BaseAdapter {
 
     private final JActivity jActivity;
     private ArrayList<Event> list;
 
-    // TODO: Add JavaDoc Comment
+    /**
+     * Constructor for the FavoriteEventListAdapter class
+     * @param list ArrayList of Events
+     * @param jActivity Context
+     */
     public FavoriteEventListAdapter(ArrayList<Event> list, JActivity jActivity) {
         super();
         this.jActivity = jActivity;
         this.list = list;
     }
 
-    // TODO: Add JavaDoc Comment
+    /**
+     * Sets the event variable
+     * @param events ArrayList of Events
+     */
     public void setList(ArrayList<Event> events) {
         this.list = events;
     }
 
-    // TODO: Add JavaDoc Comment
+    /**
+     * Returns the amount of events in the list
+     * @return Integer of list size
+     */
     @Override
     public int getCount() {
         return list.size();
     }
 
-    // TODO: Add JavaDoc Comment
+    /**
+     * Retrieves an item at a given position
+     * @param position the position of the item to retrieve
+     * @return the item at the given position
+     */
     @Override
     public Object getItem(int position) {
         return list.get(position);
     }
 
-    // TODO: Add JavaDoc Comment
+    /**
+     * Unused method for item ID
+     * @param position
+     * @return
+     * @deprecated
+     */
     @Override
     public long getItemId(int position) {
         return 0;
     }
 
-    // TODO: Add JavaDoc Comment
+    /**
+     * Preparing the event list items with their respective data
+     * @param position the position of the event in the events list
+     * @param convertView
+     * @param parent
+     * @return the prepared view
+     */
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         Event event = list.get(position);

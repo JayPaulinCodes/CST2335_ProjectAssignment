@@ -20,7 +20,11 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
-// TODO: Add JavaDoc Comment
+/**
+ * HTTPRequest class used to handle making HTTPRequests and retrieving data from the API
+ *
+ * @author Jacob Paulin
+ */
 public class HTTPRequest extends AsyncTask<String, Integer, String> {
     private static final String TAG = "HTTPRequest";
 
@@ -28,7 +32,11 @@ public class HTTPRequest extends AsyncTask<String, Integer, String> {
     public static final String BASE_URL_DIRECT = "https://app.ticketmaster.com/discovery/v2/events.json?apikey=%APIKEY%&id=%ID%";
     private static final String KEY = "GaC7WC9H0odhl78qlM7sgE6ktHwZcDDq";
 
-    // TODO: Add JavaDoc Comment
+    /**
+     * Mechanics of the class, this is where we code our logic for the class
+     * @param args arguments to use when making a http request
+     * @return The result from the API
+     */
     @Override
     protected String doInBackground(String... args) {
         String resultOutput = null;
@@ -58,27 +66,47 @@ public class HTTPRequest extends AsyncTask<String, Integer, String> {
         return resultOutput;
     }
 
-    // TODO: Add JavaDoc Comment
+    /**
+     * Overriding method from parent class
+     * @param args
+     */
     public void onProgressUpdate(Integer ... args) {
         Log.i(TAG, "onProgressUpdate");
     }
 
-    // TODO: Add JavaDoc Comment
+    /**
+     * Method which is executed once the task is complete
+     * @param result
+     */
     public void onPostExecute(String result) {
         super.onPostExecute(result);
         Log.i(TAG, "onPostExecute");
     }
 
-    // TODO: Add JavaDoc Comment
+    /**
+     * Method to build a HTTPRequest URL
+     * @param city City to search
+     * @param radius Radius to search
+     * @return A String url with the given parameters
+     */
     public static String url(String city, Integer radius) {
         return BASE_URL.replace("%APIKEY%", KEY).replace("%CITY%", city).replace("%RADIUS%", String.valueOf(radius));
     }
 
-    // TODO: Add JavaDoc Comment
+    /**
+     * Method to build a HTTPRequest URL
+     * @param id ID of the event to search
+     * @return A String url with the given parameters
+     */
     public static String url(String id) {
         return BASE_URL_DIRECT.replace("%APIKEY%", KEY).replace("%ID%", id);
     }
 
+    /**
+     * Proccesses a JSONObject from the API request and converts it to a Event object
+     * @param eventJSON the json object for the event we want
+     * @return Event object based off of the JSONObject
+     */
     public static Event processEventJSON(JSONObject eventJSON) {
         String additionalInfo, description, id, image, info, locale, name, pleaseNote, type, url;
         Distance distance;
@@ -181,7 +209,11 @@ public class HTTPRequest extends AsyncTask<String, Integer, String> {
         );
     }
 
-    // TODO: Add JavaDoc Comment
+    /**
+     * Processes a JSONArray holding JSONObjects for events
+     * @param array the JSONArray with JSONObject for events we want to process
+     * @return List of events in the JSONArray
+     */
     public static ArrayList<Event> processHTTPJSONArray(JSONArray array) {
         ArrayList<Event> events = new ArrayList<>();
 

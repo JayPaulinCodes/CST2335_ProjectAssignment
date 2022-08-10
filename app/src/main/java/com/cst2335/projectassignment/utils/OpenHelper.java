@@ -4,7 +4,11 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-
+/**
+ * OpenHelper class to handle the SQLite database used by the app
+ *
+ * @author Jacob Paulin
+ */
 public class OpenHelper extends SQLiteOpenHelper {
     public static final String FILE_NAME = "TicketQuery";
     public static final int VERSION = 1;
@@ -14,7 +18,10 @@ public class OpenHelper extends SQLiteOpenHelper {
     public static final String COL_EVENT_ID = "eventId";
     public static final String COL_IS_EVENT_FAVORITE = "isFavorite";
 
-    // TODO: Add JavaDoc Comment
+    /**
+     * Constructor for the OpenHelper class used to intantiate an instance of this class.
+     * @param context The context, typically the activity where this class is being used
+     */
     public OpenHelper(Context context) {
         super(context, FILE_NAME, null, VERSION);
     }
